@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { getAllProducts } from "../Helpers/Products";
-import Card from "../components/Card";
-import { useStore } from "../store/productsStoreContext";
+import { getAllProducts } from "../../Helpers/Products";
+import Card from "../../components/Card";
+import { useStore } from "../../store/productsStoreContext";
+import "./Home.css";
 
 function Home() {
   const { products, setProducts } = useStore();
@@ -17,11 +18,11 @@ function Home() {
   }, []);
 
   return (
-    <div>
+    <div className="page">
       {products &&
         products.map((product) => {
           return (
-            <div key={product?.id}>
+            <div key={product?.id} className="item">
               <Card product={product} />
             </div>
           );

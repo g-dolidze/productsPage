@@ -1,5 +1,5 @@
-import { stateType } from "./StoreProductContext";
-import { cartItemsType } from "./StoreProductContext";
+import { stateType } from "./productsStoreContext";
+import { cartItemsType } from "./productsStoreContext";
 
 const reducer = (state: stateType, action: any) => {
   switch (action.type) {

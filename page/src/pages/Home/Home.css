@@ -1,0 +1,14 @@
+.page {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  width: 300px;
+  height: 200px;
+}

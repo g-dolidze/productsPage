@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { Axios } from "axios";
-import useProducts from "../store/StoreProductContext";
+import { Link } from "react-router-dom";
 
 const Card = ({ product }) => {
   // const [dispach,products.setProducts]=useProducts()
@@ -8,7 +6,9 @@ const Card = ({ product }) => {
   return (
     <>
       <div className="card">
-        <h1>{product.title} </h1>
+        <Link to={`product/${product.id}`}>
+          <h1>{product.title} </h1>
+        </Link>
         <img src={product.images[0]} alt="image" />
         <div className="about">
           <h3>{product.brand} </h3>
