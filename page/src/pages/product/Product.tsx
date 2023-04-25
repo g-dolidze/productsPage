@@ -3,14 +3,18 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./product.css";
+
 function Product() {
   const [chousenItem, setChousenItem] = useState({});
   const { id } = useParams();
   useEffect(() => {
     const getProduct = async () => {
-      const { data: product } = await axios(`localhost:8080/product/5`);
-      console.log(product);
-      // setChousenItem(product);
+      const { data: product } = await axios.get(
+        `http://localhost:8080/product/${id}`
+      );
+
+      // console.log(product);
+      setChousenItem(product);
     };
     getProduct();
   }, []);
