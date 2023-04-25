@@ -5,7 +5,7 @@ const NavBar = () => {
     <div className="nav">
       <div className="leftside">
         <Link to="/">
-          <h1>Productes</h1>
+          <h1>e-commers</h1>
         </Link>
         <Link to="/card">
           <h2>Categore</h2>

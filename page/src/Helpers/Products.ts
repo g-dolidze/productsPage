@@ -1,6 +1,11 @@
 import ajax from "./ajax";
 
-export const getAllProducts = () => ajax.get("products");
+export const getAllProducts = () =>
+  ajax.post("products", {
+    keyword: "",
+    page_size: 10,
+    page_number: 0,
+  });
 
 // export const deleteProdict = (productId) =>
 //   ajax.delete(`products/ ${productId}`);

@@ -1,7 +1,7 @@
 import axios, { Axios } from "axios";
 
 const ajax = axios.create({
-  baseURL: "https://dummyjson.com/",
+  baseURL: "http://localhost:8080",
   timeout: 1000,
   headers: {
     Accept: "application/json",

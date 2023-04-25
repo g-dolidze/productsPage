@@ -19,14 +19,13 @@ function Home() {
 
   return (
     <div className="page">
-      {products &&
-        products.map((product) => {
-          return (
-            <div key={product?.id} className="item">
-              <Card product={product} />
-            </div>
-          );
-        })}
+      {products.map((product) => {
+        return (
+          <div key={product?.id}>
+            <Card product={product} />
+          </div>
+        );
+      })}
     </div>
   );
 }

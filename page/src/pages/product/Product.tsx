@@ -2,16 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-
+import "./product.css";
 function Product() {
   const [chousenItem, setChousenItem] = useState({});
   const { id } = useParams();
   useEffect(() => {
     const getProduct = async () => {
-      const { data: product } = await axios(
-        `https://dummyjson.com/products/${id}`
-      );
-      setChousenItem(product);
+      const { data: product } = await axios(`localhost:8080/product/5`);
+      console.log(product);
+      // setChousenItem(product);
     };
     getProduct();
   }, []);
@@ -20,12 +19,17 @@ function Product() {
     <div>
       <Link to={"/"}>Back</Link>
       <div>
-        <h1>{chousenItem.brand} </h1>
-        <img src={chousenItem?.images?.[0]} alt="" />
+        <h1>{chousenItem?.brand} </h1>
+        <img src={chousenItem.images?.[0]} alt="" />
         <h3>
-          {chousenItem.title} {chousenItem.rating}{" "}
+          model: <span>{chousenItem?.title}</span>{" "}
         </h3>
-        <h2>{chousenItem.price} </h2>
+        <h3>
+          raiting: <span>{chousenItem.rating}</span>{" "}
+        </h3>
+        <h2>
+          price: <span>{chousenItem.price}</span>
+        </h2>
       </div>
     </div>
   );
