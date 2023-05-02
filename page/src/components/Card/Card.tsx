@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import "./Card.scss";
 const Card = ({ product }) => {
   // const [dispach,products.setProducts]=useProducts()
 
@@ -7,13 +7,12 @@ const Card = ({ product }) => {
     <>
       <div className="card">
         <Link to={`product/${product.id}`}>
-          <h1>{product.title} </h1>
+          <img src={product?.images[0]} alt="image" />
+          <div className="about">
+            <h5>{product.title} </h5>
+            <h5>price: {product?.price} </h5>
+          </div>
         </Link>
-        <img src={product?.images[0]} alt="image" />
-        <div className="about">
-          <h3>{product?.brand} </h3>
-          <h5>{product?.price} </h5>
-        </div>
       </div>
     </>
   );

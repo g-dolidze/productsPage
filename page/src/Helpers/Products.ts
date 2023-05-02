@@ -3,7 +3,7 @@ import ajax from "./ajax";
 export const getAllProducts = () =>
   ajax.post("products", {
     keyword: "",
-    page_size: 10,
+    page_size: 30,
     page_number: 0,
   });
 

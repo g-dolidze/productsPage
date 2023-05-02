@@ -1,3 +1,8 @@
 span {
   color: rgb(105, 33, 9);
 }
+.pictures {
+  width: 70px;
+  height: 50px;
+  object-fit: fill;
+}

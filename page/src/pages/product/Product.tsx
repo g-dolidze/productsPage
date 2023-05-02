@@ -25,6 +25,12 @@ function Product() {
       <div>
         <h1>{chousenItem?.brand} </h1>
         <img src={chousenItem.images?.[0]} alt="" />
+        <div>
+          <img src={chousenItem.images?.[1]} alt="" className="pictures" />
+          <img src={chousenItem.images?.[2]} alt="" className="pictures" />
+          <img src={chousenItem.images?.[3]} alt="" className="pictures" />
+          <img src={chousenItem.images?.[4]} alt="" className="pictures" />
+        </div>
         <h3>
           model: <span>{chousenItem?.title}</span>{" "}
         </h3>
