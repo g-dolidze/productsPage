@@ -14,6 +14,7 @@ function App() {
         <Route index path="/product/:id" element={<Product />} />
         <Route path="/card" element={<Login />} />
         <Route path="/Login" element={<Login />} />
+        
       </Routes>
     </>
   );

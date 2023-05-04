@@ -1,17 +1,18 @@
 .card {
   overflow: hidden;
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 10px;
   width: 250px;
   height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 45px;
   a {
     color: black;
   }
   img {
-    margin-top: -20px;
+    margin-top: -30px;
     margin-left: 20px;
     width: 200px;
     height: 200px;
