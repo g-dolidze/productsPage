@@ -1,14 +1,17 @@
 import "./NavBar.css";
 import { Link, NavLink } from "react-router-dom";
+import { initialState } from "../../pages/Home/redux/reducer";
+
 const NavBar = () => {
+  const chousenItems = initialState.chousenItems;
   return (
     <div className="nav">
       <div className="leftside">
         <Link to="/">
           <h1>e-commers</h1>
         </Link>
-        <Link to="/cart">cart</Link>
-        <Link to="/card">
+        <Link to="/cart">cart{chousenItems.length}</Link>
+        <Link to="/category">
           <h2>Categore</h2>
         </Link>
       </div>

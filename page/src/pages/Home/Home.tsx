@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { getAllProducts } from "../../Helpers/Products";
-import Card from "../../components/Card";
 import { Grid, Paper } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { getProductsFromApi, totalFound } from "./redux/actions";
-
 import { useAppSelector } from "../../Redux/hooks";
+
+import Card from "../../components/Card";
 import "./Home.scss";
-import Product from "../product";
 type product1 = {
   title: string;
   description: string;

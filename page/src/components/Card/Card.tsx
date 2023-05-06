@@ -2,12 +2,10 @@ import { Link } from "react-router-dom";
 import "./Card.scss";
 import { addToCart } from "../../pages/Home/redux/actions";
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../Redux/hooks";
 
 const Card = ({ product }) => {
   const dispatch = useDispatch();
 
-  console.log();
   return (
     <>
       <div className="card">
@@ -19,7 +17,8 @@ const Card = ({ product }) => {
           </Link>
           <button onClick={() => dispatch(addToCart(product))}>
             add ot cart
-          </button>
+          </button>{" "}
+          .
         </div>
       </div>
     </>

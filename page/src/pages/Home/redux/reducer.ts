@@ -1,7 +1,7 @@
 import { GET_PRODUCTS_FROM_API, TOTAL_FOUND, ADD_TO_CART } from "./actions";
 import { MAIN_PAGE_ACTIONS } from "./types";
 
-const initialState: InitialState = {
+export const initialState: InitialState = {
   products: [],
   totalFound: 0,
   chousenItems: [],
