@@ -2,12 +2,16 @@ import { Grid, Paper, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import "./CartItem.scss";
+import { useDispatch } from "react-redux";
+import { incresQuantity } from "../../pages/Home/redux/actions";
 
 const CartItem = ({ item }) => {
+  const dispatch = useDispatch()
+
   return (
     <div>
       <div className="item">
-        {/* <img src="" alt="image" width={"50px"} height={"50px"} /> */}
+        <img src={item.images?.[0]} alt="image" width={"50px"} height={"50px"} />
         <div className="item_info">
           <Link to={`/product/${item.id}`}>
             <Typography variant="h4">{item.title} </Typography>
@@ -17,7 +21,7 @@ const CartItem = ({ item }) => {
             {" "}
             <button>-</button>
             <Typography variant="h4">{item.quantity} </Typography>
-            <button>+</button>
+            <button onClick={()=>dispatch(incresQuantity(item)) } >+</button>
           </div>
         </div>
       </div>

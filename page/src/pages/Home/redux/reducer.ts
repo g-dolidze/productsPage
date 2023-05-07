@@ -42,12 +42,21 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
         return { ...state, chousenItems: state.chousenItems };
       }
       case INCRES_QUANTITY:
-         const productIndex = state.chousenItems.findIndex(
+         const productIndex1 = state.chousenItems.findIndex(
         (item) => item.id === action.payload.id
       )
-      return
+      if (productIndex1 >=0){
+        
+       const  thisItem= state.chousenItems[productIndex1]
+      const raseQuantity ={...thisItem, quantity: thisItem.quantity +1}
+      state.chousenItems[productIndex1]=raseQuantity
+      return{
+        ...state, chousenItems:state.chousenItems
+      }
+      }
 
-      // case DICRES_QUANTITY {}
+
+
 
     default:
       return state;
