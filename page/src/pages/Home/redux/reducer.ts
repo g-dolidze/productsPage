@@ -1,4 +1,4 @@
-import { GET_PRODUCTS_FROM_API, TOTAL_FOUND, ADD_TO_CART } from "./actions";
+import { GET_PRODUCTS_FROM_API, TOTAL_FOUND, ADD_TO_CART,INCRES_QUANTITY, DICRES_QUANTITY  } from "./actions";
 import { MAIN_PAGE_ACTIONS } from "./types";
 
 export const initialState: InitialState = {
@@ -41,6 +41,13 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
         state.chousenItems[productIndex] = updateQuantity;
         return { ...state, chousenItems: state.chousenItems };
       }
+      case INCRES_QUANTITY:
+         const productIndex = state.chousenItems.findIndex(
+        (item) => item.id === action.payload.id
+      )
+      return
+
+      // case DICRES_QUANTITY {}
 
     default:
       return state;
