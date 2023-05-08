@@ -71,7 +71,7 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
         state.chousenItems[productIndex2] = reducedItem;
         return { ...state, chousenItems: state.chousenItems };
       }
-      if (productIndex2 >= 0 && thisItem.quantity <= 0) {
+      if (thisItem.quantity === 0) {
         const updatedItems = state.chousenItems.filter(
           (item) => item.id !== action.payload.id
         );
