@@ -1,27 +1,36 @@
-import { Grid, Paper, Typography } from "@mui/material";
-import React from "react";
 import { Link } from "react-router-dom";
 import "./CartItem.scss";
 import { useDispatch } from "react-redux";
-import { incresQuantity } from "../../pages/Home/redux/actions";
+import {
+  dicresQuantity,
+  incresQuantity,
+  removeItem,
+} from "../../pages/Home/redux/actions";
 
 const CartItem = ({ item }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   return (
-    <div>
-      <div className="item">
-        <img src={item.images?.[0]} alt="image" width={"50px"} height={"50px"} />
-        <div className="item_info">
-          <Link to={`/product/${item.id}`}>
-            <Typography variant="h4">{item.title} </Typography>
-            <Typography variant="h5"> {item.price} </Typography>
-          </Link>
+    <div className="item">
+      <img
+        src={item.images?.[0]}
+        alt="image"
+        width={"200px"}
+        height={"200px"}
+      />
+      <div className="item_info">
+        <span onClick={() => dispatch(removeItem(item))} className="remove">
+          X
+        </span>
+        <Link to={`/product/${item.id}`}>
+          <h3 className="title">{item.title} </h3>
+        </Link>
+        <div className="price">
+          <h3>Price: {item.price} </h3>
           <div className="quantity">
-            {" "}
-            <button>-</button>
-            <Typography variant="h4">{item.quantity} </Typography>
-            <button onClick={()=>dispatch(incresQuantity(item)) } >+</button>
+            <span onClick={() => dispatch(dicresQuantity(item))}>-</span>
+            <span className="quantity_number">{item.quantity} </span>
+            <span onClick={() => dispatch(incresQuantity(item))}>+</span>
           </div>
         </div>
       </div>

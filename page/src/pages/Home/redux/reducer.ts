@@ -1,4 +1,11 @@
-import { GET_PRODUCTS_FROM_API, TOTAL_FOUND, ADD_TO_CART,INCRES_QUANTITY, DICRES_QUANTITY  } from "./actions";
+import {
+  GET_PRODUCTS_FROM_API,
+  TOTAL_FOUND,
+  ADD_TO_CART,
+  INCRES_QUANTITY,
+  DICRES_QUANTITY,
+  REMOVE_ITEM_FROM_CART,
+} from "./actions";
 import { MAIN_PAGE_ACTIONS } from "./types";
 
 export const initialState: InitialState = {
@@ -41,23 +48,49 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
         state.chousenItems[productIndex] = updateQuantity;
         return { ...state, chousenItems: state.chousenItems };
       }
-      case INCRES_QUANTITY:
-         const productIndex1 = state.chousenItems.findIndex(
+    case INCRES_QUANTITY:
+      const productIndex1 = state.chousenItems.findIndex(
         (item) => item.id === action.payload.id
-      )
-      if (productIndex1 >=0){
-        
-       const  thisItem= state.chousenItems[productIndex1]
-      const raseQuantity ={...thisItem, quantity: thisItem.quantity +1}
-      state.chousenItems[productIndex1]=raseQuantity
-      return{
-        ...state, chousenItems:state.chousenItems
+      );
+      if (productIndex1 >= 0) {
+        const thisItem = state.chousenItems[productIndex1];
+        const raseQuantity = { ...thisItem, quantity: thisItem.quantity + 1 };
+        state.chousenItems[productIndex1] = raseQuantity;
+        return {
+          ...state,
+          chousenItems: state.chousenItems,
+        };
       }
+    case DICRES_QUANTITY: {
+      const productIndex2 = state.chousenItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      const thisItem = state.chousenItems[productIndex2];
+      if (productIndex2 >= 0 && thisItem.quantity > 0) {
+        const reducedItem = { ...thisItem, quantity: thisItem.quantity - 1 };
+        state.chousenItems[productIndex2] = reducedItem;
+        return { ...state, chousenItems: state.chousenItems };
       }
+      if (productIndex2 >= 0 && thisItem.quantity <= 0) {
+        const updatedItems = state.chousenItems.filter(
+          (item) => item.id !== action.payload.id
+        );
+        return {
+          ...state,
+          chousenItems: updatedItems,
+        };
+      }
+    }
 
-
-
-
+    case REMOVE_ITEM_FROM_CART: {
+      const updatedItems = state.chousenItems.filter(
+        (item) => item.id !== action.payload.id
+      );
+      return {
+        ...state,
+        chousenItems: updatedItems,
+      };
+    }
     default:
       return state;
   }
