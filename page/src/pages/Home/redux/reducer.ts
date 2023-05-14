@@ -12,6 +12,7 @@ export const initialState: InitialState = {
   products: [],
   totalFound: 0,
   chousenItems: [],
+  searchedItems: [],
 };
 
 const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
@@ -75,13 +76,13 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
         const updatedItems = state.chousenItems.filter(
           (item) => item.id !== action.payload.id
         );
+
         return {
           ...state,
           chousenItems: updatedItems,
         };
       }
     }
-
     case REMOVE_ITEM_FROM_CART: {
       const updatedItems = state.chousenItems.filter(
         (item) => item.id !== action.payload.id
@@ -91,6 +92,7 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
         chousenItems: updatedItems,
       };
     }
+
     default:
       return state;
   }

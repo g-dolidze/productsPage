@@ -1,11 +1,16 @@
-
-
 .page {
   width: 90%;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
-
-
+  position: relative;
+}
+.search-input {
+  position: absolute;
+  top: 50px;
+  right: 400px;
+  width: 200px;
+  height: 25px;
+  border-radius: 20px;
 }

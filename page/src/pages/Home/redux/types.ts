@@ -5,6 +5,7 @@ import {
   INCRES_QUANTITY,
   DICRES_QUANTITY,
   REMOVE_ITEM_FROM_CART,
+  SEARCH_ITEMS,
 } from "./actions";
 export type GET_PRODUCTS_FROM_API_ACTION = {
   type: typeof GET_PRODUCTS_FROM_API;
@@ -32,6 +33,10 @@ export type REMOVE_ITEM_FROM_CART_ACTION = {
   type: typeof REMOVE_ITEM_FROM_CART;
   payload: CartItem;
 };
+export type SEARCH_ITEMS_ACTION = {
+  type: typeof SEARCH_ITEMS;
+  payload: string;
+};
 
 export type MAIN_PAGE_ACTIONS =
   | GET_PRODUCTS_FROM_API_ACTION
@@ -39,4 +44,5 @@ export type MAIN_PAGE_ACTIONS =
   | ADD_TO_CART_ACTION
   | DICRES_QUANTITY_ACTION
   | INCRES_QUANTITY_ACTION
-  | REMOVE_ITEM_FROM_CART_ACTION;
+  | REMOVE_ITEM_FROM_CART_ACTION
+  | SEARCH_ITEMS_ACTION;

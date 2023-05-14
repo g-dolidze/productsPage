@@ -13,11 +13,13 @@ const Card = ({ product }) => {
         <div className="about">
           <Link to={`product/${product.id}`}>
             <h5>{product.title} </h5>
-            <h5>price: {product?.price} </h5>
+            <h5>price:{product?.price} </h5>
+
+            <h5>{product.id} </h5>
           </Link>
           <button onClick={() => dispatch(addToCart(product))}>
             add ot cart
-          </button>{" "}
+          </button>
           .
         </div>
       </div>

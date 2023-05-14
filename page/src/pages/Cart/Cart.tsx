@@ -11,6 +11,7 @@ const Cart = () => {
   const total_price = chousenItems.map((item) => {
     return (total += item.quantity * Number(item.price));
   });
+
   return (
     <div className="carts_page">
       <div className="cart_page">
@@ -31,7 +32,7 @@ const Cart = () => {
                 <Paper elevation={3} className="paper">
                   <h4>{item.title} </h4>
                   <div className="amount">
-                    <h5>price:{item.price} </h5>
+                    <h5>price:{item.price * item.quantity} </h5>
                     <h5>quantity:{item.quantity} </h5>
                   </div>
                 </Paper>

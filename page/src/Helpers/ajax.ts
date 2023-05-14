@@ -9,6 +9,7 @@ const ajax = axios.create({
   },
 });
 
+
 ajax.interceptors.request.use(
   function (config) {
     return config;

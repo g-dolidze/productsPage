@@ -5,6 +5,7 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const INCRES_QUANTITY = "INCTIS_QUANTITY";
 export const DICRES_QUANTITY = "DICRES_QUANTITY";
 export const REMOVE_ITEM_FROM_CART = "REMOVE_ITEM_FROM_CART";
+export const SEARCH_ITEMS = "SEARCH_ITEMS ";
 
 export const getProductsFromApi = (products: Prodact[]): MAIN_PAGE_ACTIONS => ({
   type: GET_PRODUCTS_FROM_API,
@@ -29,4 +30,8 @@ export const dicresQuantity = (chousenItem: CartItem): MAIN_PAGE_ACTIONS => ({
 export const removeItem = (chousenItem: CartItem): MAIN_PAGE_ACTIONS => ({
   type: REMOVE_ITEM_FROM_CART,
   payload: chousenItem,
+});
+export const searchItems = (searchedItems: SearchItem): MAIN_PAGE_ACTIONS => ({
+  type: SEARCH_ITEMS,
+  payload: searchItems,
 });
