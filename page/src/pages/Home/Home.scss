@@ -1,6 +1,6 @@
 .page {
   width: 90%;
-  margin: auto;
+  margin: 150px auto;
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
@@ -13,4 +13,6 @@
   right: 200px;
   height: 30px;
   border-radius: 20px;
+  z-index: 4;
+  position: fixed;
 }

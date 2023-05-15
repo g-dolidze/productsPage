@@ -8,9 +8,11 @@ const Cart = () => {
   const { chousenItems } = useAppSelector((state) => state.mainReducer);
 
   let total = 0;
-  const total_price = chousenItems.map((item) => {
-    return (total += item.quantity * Number(item.price));
-  });
+  {
+    chousenItems.map((item) => {
+      return (total += item.quantity * Number(item.price));
+    });
+  }
   return (
     <div className="carts_page">
       <div className="cart_page">
@@ -31,7 +33,7 @@ const Cart = () => {
                 <Paper elevation={3} className="paper">
                   <h4>{item.title} </h4>
                   <div className="amount">
-                    <h5>price:{item.price} </h5>
+                    <h5>price:{parseFloat(item.price).toFixed(2)} </h5>
                     <h5>quantity:{item.quantity} </h5>
                   </div>
                 </Paper>
@@ -40,7 +42,7 @@ const Cart = () => {
           </ul>
         </div>
         <hr />
-        <h3>total price:{total} Lari</h3>
+        <h3>total price:{parseFloat(total).toFixed(2)} Lari</h3>
         <hr />
         <div className="total_price">
           <h1>

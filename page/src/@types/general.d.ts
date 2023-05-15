@@ -4,7 +4,7 @@ type Prodact = {
   description: string;
   category: string;
   images: string[];
-  price: string;
+  price: number;
   rating: string;
   amount: string;
 };

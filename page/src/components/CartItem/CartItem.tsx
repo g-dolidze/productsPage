@@ -26,7 +26,7 @@ const CartItem = ({ item }) => {
           <h3 className="title">{item.title} </h3>
         </Link>
         <div className="price">
-          <h3>Price: {item.price} </h3>
+          <h3>Price: {parseFloat(item.price).toFixed(2)} </h3>
           <div className="quantity">
             <span onClick={() => dispatch(dicresQuantity(item))}>-</span>
             <span className="quantity_number">{item.quantity} </span>
