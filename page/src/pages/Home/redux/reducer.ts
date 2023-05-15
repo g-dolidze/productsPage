@@ -5,6 +5,7 @@ import {
   INCRES_QUANTITY,
   DICRES_QUANTITY,
   REMOVE_ITEM_FROM_CART,
+  ADD_TO_FAVORITE,
 } from "./actions";
 import { MAIN_PAGE_ACTIONS } from "./types";
 
@@ -12,6 +13,7 @@ export const initialState: InitialState = {
   products: [],
   totalFound: 0,
   chousenItems: [],
+  favoriteItems: [],
 };
 
 const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
@@ -26,6 +28,29 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
         ...state,
         totalFound: action.payload,
       };
+    case ADD_TO_FAVORITE: {
+      const isAlready = state.favoriteItems.find(
+        (item) => item.id === action.payload.id
+      );
+      if (isAlready) {
+        const newFavoritesArry = state.favoriteItems.filter(
+          (item) => item.id !== action.payload.id
+        );
+        console.log("it is");
+        return {
+          ...state,
+          favoriteItems: newFavoritesArry,
+        };
+      }
+      if (!isAlready) {
+        return {
+          ...state,
+          favoriteItems: [...state.favoriteItems, { ...action.payload }],
+        };
+        console.log("add");
+      }
+    }
+
     case ADD_TO_CART:
       const productIndex = state.chousenItems.findIndex(
         (item) => item.id === action.payload.id

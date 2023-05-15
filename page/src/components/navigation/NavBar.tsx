@@ -5,6 +5,7 @@ import { initialState } from "../../pages/Home/redux/reducer";
 
 const NavBar = () => {
   const chousenItems = initialState.chousenItems;
+  const favoriteItems = initialState.favoriteItems;
 
   return (
     <div className="nav">
@@ -13,6 +14,7 @@ const NavBar = () => {
           <h1>e-commers</h1>
         </Link>
         <Link to="/cart">cart{chousenItems.length}</Link>
+        <Link to="/favorites">favorites{favoriteItems.length}</Link>
         <Link to="/category">
           <h2>Categore</h2>
         </Link>
