@@ -1,9 +1,11 @@
 import "./NavBar.css";
-import { Link, NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { initialState } from "../../pages/Home/redux/reducer";
 
 const NavBar = () => {
   const chousenItems = initialState.chousenItems;
+
   return (
     <div className="nav">
       <div className="leftside">
@@ -16,10 +18,7 @@ const NavBar = () => {
         </Link>
       </div>
       <div className="rightside">
-        <div>
-          <input type="search" name="search" placeholder="search" />
-          <button>find</button>
-        </div>
+        <div></div>
         <div>
           <button type="submit">user</button>
         </div>

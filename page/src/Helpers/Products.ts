@@ -10,7 +10,7 @@ export const getAllProducts = () =>
 // export const deleteProdict = (productId) =>
 //   ajax.delete(`products/ ${productId}`);
 
-// export const getSearchedProducts = (value) =>
-//   ajax.get(`products/search?q=${value}`);
+export const getSearchedProducts = (value) =>
+  ajax.get(`products/search?q=${value}`);
 
 // export const getProductsCategories = () => ajax.get("prodcts/categories");
