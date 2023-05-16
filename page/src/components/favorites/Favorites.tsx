@@ -1,10 +1,12 @@
 import React from "react";
 import { Grid, Paper } from "@mui/material";
-import { initialState } from "../../pages/Home/redux/reducer";
+import { useAppSelector } from "../../Redux/hooks";
 import Card from "../Card";
 
 function favorites() {
-  const favoriteItems = initialState.favoriteItems;
+  const { favoriteItems } = useAppSelector((state) => state.mainReducer);
+
+  console.log(favoriteItems);
   return (
     <Grid>
       <Grid className="page">

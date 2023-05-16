@@ -47,7 +47,6 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
           ...state,
           favoriteItems: [...state.favoriteItems, { ...action.payload }],
         };
-        console.log("add");
       }
     }
 
