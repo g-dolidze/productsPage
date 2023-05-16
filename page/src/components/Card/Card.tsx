@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 import "./Card.scss";
+import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
+import AddShoppingCartRoundedIcon from "@mui/icons-material/AddShoppingCartRounded";
+import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
+
 import { addToCart, addToFavorite } from "../../pages/Home/redux/actions";
 import { useDispatch } from "react-redux";
 
@@ -17,10 +21,10 @@ const Card = ({ product }) => {
           </Link>
           <div className="card_hover">
             <button onClick={() => dispatch(addToCart(product))}>
-              add ot cart
+              <AddShoppingCartRoundedIcon />
             </button>
             <button onClick={() => dispatch(addToFavorite(product))}>
-              favorit
+              <FavoriteBorderRoundedIcon />
             </button>
             <button>category</button>
           </div>
