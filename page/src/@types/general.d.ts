@@ -17,4 +17,5 @@ type InitialState = {
   totalFound: number;
   chousenItems: CartItem[];
   favoriteItems: FavoriteItem[];
+  searchItems: Prodact[];
 };

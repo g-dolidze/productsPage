@@ -25,12 +25,12 @@
   border-radius: 30px;
 
   .list {
-    gap: 5px;
-    margin-left: -40px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 300px;
     .paper {
+      margin-top: 10px;
       width: 280px;
       max-height: 130px;
       border: 0.5px solid black;
@@ -40,10 +40,9 @@
 }
 .amount {
   width: 70%;
-  margin-top: -30px;
+  margin: auto;
   display: flex;
-  flex-direction: row;
-  gap: 30px;
+  justify-content: center;
 }
 
 .total_price {

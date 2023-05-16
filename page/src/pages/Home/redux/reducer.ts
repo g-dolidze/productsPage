@@ -6,6 +6,7 @@ import {
   DICRES_QUANTITY,
   REMOVE_ITEM_FROM_CART,
   ADD_TO_FAVORITE,
+  SEARCH_ITEMS,
 } from "./actions";
 import { MAIN_PAGE_ACTIONS } from "./types";
 
@@ -14,6 +15,7 @@ export const initialState: InitialState = {
   totalFound: 0,
   chousenItems: [],
   favoriteItems: [],
+  searchItems: [],
 };
 
 const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
@@ -115,6 +117,14 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
         chousenItems: updatedItems,
       };
     }
+
+    case SEARCH_ITEMS: {
+      return {
+        ...state,
+        products: action.payload,
+      };
+    }
+
     default:
       return state;
   }

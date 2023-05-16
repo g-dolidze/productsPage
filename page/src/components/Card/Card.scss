@@ -21,7 +21,7 @@
     margin-top: -40px;
   }
 }
-button {
+.btn {
   display: none;
 }
 .card:hover {
@@ -35,9 +35,10 @@ button {
     z-index: 2;
     display: flex;
     justify-content: space-around;
-    button {
+    .btn {
       display: block;
       background-color: rgb(102, 102, 162);
+      cursor: pointer;
     }
   }
 }

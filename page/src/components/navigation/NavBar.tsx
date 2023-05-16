@@ -1,19 +1,40 @@
-import { Link } from "react-router-dom";
-import { useAppSelector } from "../../Redux/hooks";
+import { Link, useNavigate } from "react-router-dom";
+import { useAppSelector, useAppDispatch } from "../../Redux/hooks";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import "./NavBar.css";
 import { Avatar } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
+import { searchedItems } from "../../pages/Home/redux/actions";
+import { useDebounce } from "use-debounce";
+import { useEffect, useState } from "react";
+import { getSearchedProducts } from "../../Helpers/Products";
 
 const NavBar = () => {
   const { favoriteItems } = useAppSelector((state) => state.mainReducer);
   const { chousenItems } = useAppSelector((state) => state.mainReducer);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const [search, setSearch] = useState("");
+  const [value] = useDebounce(search, 1000);
+  useEffect(() => {
+    const getSearcheditems = async () => {
+      const { data } = await getSearchedProducts(value);
+      dispatch(searchedItems(data.products));
+    };
+    getSearcheditems();
+  }, [value]);
 
   return (
     <div className="nav">
       <div className="leftside">
-        <Link to="/">
+        <Link
+          onClick={() => {
+            useDebounce("", 100);
+          }}
+          to={"/"}
+        >
           <h1>e-commers</h1>
         </Link>
         <Link to="/cart">
@@ -28,6 +49,13 @@ const NavBar = () => {
         </Link>
       </div>
       <div className="rightside">
+        <input
+          className="search"
+          type="search"
+          name="search"
+          placeholder="search"
+          onChange={(e) => setSearch(e.target.value)}
+        />
         <Link to="/Login">
           <Avatar sx={{ bgcolor: deepPurple[500] }}>GD</Avatar>
           Log in

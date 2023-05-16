@@ -20,13 +20,17 @@ const Card = ({ product }) => {
             <h5>price: {parseFloat(product?.price).toFixed(2)} </h5>
           </Link>
           <div className="card_hover">
-            <button onClick={() => dispatch(addToCart(product))}>
-              <AddShoppingCartRoundedIcon />
-            </button>
-            <button onClick={() => dispatch(addToFavorite(product))}>
-              <FavoriteBorderRoundedIcon />
-            </button>
-            <button>category</button>
+            <AddShoppingCartRoundedIcon
+              sx={{ display: "none" }}
+              className="btn"
+              onClick={() => dispatch(addToCart(product))}
+            />
+            <FavoriteBorderRoundedIcon
+              sx={{ display: "none" }}
+              className="btn"
+              onClick={() => dispatch(addToFavorite(product))}
+            />
+            <button className="btn">category</button>
           </div>
         </div>
       </div>

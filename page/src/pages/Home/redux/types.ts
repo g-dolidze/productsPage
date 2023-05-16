@@ -6,6 +6,7 @@ import {
   DICRES_QUANTITY,
   REMOVE_ITEM_FROM_CART,
   ADD_TO_FAVORITE,
+  SEARCH_ITEMS,
 } from "./actions";
 export type GET_PRODUCTS_FROM_API_ACTION = {
   type: typeof GET_PRODUCTS_FROM_API;
@@ -37,6 +38,10 @@ export type ADD_TO_FAVORITE_ACTION = {
   type: typeof ADD_TO_FAVORITE;
   payload: Prodact;
 };
+export type SEARCH_ITEMS_ACTION = {
+  type: typeof SEARCH_ITEMS;
+  payload: Prodact;
+};
 
 export type MAIN_PAGE_ACTIONS =
   | GET_PRODUCTS_FROM_API_ACTION
@@ -45,4 +50,5 @@ export type MAIN_PAGE_ACTIONS =
   | DICRES_QUANTITY_ACTION
   | INCRES_QUANTITY_ACTION
   | REMOVE_ITEM_FROM_CART_ACTION
-  | ADD_TO_FAVORITE_ACTION;
+  | ADD_TO_FAVORITE_ACTION
+  | SEARCH_ITEMS_ACTION;
