@@ -1,28 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { getAllProducts, getSearchedProducts } from "../../Helpers/Products";
-import { Grid, Paper } from "@mui/material";
+import { getAllProducts } from "../../Helpers/Products";
+import { Button, Grid, Paper } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { getProductsFromApi, totalFound } from "./redux/actions";
+import { getProductsFromApi, seeMoreItems, totalFound } from "./redux/actions";
 import { useAppSelector } from "../../Redux/hooks";
 
 import Card from "../../components/Card";
 import "./Home.scss";
+import Carusel from "../../components/carusel/Carusel";
 
 function Home() {
   const dispatch = useDispatch();
-  const { products } = useAppSelector((state) => state.mainReducer);
+  const { products, range } = useAppSelector((state) => state.mainReducer);
 
   useEffect(() => {
     const getProducts = async () => {
-      const { data } = await getAllProducts();
+      const { data } = await getAllProducts(range);
       dispatch(totalFound(data.total_found));
       dispatch(getProductsFromApi(data.products));
     };
     getProducts();
   }, []);
-
   return (
-    <Grid container>
+    <Grid
+      container
+      style={{ width: "100%", display: "flex", flexDirection: "column" }}
+    >
+      <Carusel />
       <Grid item className="page">
         {products.map((product: Prodact) => {
           return (
@@ -36,6 +40,7 @@ function Home() {
           );
         })}
       </Grid>
+      <Button onClick={() => dispatch(seeMoreItems(range))}>Show more</Button>
     </Grid>
   );
 }

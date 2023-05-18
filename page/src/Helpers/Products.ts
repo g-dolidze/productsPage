@@ -1,15 +1,16 @@
 import ajax from "./ajax";
 
-export const getAllProducts = () =>
+export const getAllProducts = (range: number) =>
   ajax.post("products", {
-    keyword: " ",
-    page_size: 30,
+    keyword: "",
+    page_size: range,
     page_number: 0,
   });
-export const getSearchedProducts = (searchvalue: string) =>
+
+export const getSearchedProducts = (searchvalue: string, range: number) =>
   ajax.post("products", {
     keyword: searchvalue,
-    page_size: 30,
+    page_size: range,
     page_number: 0,
   });
 

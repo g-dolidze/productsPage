@@ -7,6 +7,7 @@ import {
   REMOVE_ITEM_FROM_CART,
   ADD_TO_FAVORITE,
   SEARCH_ITEMS,
+  SEE_MORE_ITEMS,
 } from "./actions";
 import { MAIN_PAGE_ACTIONS } from "./types";
 
@@ -16,6 +17,7 @@ export const initialState: InitialState = {
   chousenItems: [],
   favoriteItems: [],
   searchItems: [],
+  range: 30,
 };
 
 const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
@@ -25,6 +27,20 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
         ...state,
         products: action.payload,
       };
+    case SEARCH_ITEMS: {
+      return {
+        ...state,
+        products: action.payload,
+      };
+    }
+
+    case SEE_MORE_ITEMS: {
+      return {
+        ...state,
+        range: action.payload + 30,
+      };
+    }
+
     case TOTAL_FOUND:
       return {
         ...state,
@@ -115,13 +131,6 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
       return {
         ...state,
         chousenItems: updatedItems,
-      };
-    }
-
-    case SEARCH_ITEMS: {
-      return {
-        ...state,
-        products: action.payload,
       };
     }
 

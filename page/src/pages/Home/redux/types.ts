@@ -7,6 +7,7 @@ import {
   REMOVE_ITEM_FROM_CART,
   ADD_TO_FAVORITE,
   SEARCH_ITEMS,
+  SEE_MORE_ITEMS,
 } from "./actions";
 export type GET_PRODUCTS_FROM_API_ACTION = {
   type: typeof GET_PRODUCTS_FROM_API;
@@ -42,6 +43,10 @@ export type SEARCH_ITEMS_ACTION = {
   type: typeof SEARCH_ITEMS;
   payload: Prodact;
 };
+export type SEE_MORE_ITEMS_ACTION = {
+  type: typeof SEE_MORE_ITEMS;
+  payload: number;
+};
 
 export type MAIN_PAGE_ACTIONS =
   | GET_PRODUCTS_FROM_API_ACTION
@@ -51,4 +56,5 @@ export type MAIN_PAGE_ACTIONS =
   | INCRES_QUANTITY_ACTION
   | REMOVE_ITEM_FROM_CART_ACTION
   | ADD_TO_FAVORITE_ACTION
-  | SEARCH_ITEMS_ACTION;
+  | SEARCH_ITEMS_ACTION
+  | SEE_MORE_ITEMS_ACTION;

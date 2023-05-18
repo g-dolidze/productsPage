@@ -18,4 +18,5 @@ type InitialState = {
   chousenItems: CartItem[];
   favoriteItems: FavoriteItem[];
   searchItems: Prodact[];
+  range: number;
 };

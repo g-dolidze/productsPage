@@ -9,10 +9,12 @@ import { searchedItems } from "../../pages/Home/redux/actions";
 import { useDebounce } from "use-debounce";
 import { useEffect, useState } from "react";
 import { getSearchedProducts } from "../../Helpers/Products";
+// import { getSearchedProducts } from "../../Helpers/Products";
 
 const NavBar = () => {
-  const { favoriteItems } = useAppSelector((state) => state.mainReducer);
-  const { chousenItems } = useAppSelector((state) => state.mainReducer);
+  const { favoriteItems, range, chousenItems } = useAppSelector(
+    (state) => state.mainReducer
+  );
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -20,11 +22,11 @@ const NavBar = () => {
   const [value] = useDebounce(search, 1000);
   useEffect(() => {
     const getSearcheditems = async () => {
-      const { data } = await getSearchedProducts(value);
+      const { data } = await getSearchedProducts(value, range);
       dispatch(searchedItems(data.products));
     };
     getSearcheditems();
-  }, [value]);
+  }, [value, range]);
 
   return (
     <div className="nav">
