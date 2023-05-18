@@ -6,13 +6,14 @@ import Home from "./pages/Home/Home";
 import Product from "./pages/product";
 import Cart from "./pages/Cart";
 import Favorites from "./components/favorites";
-import Carusel from "./components/carusel/Carusel";
+import CustomSeparator from "./components/crampt";
 
 function App() {
   return (
     <>
       <NavBar />
-      {/* <Carusel /> */}
+      <CustomSeparator />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route index path="/product/:id" element={<Product />} />

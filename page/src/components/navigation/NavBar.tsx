@@ -1,15 +1,16 @@
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../Redux/hooks";
+import { useDebounce } from "use-debounce";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
-import "./NavBar.css";
 import { Avatar } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
+
+import "./NavBar.css";
 import { searchedItems } from "../../pages/Home/redux/actions";
-import { useDebounce } from "use-debounce";
-import { useEffect, useState } from "react";
 import { getSearchedProducts } from "../../Helpers/Products";
-// import { getSearchedProducts } from "../../Helpers/Products";
+import Categorys from "../category";
 
 const NavBar = () => {
   const { favoriteItems, range, chousenItems } = useAppSelector(
@@ -40,15 +41,13 @@ const NavBar = () => {
           <h1>e-commers</h1>
         </Link>
         <Link to="/cart">
-          {" "}
           <ShoppingCartRoundedIcon /> {chousenItems.length}
         </Link>
         <Link to="/favorites">
           <FavoriteBorderRoundedIcon /> {favoriteItems.length}
         </Link>
-        <Link to="/category">
-          <h2>Categore</h2>
-        </Link>
+
+        <Categorys setSearch={setSearch} />
       </div>
       <div className="rightside">
         <input
