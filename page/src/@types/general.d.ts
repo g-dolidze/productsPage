@@ -20,3 +20,14 @@ type InitialState = {
   searchItems: Prodact[];
   range: number;
 };
+type TMyToken = {
+  name: string;
+  exp: number;
+};
+type UserItem = {
+  firstName: string;
+  lastName: string;
+  username: string;
+  email: string;
+  password: string;
+};
