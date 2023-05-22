@@ -21,21 +21,21 @@ export const addToFavorite = (favoriteItem: Prodact): MAIN_PAGE_ACTIONS => ({
   type: ADD_TO_FAVORITE,
   payload: favoriteItem,
 });
-export const addToCart = (chousenItem: Prodact): MAIN_PAGE_ACTIONS => ({
+export const addToCart = (choosenItem: Prodact): MAIN_PAGE_ACTIONS => ({
   type: ADD_TO_CART,
-  payload: chousenItem,
+  payload: choosenItem,
 });
-export const incresQuantity = (chousenItem: CartItem): MAIN_PAGE_ACTIONS => ({
+export const incresQuantity = (choosenItem: CartItem): MAIN_PAGE_ACTIONS => ({
   type: INCRES_QUANTITY,
-  payload: chousenItem,
+  payload: choosenItem,
 });
-export const dicresQuantity = (chousenItem: CartItem): MAIN_PAGE_ACTIONS => ({
+export const dicresQuantity = (choosenItem: CartItem): MAIN_PAGE_ACTIONS => ({
   type: DICRES_QUANTITY,
-  payload: chousenItem,
+  payload: choosenItem,
 });
-export const removeItem = (chousenItem: CartItem): MAIN_PAGE_ACTIONS => ({
+export const removeItem = (choosenItem: CartItem): MAIN_PAGE_ACTIONS => ({
   type: REMOVE_ITEM_FROM_CART,
-  payload: chousenItem,
+  payload: choosenItem,
 });
 export const searchedItems = (searchItem: Prodact): MAIN_PAGE_ACTIONS => ({
   type: SEARCH_ITEMS,

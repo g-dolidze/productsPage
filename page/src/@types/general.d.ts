@@ -4,6 +4,7 @@ type Prodact = {
   description: string;
   category: string;
   images: string[];
+  brand: string;
   price: number;
   rating: string;
   amount: string;
@@ -15,7 +16,7 @@ type CartItem = Prodact & {
 type InitialState = {
   products: Prodact[];
   totalFound: number;
-  chousenItems: CartItem[];
+  choosenItems: CartItem[];
   favoriteItems: FavoriteItem[];
   searchItems: Prodact[];
   range: number;

@@ -5,18 +5,18 @@ import { Link } from "react-router-dom";
 import "./Cart.scss";
 
 const Cart = () => {
-  const { chousenItems } = useAppSelector((state) => state.mainReducer);
+  const { choosenItems } = useAppSelector((state) => state.mainReducer);
 
   let total = 0;
   {
-    chousenItems.map((item) => {
+    choosenItems.map((item) => {
       return (total += item.quantity * Number(item.price));
     });
   }
   return (
     <div className="carts_page">
       <div className="cart_page">
-        {chousenItems.map((item) => {
+        {choosenItems.map((item) => {
           return (
             <Paper key={item.id} elevation={5} className="paper">
               <CartItem item={item} />
@@ -28,7 +28,7 @@ const Cart = () => {
         <div className="list">
           {" "}
           <ul>
-            {chousenItems.map((item) => {
+            {choosenItems.map((item) => {
               return (
                 <Paper elevation={3} className="paper">
                   <h4>{item.title} </h4>

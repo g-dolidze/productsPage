@@ -4,21 +4,30 @@ import { useAppSelector, useAppDispatch } from "../../Redux/hooks";
 import { useDebounce } from "use-debounce";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
-import { Avatar } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 
 import "./NavBar.css";
 import { searchedItems } from "../../pages/Home/redux/actions";
 import { getSearchedProducts } from "../../Helpers/Products";
 import Categorys from "../category";
+import { isUserAuthenticated } from "../../Helpers/user/userinfo";
 
 const NavBar = () => {
-  const { favoriteItems, range, chousenItems } = useAppSelector(
+  const { favoriteItems, range, choosenItems } = useAppSelector(
     (state) => state.mainReducer
   );
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
+  const usersPage = () => {
+    if (!isUserAuthenticated()) {
+      navigate("/login");
+    } else {
+      navigate("/profile");
+    }
+  };
+
+  const dispatch = useAppDispatch();
   const [search, setSearch] = useState("");
   const [value] = useDebounce(search, 1000);
   useEffect(() => {
@@ -41,7 +50,7 @@ const NavBar = () => {
           <h1>e-commers</h1>
         </Link>
         <Link to="/cart">
-          <ShoppingCartRoundedIcon /> {chousenItems.length}
+          <ShoppingCartRoundedIcon /> {choosenItems.length}
         </Link>
         <Link to="/favorites">
           <FavoriteBorderRoundedIcon /> {favoriteItems.length}
@@ -57,10 +66,10 @@ const NavBar = () => {
           placeholder="search"
           onChange={(e) => setSearch(e.target.value)}
         />
-        <Link to="/Login">
+        <Button onClick={() => usersPage()}>
           <Avatar sx={{ bgcolor: deepPurple[500] }}>GD</Avatar>
           Log in
-        </Link>
+        </Button>
       </div>
     </div>
   );

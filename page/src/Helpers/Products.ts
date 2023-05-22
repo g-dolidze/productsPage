@@ -14,7 +14,11 @@ export const getSearchedProducts = (searchvalue: string, range: number) =>
     page_number: 0,
   });
 
-// export const deleteProdict = (productId) =>
-//   ajax.delete(`products/ ${productId}`);
-
-// export const getProductsCategories = () => ajax.get("prodcts/categories");
+// export const registerNewUser = (firstName, lastName, email, password) =>
+//   ajax.post("register", {
+//     firstName: "",
+//     lastName: "",
+//     phoneNumber: "",
+//     email: "",
+//     password: "",
+//   });

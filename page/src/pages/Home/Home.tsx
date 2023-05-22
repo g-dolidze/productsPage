@@ -8,6 +8,7 @@ import { useAppSelector } from "../../Redux/hooks";
 import Card from "../../components/Card";
 import "./Home.scss";
 import Carusel from "../../components/carusel/Carusel";
+import BransSide from "../../components/brands";
 
 function Home() {
   const dispatch = useDispatch();
@@ -24,9 +25,26 @@ function Home() {
   return (
     <Grid
       container
-      style={{ width: "100%", display: "flex", flexDirection: "column" }}
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        position: "relative",
+      }}
     >
       <Carusel />
+      <Grid
+        container
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          position: "absolute",
+          left: "5px ",
+          top: "500px",
+        }}
+      >
+        <BransSide />
+      </Grid>
       <Grid item className="page">
         {products.map((product: Prodact) => {
           return (

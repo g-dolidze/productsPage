@@ -14,7 +14,7 @@ import { MAIN_PAGE_ACTIONS } from "./types";
 export const initialState: InitialState = {
   products: [],
   totalFound: 0,
-  chousenItems: [],
+  choosenItems: [],
   favoriteItems: [],
   searchItems: [],
   range: 30,
@@ -69,52 +69,52 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
     }
 
     case ADD_TO_CART:
-      const productIndex = state.chousenItems.findIndex(
+      const productIndex = state.choosenItems.findIndex(
         (item) => item.id === action.payload.id
       );
       if (productIndex === -1) {
         return {
           ...state,
-          chousenItems: [
-            ...state.chousenItems,
+          choosenItems: [
+            ...state.choosenItems,
             { ...action.payload, quantity: 1 },
           ],
         };
       }
       if (productIndex >= 0) {
-        const findedProduct = state.chousenItems[productIndex];
+        const findedProduct = state.choosenItems[productIndex];
         const updateQuantity = {
           ...findedProduct,
           quantity: findedProduct.quantity + 1,
         };
-        state.chousenItems[productIndex] = updateQuantity;
-        return { ...state, chousenItems: state.chousenItems };
+        state.choosenItems[productIndex] = updateQuantity;
+        return { ...state, choosenItems: state.choosenItems };
       }
     case INCRES_QUANTITY:
-      const productIndex1 = state.chousenItems.findIndex(
+      const productIndex1 = state.choosenItems.findIndex(
         (item) => item.id === action.payload.id
       );
       if (productIndex1 >= 0) {
-        const thisItem = state.chousenItems[productIndex1];
+        const thisItem = state.choosenItems[productIndex1];
         const raseQuantity = { ...thisItem, quantity: thisItem.quantity + 1 };
-        state.chousenItems[productIndex1] = raseQuantity;
+        state.choosenItems[productIndex1] = raseQuantity;
         return {
           ...state,
-          chousenItems: state.chousenItems,
+          choosenItems: state.choosenItems,
         };
       }
     case DICRES_QUANTITY: {
-      const productIndex2 = state.chousenItems.findIndex(
+      const productIndex2 = state.choosenItems.findIndex(
         (item) => item.id === action.payload.id
       );
-      const thisItem = state.chousenItems[productIndex2];
+      const thisItem = state.choosenItems[productIndex2];
       if (productIndex2 >= 0 && thisItem.quantity > 0) {
         const reducedItem = { ...thisItem, quantity: thisItem.quantity - 1 };
         state.chousenItems[productIndex2] = reducedItem;
         return { ...state, chousenItems: state.chousenItems };
       }
       if (thisItem.quantity === 0) {
-        const updatedItems = state.chousenItems.filter(
+        const updatedItems = state.choosenItems.filter(
           (item) => item.id !== action.payload.id
         );
         return {
