@@ -7,40 +7,46 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
+import { registerNewUser } from "../../Helpers/Products";
 interface RegisterFormData {
   firstName: string;
   lastName: string;
-  username: string;
   email: string;
   password: string;
-  password2: string;
+  phoneNumber: string;
+  // password2: string;
 }
 
 const initialValues: RegisterFormData = {
   firstName: "",
   lastName: "",
-  username: "",
+  phoneNumber: "",
   email: "",
   password: "",
-  password2: "",
 };
 
 const validationSchema = yup.object().shape({
-  username: yup.string().required("Username is required"),
+  firstName: yup.string().required("firstName is required"),
+  lastName: yup.string().required("lastName is required"),
+  phoneNumber: yup.string().required("phoneNumber is required"),
   email: yup.string().email("Invalid email").required("Email is required"),
   password: yup.string().required("Password is required"),
-  password2: yup
-    .string()
-    .oneOf([yup.ref("password"), ""], "Passwords must match"),
+
+  // password2: yup
+  //   .string()
+  //   .oneOf([yup.ref("password"), ""], "Passwords must match"),
 });
 
 const Registration = () => {
   const { values, handleSubmit, handleChange, errors } = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values: RegisterFormData) => {
-      const users = JSON.parse(localStorage.getItem("user")!) || [];
-      localStorage.setItem("user", JSON.stringify([...users, values]));
+    onSubmit: async (user: RegisterFormData) => {
+      try {
+        const { data } = await registerNewUser(user);
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
 
@@ -88,14 +94,14 @@ const Registration = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                name="username"
+                name="phoneNumber"
                 fullWidth
-                id="userName"
-                label="Username"
-                value={values.username}
+                id="phoneNumber"
+                label="phoneNumber"
+                value={values.phoneNumber}
                 onChange={handleChange}
-                error={!!errors.username}
-                helperText={errors.username}
+                error={!!errors.phoneNumber}
+                helperText={errors.phoneNumber}
               />
             </Grid>
             <Grid item xs={12}>
@@ -122,7 +128,7 @@ const Registration = () => {
                 helperText={errors.password}
               />
             </Grid>
-            <Grid item xs={6}>
+            {/* <Grid item xs={6}>
               <TextField
                 type="password"
                 name="password2"
@@ -133,7 +139,7 @@ const Registration = () => {
                 error={!!errors.password2}
                 helperText={errors.password2}
               />
-            </Grid>
+            </Grid> */}
           </Grid>
           <Button
             type="submit"

@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
+import { Typography } from "@mui/material";
 
 export const categoriesArray = [
   "tv",
@@ -26,14 +27,18 @@ export const categoriesArray = [
   "cabels",
 ];
 
-export default function Categorys({ setSearch }) {
+export default function Category({ setSearch }) {
   return (
-    <PopupState variant="dialog" popupId="demo-popup-menu">
+    <PopupState variant="popover" popupId="demo-popup-menu">
       {(popupState) => (
         <React.Fragment>
-          <Button variant="contained" {...bindTrigger(popupState)}>
-            Dashboard
-          </Button>
+          <Typography
+            variant="h5"
+            {...bindTrigger(popupState)}
+            sx={{ color: "white", cursor: "pointer" }}
+          >
+            Category
+          </Typography>
           <Menu {...bindMenu(popupState)}>
             {categoriesArray.map((category) => {
               return (

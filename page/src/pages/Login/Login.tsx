@@ -10,9 +10,10 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Alert from "@mui/material/Alert";
 import Typography from "@mui/material/Typography";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, json, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { userLogin } from "../../Helpers/Products";
 
 interface LoginFormData {
   email: string;
@@ -35,26 +36,15 @@ const Login = () => {
       password: "",
     },
     validationSchema,
-    onSubmit: (values: LoginFormData) => {
-      const users = JSON.parse(localStorage.getItem("user") || "") || [];
-      const user = users.find(
-        (user: UserItem) =>
-          user.email === values.email && user.password === values.password
-      );
-      if (!user) {
-        setIsSnackbarOpen(true);
-        return;
-      }
-      // If user isn't found, function will stop here
-      const now = new Date();
-      // Add 24 hours (in milliseconds) to the current time
-      const twentyFourHoursFromNow = new Date(
-        now.getTime() + 24 * 60 * 60 * 1000
-      );
-      // Convert the timestamp to a string in ISO format
-      const timestamp = twentyFourHoursFromNow.toISOString();
-      localStorage.setItem("token", timestamp);
-      navigate("/");
+    onSubmit: (user: LoginFormData) => {
+      console.log(user);
+      const loginrRequest = async () => {
+        const { data } = await userLogin(user);
+        localStorage.setItem("token", data.AccessToken);
+        localStorage.setItem("user", JSON.stringify(data.User));
+        if (data) navigate("/");
+      };
+      loginrRequest();
     },
   });
 

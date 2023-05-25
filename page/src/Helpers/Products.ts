@@ -14,11 +14,16 @@ export const getSearchedProducts = (searchvalue: string, range: number) =>
     page_number: 0,
   });
 
-// export const registerNewUser = (firstName, lastName, email, password) =>
-//   ajax.post("register", {
-//     firstName: "",
-//     lastName: "",
-//     phoneNumber: "",
-//     email: "",
-//     password: "",
-//   });
+export const registerNewUser = (user) =>
+  ajax.post("register", {
+    firstName: user.firstName,
+    lastName: user.lastName,
+    phoneNumber: user.phoneNumber,
+    email: user.email,
+    password: user.password,
+  });
+export const userLogin = (user) =>
+  ajax.post("login", {
+    email: user.email,
+    password: user.password,
+  });

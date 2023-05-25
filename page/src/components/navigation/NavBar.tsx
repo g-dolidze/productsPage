@@ -10,8 +10,9 @@ import { deepPurple } from "@mui/material/colors";
 import "./NavBar.css";
 import { searchedItems } from "../../pages/Home/redux/actions";
 import { getSearchedProducts } from "../../Helpers/Products";
-import Categorys from "../category";
-import { isUserAuthenticated } from "../../Helpers/user/userinfo";
+import Category from "../category";
+import { isUserAuthenticated } from "../../Helpers/user/isUserAuth";
+import AccountMenu from "../account";
 
 const NavBar = () => {
   const { favoriteItems, range, choosenItems } = useAppSelector(
@@ -21,12 +22,16 @@ const NavBar = () => {
 
   const usersPage = () => {
     if (!isUserAuthenticated()) {
-      navigate("/login");
+      return (
+        <Link to="/login" style={{ color: "white" }}>
+          <Avatar sx={{ bgcolor: deepPurple[500] }}></Avatar>
+          Log in
+        </Link>
+      );
     } else {
-      navigate("/profile");
+      return <AccountMenu />;
     }
   };
-
   const dispatch = useAppDispatch();
   const [search, setSearch] = useState("");
   const [value] = useDebounce(search, 1000);
@@ -56,7 +61,7 @@ const NavBar = () => {
           <FavoriteBorderRoundedIcon /> {favoriteItems.length}
         </Link>
 
-        <Categorys setSearch={setSearch} />
+        <Category setSearch={setSearch} />
       </div>
       <div className="rightside">
         <input
@@ -66,10 +71,7 @@ const NavBar = () => {
           placeholder="search"
           onChange={(e) => setSearch(e.target.value)}
         />
-        <Button onClick={() => usersPage()}>
-          <Avatar sx={{ bgcolor: deepPurple[500] }}>GD</Avatar>
-          Log in
-        </Button>
+        <div>{usersPage()}</div>
       </div>
     </div>
   );
