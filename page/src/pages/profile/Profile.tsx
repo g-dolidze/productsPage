@@ -1,19 +1,12 @@
-import { TextField, Typography } from "@mui/material";
+import { useState } from "react";
+import { Typography } from "@mui/material";
 import { useFormik } from "formik";
-import React from "react";
-
-type AddressType = {
-  country: string;
-  city: string;
-  zip_code: string;
-  address: string;
-  building: string;
-  fleat: string;
-};
 
 function Profile() {
   const userInfo = JSON.parse(localStorage.getItem("user") as string);
-  console.log(userInfo);
+  const profile = userInfo;
+  const [submittedValues, setSubmittedValues] = useState({});
+  const [submitted, setSubmitted] = useState(false);
 
   const accountInfo = useFormik({
     initialValues: {
@@ -31,30 +24,85 @@ function Profile() {
       },
     },
     onSubmit: (values) => {
-      JSON.stringify(values, null, 2);
+      setSubmittedValues(values);
+      setSubmitted(true);
     },
   });
 
-  const allInfo = { ...userInfo, accountInfo: accountInfo };
-  console.log(allInfo);
+  const allInfo = { ...profile, profile: submittedValues };
 
   return (
     <div>
-      <Typography>{allInfo.firstName}</Typography>
-      <Typography>{allInfo.lastName}</Typography>
-      <Typography>{allInfo.email}</Typography>
+      <form
+        onSubmit={accountInfo.handleSubmit}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "250px",
+          height: "50px",
+        }}
+      >
+        <input
+          placeholder="firstName"
+          id="firstName"
+          name="firstName"
+          type="text"
+          onChange={accountInfo.handleChange}
+          value={accountInfo.values.firstName}
+          disabled={submitted}
+          style={{ display: submitted ? "none" : "block" }}
+        />
+        <input
+          placeholder="lastName"
+          id="lastName"
+          name="lastName"
+          type="text"
+          onChange={accountInfo.handleChange}
+          value={accountInfo.values.lastName}
+          disabled={submitted}
+          style={{ display: submitted ? "none" : "block" }}
+        />
+        <input
+          placeholder="phoneNumber"
+          id="phoneNumber"
+          name="phoneNumber"
+          type="text"
+          onChange={accountInfo.handleChange}
+          value={accountInfo.values.phoneNumber}
+          disabled={submitted}
+          style={{ display: submitted ? "none" : "block" }}
+        />
+        <input
+          placeholder="email"
+          id="email"
+          name="email"
+          type="text"
+          onChange={accountInfo.handleChange}
+          value={accountInfo.values.email}
+          disabled={submitted}
+          style={{ display: submitted ? "none" : "block" }}
+        />
+        <input
+          placeholder="country"
+          id="country"
+          name="addressInfo.country"
+          type="text"
+          onChange={accountInfo.handleChange}
+          value={accountInfo.values.addressInfo.country}
+          disabled={submitted}
+          style={{ display: submitted ? "none" : "block" }}
+        />
+        <button type="submit" disabled={submitted}>
+          submit
+        </button>
+      </form>
+
       <div>
-        <form onSubmit={accountInfo.handleSubmit}>
-          <label htmlFor="firstName">First Name</label>
-          <input
-            id="firstName"
-            name="firstName"
-            type="text"
-            onChange={accountInfo.handleChange}
-            value={accountInfo.values.firstName}
-          />
-          <button type="submit">submit</button>
-        </form>
+        <Typography>{submittedValues.firstName}</Typography>
+        <Typography>{submittedValues.lastName}</Typography>
+        <Typography>{submittedValues.email}</Typography>
+        <Typography>{submittedValues.phoneNumber}</Typography>
+        <Typography>{submittedValues.addressInfo}</Typography>
       </div>
     </div>
   );

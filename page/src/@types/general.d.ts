@@ -8,6 +8,7 @@ type Prodact = {
   price: number;
   rating: string;
   amount: string;
+  brands: string;
 };
 type CartItem = Prodact & {
   quantity: number;
@@ -31,4 +32,10 @@ type UserItem = {
   username: string;
   email: string;
   password: string;
+  country: string;
+  city: string;
+  zip_code: string;
+  address: string;
+  building: string;
+  fleat: string;
 };

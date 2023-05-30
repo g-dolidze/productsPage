@@ -1,11 +1,16 @@
 import { useAppSelector } from "../../Redux/hooks";
 import CartItem from "../../components/CartItem";
+import { useTranslation, Trans } from "react-i18next";
+
 import { Paper, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./Cart.scss";
+import { Key } from "@mui/icons-material";
 
 const Cart = () => {
-  const { choosenItems } = useAppSelector((state) => state.mainReducer);
+  const { choosenItems }: any = useAppSelector((state) => state.mainReducer);
+
+  const { t } = useTranslation();
 
   let total = 0;
   {
@@ -30,23 +35,30 @@ const Cart = () => {
           <ul>
             {choosenItems.map((item) => {
               return (
-                <Paper elevation={3} className="paper">
+                <Paper elevation={3} className="paper" key={item.id}>
                   <h4>{item.title} </h4>
                   <div className="amount">
-                    <h5>price:{parseFloat(item.price).toFixed(2)} </h5>
-                    <h5>quantity:{item.quantity} </h5>
+                    <h5>
+                      {t("global.price")}: {parseFloat(item.price).toFixed(2)}
+                    </h5>
+                    <h5>
+                      {t("global.quantity")}:{item.quantity}{" "}
+                    </h5>
                   </div>
                 </Paper>
               );
             })}
           </ul>
         </div>
-        <hr />
-        <h3>total price:{parseFloat(total).toFixed(2)} Lari</h3>
-        <hr />
         <div className="total_price">
+          <hr />
+          <h3>
+            {t("global.total price")}:{parseFloat(total.toFixed(2))}{" "}
+            {t("global.lari")}
+          </h3>
+          <hr />
           <h1>
-            <Link to="/login">Check Out</Link>
+            <Link to="/checkout">{t("global.Check Out")} </Link>
           </h1>
         </div>
       </div>

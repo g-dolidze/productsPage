@@ -110,8 +110,8 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
       const thisItem = state.choosenItems[productIndex2];
       if (productIndex2 >= 0 && thisItem.quantity > 0) {
         const reducedItem = { ...thisItem, quantity: thisItem.quantity - 1 };
-        state.chousenItems[productIndex2] = reducedItem;
-        return { ...state, chousenItems: state.chousenItems };
+        state.choosenItems[productIndex2] = reducedItem;
+        return { ...state, chousenItems: state.choosenItems };
       }
       if (thisItem.quantity === 0) {
         const updatedItems = state.choosenItems.filter(
@@ -125,7 +125,7 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
     }
 
     case REMOVE_ITEM_FROM_CART: {
-      const updatedItems = state.chousenItems.filter(
+      const updatedItems = state.choosenItems.filter(
         (item) => item.id !== action.payload.id
       );
       return {

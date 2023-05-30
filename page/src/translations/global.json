@@ -1,0 +1,24 @@
+{
+  "en": {
+    "product": "Product",
+    "remove": "Remove",
+    "brand": "Brand",
+    "category": "Category",
+    "quantity": "Quantity",
+    "price": "price",
+    "total price": "total price",
+    "Check Out": "Check Out",
+    "lari": "laro"
+  },
+  "ge": {
+    "product": "პროდუქცია",
+    "remove": "წაშლა",
+    "brand": "ბრენდი",
+    "category": "კატეგორია",
+    "quantity": "რაოდენობა",
+    "price": "ფასი",
+    "total price": "სულ",
+    "Check Out": "დადასტურება",
+    "lari": "ლარი"
+  }
+}

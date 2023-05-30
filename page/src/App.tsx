@@ -10,6 +10,8 @@ import CustomSeparator from "./components/crampt";
 import Registration from "./pages/registarion";
 import "./App.css";
 import Profile from "./pages/profile";
+import "./translations/index";
+import Checkout from "./pages/checkout";
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </>
   );

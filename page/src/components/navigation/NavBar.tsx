@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../Redux/hooks";
 import { useDebounce } from "use-debounce";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
-import { Avatar, Button } from "@mui/material";
+import { Avatar } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 
 import "./NavBar.css";
@@ -13,12 +13,12 @@ import { getSearchedProducts } from "../../Helpers/Products";
 import Category from "../category";
 import { isUserAuthenticated } from "../../Helpers/user/isUserAuth";
 import AccountMenu from "../account";
+import { Language } from "./language";
 
 const NavBar = () => {
   const { favoriteItems, range, choosenItems } = useAppSelector(
     (state) => state.mainReducer
   );
-  const navigate = useNavigate();
 
   const usersPage = () => {
     if (!isUserAuthenticated()) {
@@ -64,6 +64,7 @@ const NavBar = () => {
         <Category setSearch={setSearch} />
       </div>
       <div className="rightside">
+        <Language />
         <input
           className="search"
           type="search"

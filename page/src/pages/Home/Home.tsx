@@ -8,7 +8,6 @@ import { useAppSelector } from "../../Redux/hooks";
 import Card from "../../components/Card";
 import "./Home.scss";
 import Carusel from "../../components/carusel/Carusel";
-import BransSide from "../../components/brands";
 
 function Home() {
   const dispatch = useDispatch();
@@ -22,6 +21,7 @@ function Home() {
     };
     getProducts();
   }, []);
+
   return (
     <Grid
       container
@@ -43,16 +43,12 @@ function Home() {
           top: "500px",
         }}
       >
-        <BransSide />
+        {/* <BransSide /> */}
       </Grid>
       <Grid item className="page">
-        {products.map((product: Prodact) => {
+        {products.map((product) => {
           return (
-            <Paper
-              elevation={5}
-              key={product?.id}
-              sx={{ borderRadius: "10px" }}
-            >
+            <Paper elevation={5} key={product.id} sx={{ borderRadius: "10px" }}>
               <Card product={product} />
             </Paper>
           );
