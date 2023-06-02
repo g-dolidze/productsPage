@@ -3,6 +3,12 @@ import { Typography } from "@mui/material";
 import { useFormik } from "formik";
 
 function Profile() {
+  // const userInfo = async () => {
+  //   const { data } = await getUserInfo();
+  //   return console.log(data);
+  // };
+  // userInfo();
+
   const userInfo = JSON.parse(localStorage.getItem("user") as string);
   const profile = userInfo;
   const [submittedValues, setSubmittedValues] = useState({});
@@ -29,7 +35,10 @@ function Profile() {
     },
   });
 
-  const allInfo = { ...profile, profile: submittedValues };
+  const allInfo = {
+    accountInfo: accountInfo.values,
+  };
+  console.log(allInfo);
 
   return (
     <div>
@@ -48,7 +57,7 @@ function Profile() {
           name="firstName"
           type="text"
           onChange={accountInfo.handleChange}
-          value={accountInfo.values.firstName}
+          defaultValue={accountInfo.values.firstName}
           disabled={submitted}
           style={{ display: submitted ? "none" : "block" }}
         />
@@ -85,7 +94,7 @@ function Profile() {
         <input
           placeholder="country"
           id="country"
-          name="addressInfo.country"
+          name="country"
           type="text"
           onChange={accountInfo.handleChange}
           value={accountInfo.values.addressInfo.country}
@@ -98,11 +107,10 @@ function Profile() {
       </form>
 
       <div>
-        <Typography>{submittedValues.firstName}</Typography>
-        <Typography>{submittedValues.lastName}</Typography>
-        <Typography>{submittedValues.email}</Typography>
-        <Typography>{submittedValues.phoneNumber}</Typography>
-        <Typography>{submittedValues.addressInfo}</Typography>
+        <Typography>{allInfo.firstName}</Typography>
+        <Typography>{allInfo.lastName}</Typography>
+        <Typography>{allInfo.email}</Typography>
+        <Typography>{allInfo.phoneNumber}</Typography>
       </div>
     </div>
   );

@@ -7,31 +7,32 @@ import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import { Avatar } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 
-import "./NavBar.css";
+import "./NavBar.scss";
 import { searchedItems } from "../../pages/Home/redux/actions";
 import { getSearchedProducts } from "../../Helpers/Products";
 import Category from "../category";
 import { isUserAuthenticated } from "../../Helpers/user/isUserAuth";
 import AccountMenu from "../account";
 import { Language } from "./language";
+import { getUserInfo } from "../../Helpers/user/User";
 
 const NavBar = () => {
-  const { favoriteItems, range, choosenItems } = useAppSelector(
+  const { favoriteItems, range, choosenItems } = useAppSelector<InitialState>(
     (state) => state.mainReducer
   );
 
-  const usersPage = () => {
-    if (!isUserAuthenticated()) {
-      return (
-        <Link to="/login" style={{ color: "white" }}>
-          <Avatar sx={{ bgcolor: deepPurple[500] }}></Avatar>
-          Log in
-        </Link>
-      );
-    } else {
-      return <AccountMenu />;
-    }
-  };
+  // const usersPage = () => {
+  //   if (isUserAuthenticated()?.isUser) {
+  //     return <AccountMenu />;
+  //   } else {
+  //     return (
+  //       <Link to="/login" style={{ color: "white" }}>
+  //         <Avatar sx={{ bgcolor: deepPurple[500] }}></Avatar>
+  //         Log in
+  //       </Link>
+  //     );
+  //   }
+  // };
   const dispatch = useAppDispatch();
   const [search, setSearch] = useState("");
   const [value] = useDebounce(search, 1000);
@@ -60,11 +61,8 @@ const NavBar = () => {
         <Link to="/favorites">
           <FavoriteBorderRoundedIcon /> {favoriteItems.length}
         </Link>
-
-        <Category setSearch={setSearch} />
       </div>
-      <div className="rightside">
-        <Language />
+      <div className="navCenter">
         <input
           className="search"
           type="search"
@@ -72,7 +70,20 @@ const NavBar = () => {
           placeholder="search"
           onChange={(e) => setSearch(e.target.value)}
         />
-        <div>{usersPage()}</div>
+        <Category setSearch={setSearch} />
+      </div>
+      <div className="rightside">
+        <Language />
+        <div>
+          {isUserAuthenticated()?.isUser || isUserAuthenticated()?.isAdmin ? (
+            <AccountMenu />
+          ) : (
+            <Link to="/login" style={{ color: "white" }}>
+              <Avatar sx={{ bgcolor: deepPurple[500] }}></Avatar>
+              Log in
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );

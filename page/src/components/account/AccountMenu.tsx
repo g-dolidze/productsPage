@@ -10,7 +10,6 @@ import Tooltip from "@mui/material/Tooltip";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
-import { logOut } from "../../Helpers/user/isUserAuth";
 import { ShoppingCartCheckout } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
@@ -22,6 +21,12 @@ export default function AccountMenu() {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const logOut = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/");
   };
 
   const navigate = useNavigate();
@@ -100,7 +105,6 @@ export default function AccountMenu() {
           onClick={() => {
             logOut();
             handleClose;
-            navigate("/");
           }}
         >
           <ListItemIcon>

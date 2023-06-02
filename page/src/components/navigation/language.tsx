@@ -14,20 +14,18 @@ export function Language() {
   };
 
   return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label" style={{ color: "white" }}>
-          language
-        </InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          onChange={handleChange}
-        >
-          <MenuItem onClick={() => i18next.changeLanguage("ge")}>Geo</MenuItem>
-          <MenuItem onClick={() => i18next.changeLanguage("en")}>Eng</MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
+    <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+      <InputLabel id="demo-simple-select-label" style={{ color: "white" }}>
+        language
+      </InputLabel>
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        onChange={handleChange}
+      >
+        <MenuItem onClick={() => i18next.changeLanguage("ge")}>Geo</MenuItem>
+        <MenuItem onClick={() => i18next.changeLanguage("en")}>Eng</MenuItem>
+      </Select>
+    </FormControl>
   );
 }

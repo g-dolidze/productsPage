@@ -17,7 +17,7 @@ export const initialState: InitialState = {
   choosenItems: [],
   favoriteItems: [],
   searchItems: [],
-  range: 30,
+  range: 28,
 };
 
 const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
@@ -37,7 +37,7 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
     case SEE_MORE_ITEMS: {
       return {
         ...state,
-        range: action.payload + 30,
+        range: action.payload + 28,
       };
     }
 

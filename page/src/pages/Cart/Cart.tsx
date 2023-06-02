@@ -8,7 +8,9 @@ import "./Cart.scss";
 import { Key } from "@mui/icons-material";
 
 const Cart = () => {
-  const { choosenItems }: any = useAppSelector((state) => state.mainReducer);
+  const { choosenItems } = useAppSelector<InitialState>(
+    (state) => state.mainReducer
+  );
 
   const { t } = useTranslation();
 
@@ -39,7 +41,7 @@ const Cart = () => {
                   <h4>{item.title} </h4>
                   <div className="amount">
                     <h5>
-                      {t("global.price")}: {parseFloat(item.price).toFixed(2)}
+                      {t("global.price")}: {Number(item.price).toFixed(2)}
                     </h5>
                     <h5>
                       {t("global.quantity")}:{item.quantity}{" "}
@@ -53,7 +55,7 @@ const Cart = () => {
         <div className="total_price">
           <hr />
           <h3>
-            {t("global.total price")}:{parseFloat(total.toFixed(2))}{" "}
+            {t("global.total price")}:{Number(total.toFixed(2))}{" "}
             {t("global.lari")}
           </h3>
           <hr />

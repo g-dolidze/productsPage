@@ -11,7 +11,9 @@ import Carusel from "../../components/carusel/Carusel";
 
 function Home() {
   const dispatch = useDispatch();
-  const { products, range } = useAppSelector((state) => state.mainReducer);
+  const { products, range } = useAppSelector<InitialState>(
+    (state) => state.mainReducer
+  );
 
   useEffect(() => {
     const getProducts = async () => {

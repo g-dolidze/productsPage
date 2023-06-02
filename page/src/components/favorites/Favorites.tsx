@@ -4,7 +4,9 @@ import { useAppSelector } from "../../Redux/hooks";
 import Card from "../Card";
 
 function favorites() {
-  const { favoriteItems } = useAppSelector((state) => state.mainReducer);
+  const { favoriteItems } = useAppSelector<InitialState>(
+    (state) => state.mainReducer
+  );
 
   console.log(favoriteItems);
   return (

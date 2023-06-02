@@ -5,7 +5,18 @@ import axios from "axios";
 import "./product.css";
 
 function Product() {
-  const [choosenItem, setChoosenItem] = useState({});
+  const [choosenItem, setChoosenItem] = useState<Prodact>({
+    id: "",
+    title: "",
+    description: "",
+    category: "",
+    images: [],
+    brand: "",
+    price: 0,
+    rating: "",
+    amount: "",
+    brands: "",
+  });
   const { id } = useParams();
   useEffect(() => {
     const getProduct = async () => {

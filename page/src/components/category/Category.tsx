@@ -4,6 +4,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import { Typography } from "@mui/material";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export const categoriesArray = [
   "tv",
@@ -35,9 +36,15 @@ export default function Category({ setSearch }) {
           <Typography
             variant="h5"
             {...bindTrigger(popupState)}
-            sx={{ color: "white", cursor: "pointer" }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              marginLeft: "-130px ",
+              cursor: "pointer",
+            }}
           >
             Category
+            <KeyboardArrowDownIcon fontSize="large" />
           </Typography>
           <Menu {...bindMenu(popupState)}>
             {categoriesArray.map((category) => {

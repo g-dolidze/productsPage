@@ -1,3 +1,4 @@
+import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import "./CartItem.scss";
 import { useDispatch } from "react-redux";
@@ -6,8 +7,10 @@ import {
   incresQuantity,
   removeItem,
 } from "../../pages/Home/redux/actions";
-
-const CartItem = ({ item }) => {
+type CartItemProps = {
+  item: CartItem;
+};
+const CartItem: FC<CartItemProps> = ({ item }) => {
   const dispatch = useDispatch();
 
   return (
@@ -26,7 +29,7 @@ const CartItem = ({ item }) => {
           <h3 className="title">{item.title} </h3>
         </Link>
         <div className="price">
-          <h3>Price: {parseFloat(item.price).toFixed(2)} </h3>
+          <h3>Price: {Number(item.price).toFixed(2)} </h3>
           <div className="quantity">
             <span onClick={() => dispatch(dicresQuantity(item))}>-</span>
             <span className="quantity_number">{item.quantity} </span>
