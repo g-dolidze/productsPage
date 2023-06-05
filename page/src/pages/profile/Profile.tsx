@@ -1,117 +1,36 @@
 import { useState } from "react";
-import { Typography } from "@mui/material";
-import { useFormik } from "formik";
+
+import { Form, useForm } from "react-hook-form";
 
 function Profile() {
-  // const userInfo = async () => {
-  //   const { data } = await getUserInfo();
-  //   return console.log(data);
-  // };
-  // userInfo();
+  const { userData } = useForm<UserItem>();
 
-  const userInfo = JSON.parse(localStorage.getItem("user") as string);
-  const profile = userInfo;
-  const [submittedValues, setSubmittedValues] = useState({});
-  const [submitted, setSubmitted] = useState(false);
-
-  const accountInfo = useFormik({
-    initialValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phoneNumber: "",
-      addressInfo: {
-        country: "",
-        city: "",
-        zip_code: "",
-        address: "",
-        building: "",
-        fleat: "",
-      },
-    },
-    onSubmit: (values) => {
-      setSubmittedValues(values);
-      setSubmitted(true);
-    },
-  });
-
-  const allInfo = {
-    accountInfo: accountInfo.values,
+  const userInfo = async () => {
+    const { data } = await getUserInfo();
+    return console.log(data);
   };
-  console.log(allInfo);
-
+  userInfo();
   return (
     <div>
-      <form
-        onSubmit={accountInfo.handleSubmit}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "250px",
-          height: "50px",
-        }}
+      <Form
+        action="localhost:8080"
+        method="post"
+        onSubmit={() => {}}
+        onSuccess={() => {}}
+        onError={() => []}
+        validateStatus={(status) => status >= 200}
       >
-        <input
-          placeholder="firstName"
-          id="firstName"
-          name="firstName"
-          type="text"
-          onChange={accountInfo.handleChange}
-          defaultValue={accountInfo.values.firstName}
-          disabled={submitted}
-          style={{ display: submitted ? "none" : "block" }}
-        />
-        <input
-          placeholder="lastName"
-          id="lastName"
-          name="lastName"
-          type="text"
-          onChange={accountInfo.handleChange}
-          value={accountInfo.values.lastName}
-          disabled={submitted}
-          style={{ display: submitted ? "none" : "block" }}
-        />
-        <input
-          placeholder="phoneNumber"
-          id="phoneNumber"
-          name="phoneNumber"
-          type="text"
-          onChange={accountInfo.handleChange}
-          value={accountInfo.values.phoneNumber}
-          disabled={submitted}
-          style={{ display: submitted ? "none" : "block" }}
-        />
-        <input
-          placeholder="email"
-          id="email"
-          name="email"
-          type="text"
-          onChange={accountInfo.handleChange}
-          value={accountInfo.values.email}
-          disabled={submitted}
-          style={{ display: submitted ? "none" : "block" }}
-        />
-        <input
-          placeholder="country"
-          id="country"
-          name="country"
-          type="text"
-          onChange={accountInfo.handleChange}
-          value={accountInfo.values.addressInfo.country}
-          disabled={submitted}
-          style={{ display: submitted ? "none" : "block" }}
-        />
-        <button type="submit" disabled={submitted}>
-          submit
-        </button>
-      </form>
+        <label htmlFor="firstName">firstName</label>
+        <input type="text" id="firstName" {...userData("firstName")} />
 
-      <div>
-        <Typography>{allInfo.firstName}</Typography>
-        <Typography>{allInfo.lastName}</Typography>
-        <Typography>{allInfo.email}</Typography>
-        <Typography>{allInfo.phoneNumber}</Typography>
-      </div>
+        <label htmlFor="lastName">lastName</label>
+        <input type="text" id="lastName" {...userData("lastName")} />
+
+        <label htmlFor="email">email</label>
+        <input type="text" id="email" {...userData("email")} />
+
+        <button> submit</button>
+      </Form>
     </div>
   );
 }
