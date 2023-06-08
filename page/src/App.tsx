@@ -12,6 +12,7 @@ import "./App.css";
 import Profile from "./pages/profile";
 import "./translations/index";
 import Checkout from "./pages/checkout";
+import Footer from "./components/footer";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
+      <Footer />
     </>
   );
 }

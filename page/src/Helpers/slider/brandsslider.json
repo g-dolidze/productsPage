@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Logo_of_the_TCL_Corporation.svg/1200px-Logo_of_the_TCL_Corporation.svg.png",
+    "brand": "tcl"
+  },
+  {
+    "id": 2,
+    "image": "https://cdn.mos.cms.futurecdn.net/6bTF6C2QiWXvhi33fJi3AC-1200-80.jpg",
+    "brand": "iphone"
+  },
+  {
+    "id": 3,
+    "image": "https://images.samsung.com/is/image/samsung/assets/global/about-us/brand/logo/256_144_4.png?$512_N_PNG$",
+    "brand": "samsung"
+  },
+  {
+    "id": 4,
+    "image": "https://static.vecteezy.com/system/resources/previews/018/911/405/original/lg-logo-life-s-good-editorial-free-vector.jpg",
+    "brand": "lg"
+  }
+]

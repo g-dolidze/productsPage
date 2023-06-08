@@ -7,7 +7,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
-import { registerNewUser } from "../../Helpers/Products";
+import { registerNewUser } from "../../Helpers/user/User";
 interface RegisterFormData {
   firstName: string;
   lastName: string;

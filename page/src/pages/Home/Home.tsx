@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllProducts } from "../../Helpers/Products";
+import { getAllBrands, getAllProducts } from "../../Helpers/Products";
 import { Button, Grid, Paper } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { getProductsFromApi, seeMoreItems, totalFound } from "./redux/actions";
@@ -8,6 +8,7 @@ import { useAppSelector } from "../../Redux/hooks";
 import Card from "../../components/Card";
 import "./Home.scss";
 import Carusel from "../../components/carusel/Carusel";
+import BrandsCarusel from "../../components/carusel copy/brandsCarusel";
 
 function Home() {
   const dispatch = useDispatch();
@@ -57,6 +58,7 @@ function Home() {
         })}
       </Grid>
       <Button onClick={() => dispatch(seeMoreItems(range))}>Show more</Button>
+      <BrandsCarusel />
     </Grid>
   );
 }

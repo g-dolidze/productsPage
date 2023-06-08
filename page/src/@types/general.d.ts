@@ -31,11 +31,12 @@ type UserItem = {
   lastName: string;
   username: string;
   email: string;
+  phoneNumber: number;
   password: string;
-  country: string;
-  city: string;
-  zip_code: string;
-  address: string;
-  building: string;
-  fleat: string;
+  addressInfo: {
+    city: string;
+    street: string;
+    zip_code: string;
+    address: string;
+  };
 };

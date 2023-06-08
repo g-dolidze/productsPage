@@ -1,38 +1,86 @@
-import { useState } from "react";
-
-import { Form, useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { getUserInfo } from "../../Helpers/user/User";
+import "./profile.scss";
+import {
+  Box,
+  Button,
+  Divider,
+  Grid,
+  InputAdornment,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
+import UserInfo from "./UserInfo";
+import { Height } from "@mui/icons-material";
+import AddressDialog from "./addressInfo/AddressDialog";
 
 function Profile() {
-  const { userData } = useForm<UserItem>();
+  const [isUserEditing, setIsUserEditing] = useState<boolean>(false);
 
-  const userInfo = async () => {
-    const { data } = await getUserInfo();
-    return console.log(data);
+  const userData = JSON.parse(localStorage.getItem("user") as string);
+
+  const [user, setUser] = useState<UserItem | null>(null);
+
+  useEffect(() => {
+    const userInfo = async () => {
+      const { data } = await getUserInfo();
+      setUser(data);
+    };
+    userInfo();
+  }, []);
+
+  const handleEditing = () => {
+    setIsUserEditing(true);
   };
-  userInfo();
-  return (
-    <div>
-      <Form
-        action="localhost:8080"
-        method="post"
-        onSubmit={() => {}}
-        onSuccess={() => {}}
-        onError={() => []}
-        validateStatus={(status) => status >= 200}
-      >
-        <label htmlFor="firstName">firstName</label>
-        <input type="text" id="firstName" {...userData("firstName")} />
 
-        <label htmlFor="lastName">lastName</label>
-        <input type="text" id="lastName" {...userData("lastName")} />
+  const handleChangeState = () => {
+    setIsUserEditing((prev) => !prev);
+  };
 
-        <label htmlFor="email">email</label>
-        <input type="text" id="email" {...userData("email")} />
+  if (isUserEditing) {
+    return (
+      <div className="user_info">
+        <UserInfo handleChangeState={handleChangeState} />
+      </div>
+    );
+  }
 
-        <button> submit</button>
-      </Form>
-    </div>
-  );
+  if (!isUserEditing) {
+    return (
+      <div className="user_info_page">
+        <Typography variant="h4" className="user_info_title">
+          Your User Info{" "}
+        </Typography>
+        <Paper variant="outlined" className="user_info">
+          <div className="person">
+            <Typography className="info">
+              Firstname: {userData.firstName}{" "}
+            </Typography>
+            <Typography className="info">
+              {" "}
+              Latsname: {userData.lastName}{" "}
+            </Typography>
+          </div>
+
+          <Typography className="info_email">
+            {" "}
+            Phone : {userData.phoneNumber}{" "}
+          </Typography>
+          <Typography className="info_email">
+            E-mail: {userData.email}{" "}
+          </Typography>
+          <Button onClick={handleEditing} className="edit_btn">
+            edit
+          </Button>
+          <Paper elevation={3} className="address_info">
+            {" "}
+            <AddressDialog />
+          </Paper>
+        </Paper>
+      </div>
+    );
+  }
 }
 
 export default Profile;

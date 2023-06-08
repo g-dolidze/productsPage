@@ -1,0 +1,77 @@
+.user_info_page {
+  width: 600px;
+  height: 100vh;
+  padding: 0px 20px 0px 20px;
+}
+.user_info {
+  width: 500px;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 15px;
+  .person {
+    display: flex;
+    justify-content: space-between;
+  }
+  .info {
+    border: 1px solid white;
+    width: 230px;
+    height: 30px;
+    text-align: center;
+
+    &_email {
+      border: 1px solid white;
+      width: 500px;
+      height: 30px;
+      text-align: center;
+    }
+  }
+  .edit_btn {
+    margin: 0px auto;
+    width: 300px;
+    height: 30px;
+    text-align: center;
+  }
+}
+.user_info_title {
+  padding: 20px;
+  text-align: center;
+}
+
+.user_info_page {
+  width: 600px;
+  height: 100vh;
+  padding: 0px 20px 0px 20px;
+}
+.user_form_info {
+  width: 540px;
+  height: 400px;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  .TextField {
+    width: 250px;
+    &_email {
+      margin-left: 10px;
+      margin-top: 15px;
+      width: 300px;
+    }
+    &_phoneNumber {
+      margin-top: 15px;
+      width: 200px;
+    }
+  }
+  .form_btn {
+    margin-top: 15px;
+    width: 500px;
+    background-color: rgb(36, 36, 225);
+    text-align: center;
+    margin: 0px auto;
+  }
+}
+.address_info {
+  margin: auto auto;
+  width: 450px;
+  height: 200px;
+}
