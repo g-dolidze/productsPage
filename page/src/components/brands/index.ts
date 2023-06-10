@@ -1,2 +1,2 @@
-import BransSide from "./bransSide";
-export default BransSide;
+import BrandsSlider from "./BransSlider";
+export default BrandsSlider;

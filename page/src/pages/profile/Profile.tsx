@@ -1,18 +1,8 @@
 import { useEffect, useState } from "react";
 import { getUserInfo } from "../../Helpers/user/User";
 import "./profile.scss";
-import {
-  Box,
-  Button,
-  Divider,
-  Grid,
-  InputAdornment,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Paper, Typography } from "@mui/material";
 import UserInfo from "./UserInfo";
-import { Height } from "@mui/icons-material";
 import AddressDialog from "./addressInfo/AddressDialog";
 
 function Profile() {

@@ -21,6 +21,8 @@ type InitialState = {
   favoriteItems: FavoriteItem[];
   searchItems: Prodact[];
   range: number;
+  brands: Prodact[];
+  brandName: string;
 };
 type TMyToken = {
   name: string;

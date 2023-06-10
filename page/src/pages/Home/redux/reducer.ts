@@ -8,16 +8,20 @@ import {
   ADD_TO_FAVORITE,
   SEARCH_ITEMS,
   SEE_MORE_ITEMS,
+  GET_BRANDS_PRODUCTS,
+  SEE_MORE_BRAND_ITEMS,
 } from "./actions";
 import { MAIN_PAGE_ACTIONS } from "./types";
 
 export const initialState: InitialState = {
+  brands: [],
   products: [],
   totalFound: 0,
   choosenItems: [],
   favoriteItems: [],
   searchItems: [],
   range: 28,
+  brandName: "",
 };
 
 const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
@@ -35,6 +39,12 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
     }
 
     case SEE_MORE_ITEMS: {
+      return {
+        ...state,
+        range: action.payload + 28,
+      };
+    }
+    case SEE_MORE_BRAND_ITEMS: {
       return {
         ...state,
         range: action.payload + 28,
@@ -133,6 +143,11 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
         chousenItems: updatedItems,
       };
     }
+    case GET_BRANDS_PRODUCTS:
+      return {
+        ...state,
+        products: action.payload,
+      };
 
     default:
       return state;

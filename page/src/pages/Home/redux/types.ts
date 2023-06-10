@@ -8,12 +8,17 @@ import {
   ADD_TO_FAVORITE,
   SEARCH_ITEMS,
   SEE_MORE_ITEMS,
+  GET_BRANDS_PRODUCTS,
+  SEE_MORE_BRAND_ITEMS,
 } from "./actions";
 export type GET_PRODUCTS_FROM_API_ACTION = {
   type: typeof GET_PRODUCTS_FROM_API;
   payload: Prodact[];
 };
-
+export type GET_BRANDS_PRODUCTS_ACTION = {
+  type: typeof GET_BRANDS_PRODUCTS;
+  payload: Prodact;
+};
 export type TOTAL_FOUND_ACTION = {
   type: typeof TOTAL_FOUND;
   payload: number;
@@ -47,6 +52,10 @@ export type SEE_MORE_ITEMS_ACTION = {
   type: typeof SEE_MORE_ITEMS;
   payload: number;
 };
+export type SEE_MORE_BRAND_ITEMS_ACTION = {
+  type: typeof SEE_MORE_BRAND_ITEMS;
+  payload: number;
+};
 
 export type MAIN_PAGE_ACTIONS =
   | GET_PRODUCTS_FROM_API_ACTION
@@ -57,4 +66,6 @@ export type MAIN_PAGE_ACTIONS =
   | REMOVE_ITEM_FROM_CART_ACTION
   | ADD_TO_FAVORITE_ACTION
   | SEARCH_ITEMS_ACTION
-  | SEE_MORE_ITEMS_ACTION;
+  | SEE_MORE_ITEMS_ACTION
+  | GET_BRANDS_PRODUCTS_ACTION
+  | SEE_MORE_BRAND_ITEMS_ACTION;

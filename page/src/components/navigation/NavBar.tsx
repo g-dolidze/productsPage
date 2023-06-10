@@ -14,25 +14,12 @@ import Category from "../category";
 import { isUserAuthenticated } from "../../Helpers/user/isUserAuth";
 import AccountMenu from "../account";
 import { Language } from "./language";
-import { getUserInfo } from "../../Helpers/user/User";
 
 const NavBar = () => {
   const { favoriteItems, range, choosenItems } = useAppSelector<InitialState>(
     (state) => state.mainReducer
   );
 
-  // const usersPage = () => {
-  //   if (isUserAuthenticated()?.isUser) {
-  //     return <AccountMenu />;
-  //   } else {
-  //     return (
-  //       <Link to="/login" style={{ color: "white" }}>
-  //         <Avatar sx={{ bgcolor: deepPurple[500] }}></Avatar>
-  //         Log in
-  //       </Link>
-  //     );
-  //   }
-  // };
   const dispatch = useAppDispatch();
   const [search, setSearch] = useState("");
   const [value] = useDebounce(search, 1000);

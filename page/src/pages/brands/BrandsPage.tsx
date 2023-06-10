@@ -1,28 +1,39 @@
-import React, { useEffect, useState } from "react";
-import { getAllProducts } from "../../Helpers/Products";
-import { Button, Grid, Paper } from "@mui/material";
+import { Paper, Grid, Button } from "@mui/material";
+import React, { useEffect } from "react";
+import { getBrandsProducts, seeMoreBrandItems, seeMoreItems } from "../Home/redux/actions";
 import { useDispatch } from "react-redux";
-import { getProductsFromApi, seeMoreItems, totalFound } from "./redux/actions";
+import { getBrandProducts } from "../../Helpers/Products";
 import { useAppSelector } from "../../Redux/hooks";
-
 import Card from "../../components/Card";
-import "./Home.scss";
-import Carusel from "../../components/carusel/Carusel";
-import BrandsSlider from "../../components/brands";
+import { useLocation } from "react-router";
 
-function Home() {
+type PropsType = {
+  brandName: string;
+  range: number;
+};
+
+function BrandsPage() {
   const dispatch = useDispatch();
   const { products, range } = useAppSelector<InitialState>(
     (state) => state.mainReducer
   );
 
+  const url = useLocation();
+  let urlArray = "";
+  urlArray = url.search;
+  let urlText = urlArray.split("");
+  const brand = urlText.slice(1);
+  const brandName = brand.join("");
+  console.log(brandName);
+
+  const brandKind = "keyboard";
+
   useEffect(() => {
-    const getProducts = async () => {
-      const { data } = await getAllProducts(range);
-      dispatch(totalFound(data.total_found));
-      dispatch(getProductsFromApi(data.products));
+    const getBrands = async () => {
+      const { data } = await getBrandProducts(brandKind, brandName);
+      dispatch(getBrandsProducts(data.products));
     };
-    getProducts();
+    getBrands();
   }, []);
 
   return (
@@ -36,7 +47,6 @@ function Home() {
           position: "relative",
         }}
       >
-        <Carusel />
         <Grid
           container
           style={{
@@ -46,9 +56,7 @@ function Home() {
             left: "5px ",
             top: "500px",
           }}
-        >
-          {/* <BransSide /> */}
-        </Grid>
+        ></Grid>
         <Grid item className="page">
           {products.map((product) => {
             return (
@@ -62,13 +70,12 @@ function Home() {
             );
           })}
         </Grid>
-        <Button onClick={() => dispatch(seeMoreItems(range))}>Show more</Button>
+        <Button onClick={() => dispatch(seeMoreBrandItems(range))}>
+          Show more
+        </Button>
       </Grid>
-      <div>
-        <BrandsSlider />
-      </div>
     </div>
   );
 }
 
-export default Home;
+export default BrandsPage;

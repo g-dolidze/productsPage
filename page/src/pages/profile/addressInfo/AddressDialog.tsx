@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -14,7 +14,7 @@ import { Typography } from "@mui/material";
 interface AddressInfo {
   city: string;
   street: string;
-  zip_code: number;
+  zip_code: string;
   address: string;
 }
 const initialValues = {};
@@ -25,12 +25,12 @@ export default function AddressDialog() {
 
   const userData = JSON.parse(localStorage.getItem("user") as string);
 
-  const validationSchema = yup.object().shape({
-    city: yup.string().required("city is required"),
-    street: yup.string().required("street is required"),
-    zip_code: yup.string().required("zip_code is required"),
-    address: yup.string().required("address is required"),
-  });
+  // const validationSchema = yup.object().shape({
+  //   city: yup.string().required("city is required"),
+  //   street: yup.string().required("street is required"),
+  //   zip_code: yup.string().required("zip_code is required"),
+  //   address: yup.string().required("address is required"),
+  // });
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -49,7 +49,6 @@ export default function AddressDialog() {
     submitForm,
   } = useFormik({
     initialValues,
-
     onSubmit: (userAddress) => {
       if ("addressInfo" in userData) {
         const newAddress = JSON.stringify({

@@ -13,6 +13,7 @@ import Profile from "./pages/profile";
 import "./translations/index";
 import Checkout from "./pages/checkout";
 import Footer from "./components/footer";
+import BrandsPage from "./pages/brands";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/brand" element={<BrandsPage  />} />
       </Routes>
       <Footer />
     </>
