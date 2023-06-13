@@ -5,7 +5,6 @@ import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import { Typography } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { number } from "yup";
 
 export const categoriesArray = [
   "tv",
@@ -16,7 +15,7 @@ export const categoriesArray = [
   "kitchen",
   "laptop",
   "laptop",
-  "shelve",
+  "safety locker",
   "inverter",
   "washing machine",
   "cleaner",
@@ -26,7 +25,7 @@ export const categoriesArray = [
   "switch",
   "frost",
   "earphones",
-  "cabels",
+  "adapter",
 ];
 
 export default function Category({ setSearch }) {
@@ -53,7 +52,7 @@ export default function Category({ setSearch }) {
                 <MenuItem
                   key={category}
                   onClick={() => {
-                    setSearch(category);
+                    setSearch(category), popupState.close();
                   }}
                 >
                   {category}

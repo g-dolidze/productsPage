@@ -7,7 +7,6 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useNavigate } from "react-router";
-import * as yup from "yup";
 import { useFormik } from "formik";
 import { Typography } from "@mui/material";
 
@@ -24,13 +23,6 @@ export default function AddressDialog() {
   const navigate = useNavigate();
 
   const userData = JSON.parse(localStorage.getItem("user") as string);
-
-  // const validationSchema = yup.object().shape({
-  //   city: yup.string().required("city is required"),
-  //   street: yup.string().required("street is required"),
-  //   zip_code: yup.string().required("zip_code is required"),
-  //   address: yup.string().required("address is required"),
-  // });
 
   const handleClickOpen = () => {
     setOpen(true);

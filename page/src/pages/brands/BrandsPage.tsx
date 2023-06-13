@@ -1,22 +1,27 @@
 import { Paper, Grid, Button } from "@mui/material";
-import React, { useEffect } from "react";
-import { getBrandsProducts, seeMoreBrandItems, seeMoreItems } from "../Home/redux/actions";
+import React, { useEffect, useState } from "react";
+import { getBrandsProducts } from "../Home/redux/actions";
 import { useDispatch } from "react-redux";
 import { getBrandProducts } from "../../Helpers/Products";
 import { useAppSelector } from "../../Redux/hooks";
 import Card from "../../components/Card";
 import { useLocation } from "react-router";
-
-type PropsType = {
-  brandName: string;
-  range: number;
-};
+import BrandProducts from "./BrandProducts";
 
 function BrandsPage() {
+  const [brandKind, setBrandKind] = useState("");
+  const [range, setRange] = useState(10);
   const dispatch = useDispatch();
-  const { products, range } = useAppSelector<InitialState>(
+  const { products } = useAppSelector<InitialState>(
     (state) => state.mainReducer
   );
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const seeMoreBrandItems = () => {
+    setRange(range + 10);
+  };
 
   const url = useLocation();
   let urlArray = "";
@@ -24,20 +29,19 @@ function BrandsPage() {
   let urlText = urlArray.split("");
   const brand = urlText.slice(1);
   const brandName = brand.join("");
-  console.log(brandName);
 
-  const brandKind = "keyboard";
-
+  console.log(url);
   useEffect(() => {
     const getBrands = async () => {
-      const { data } = await getBrandProducts(brandKind, brandName);
+      const { data } = await getBrandProducts(brandKind, range, brandName);
       dispatch(getBrandsProducts(data.products));
     };
     getBrands();
-  }, []);
+  }, [range, brandName, brandKind]);
 
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: "100%", display: "flex" }}>
+      <BrandProducts setBrandKind={setBrandKind} />
       <Grid
         container
         style={{
@@ -70,9 +74,7 @@ function BrandsPage() {
             );
           })}
         </Grid>
-        <Button onClick={() => dispatch(seeMoreBrandItems(range))}>
-          Show more
-        </Button>
+        <Button onClick={() => seeMoreBrandItems()}>Show more</Button>
       </Grid>
     </div>
   );

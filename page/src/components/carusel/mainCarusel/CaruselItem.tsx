@@ -1,9 +1,11 @@
-import { Height } from "@mui/icons-material";
 import { Paper, Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import product from "../../pages/product";
 
-function CaruselItem({ item }) {
+type PropsType = {
+  item: Product;
+};
+
+function CaruselItem({ item }: PropsType) {
   return (
     <>
       <Paper>

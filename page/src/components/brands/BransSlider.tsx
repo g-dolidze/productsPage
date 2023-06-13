@@ -14,7 +14,7 @@ function BrandsSlider() {
     slidesToScroll: 4,
     initialSlide: 0,
     autoplay: true,
-    speed: 300,
+    speed: 1500,
     autoplaySpeed: 3000,
     cssEase: "linear",
     responsive: [
@@ -46,13 +46,12 @@ function BrandsSlider() {
   };
   return (
     <div style={{ width: "90%", margin: "auto" }}>
-      <h2>FocusOnSelect</h2>
       <Slider {...settings}>
         {brandsSlider.map((item) => {
           return (
             <div key={item.brand}>
               <Link to={`/brand?${item.brand}`}>
-                <img src={item.image} width={"300px"} />
+                <img src={item.image} width={"90%"} />
               </Link>
             </div>
           );

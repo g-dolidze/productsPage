@@ -1,7 +1,7 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
 import CaruselItem from "./CaruselItem";
-import Slider from "../../Helpers/slider/Slider.json";
+import Slider from "../../../Helpers/slider/Slider.json";
 
 function Carusel() {
   return (

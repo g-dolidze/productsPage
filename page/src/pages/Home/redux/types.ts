@@ -52,10 +52,7 @@ export type SEE_MORE_ITEMS_ACTION = {
   type: typeof SEE_MORE_ITEMS;
   payload: number;
 };
-export type SEE_MORE_BRAND_ITEMS_ACTION = {
-  type: typeof SEE_MORE_BRAND_ITEMS;
-  payload: number;
-};
+
 
 export type MAIN_PAGE_ACTIONS =
   | GET_PRODUCTS_FROM_API_ACTION
@@ -68,4 +65,3 @@ export type MAIN_PAGE_ACTIONS =
   | SEARCH_ITEMS_ACTION
   | SEE_MORE_ITEMS_ACTION
   | GET_BRANDS_PRODUCTS_ACTION
-  | SEE_MORE_BRAND_ITEMS_ACTION;

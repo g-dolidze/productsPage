@@ -9,7 +9,6 @@ import {
   SEARCH_ITEMS,
   SEE_MORE_ITEMS,
   GET_BRANDS_PRODUCTS,
-  SEE_MORE_BRAND_ITEMS,
 } from "./actions";
 import { MAIN_PAGE_ACTIONS } from "./types";
 
@@ -39,12 +38,6 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
     }
 
     case SEE_MORE_ITEMS: {
-      return {
-        ...state,
-        range: action.payload + 28,
-      };
-    }
-    case SEE_MORE_BRAND_ITEMS: {
       return {
         ...state,
         range: action.payload + 28,

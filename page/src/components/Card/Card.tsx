@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import "./Card.scss";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import AddShoppingCartRoundedIcon from "@mui/icons-material/AddShoppingCartRounded";
-import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 
 import { addToCart, addToFavorite } from "../../pages/Home/redux/actions";
 import { useDispatch } from "react-redux";
@@ -17,6 +16,7 @@ const Card = ({ product }) => {
         <div className="about">
           <Link to={`product/${product.id}`}>
             <h5>{product.title} </h5>
+            <br />
             <h5>price: {parseFloat(product?.price).toFixed(2)} </h5>
           </Link>
           <div className="card_hover">

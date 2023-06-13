@@ -16,14 +16,16 @@ export const isUserAuthenticated = (): AuthenticationResult => {
     return { isUser: false, isAdmin: false };
   }
   const userObject: UserType = jwtDecode(userKey);
-  // console.log(userObject);
   if (Date.now() / 1000 > userObject.exp) {
     localStorage.removeItem("token");
     localStorage.removeItem("User");
-    return { isUser: false, isAdmin: false };
+    return { userKey, isUser: false, isAdmin: false };
+  }
+  if (userObject.isAdmin && Date.now() / 1000 < userObject.exp) {
+    return { userKey, isAdmin: true, isUser: false };
   }
 
-  return { isUser: true, isAdmin: userObject.isAdmin, userKey };
+  return { isUser: true, isAdmin: false, userKey };
 };
 
 // export const isUserAuthenticated = () => {

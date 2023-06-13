@@ -10,7 +10,6 @@ export const ADD_TO_FAVORITE = "ADD_TO_FAVORITE";
 export const SEARCH_ITEMS = "SEARCH_ITEMS";
 export const SEE_MORE_ITEMS = "SEE_MORE_ITEMS";
 export const GET_BRANDS_PRODUCTS = "GET_BRANDS_PRODUCTS";
-export const SEE_MORE_BRAND_ITEMS = "SEE_MORE_BRAND_ITEMS";
 
 export const getProductsFromApi = (products: Prodact[]): MAIN_PAGE_ACTIONS => ({
   type: GET_PRODUCTS_FROM_API,
@@ -50,9 +49,5 @@ export const searchedItems = (searchItem: Prodact): MAIN_PAGE_ACTIONS => ({
 });
 export const seeMoreItems = (range: number): MAIN_PAGE_ACTIONS => ({
   type: SEE_MORE_ITEMS,
-  payload: range,
-});
-export const seeMoreBrandItems = (range: number): MAIN_PAGE_ACTIONS => ({
-  type: SEE_MORE_BRAND_ITEMS,
   payload: range,
 });

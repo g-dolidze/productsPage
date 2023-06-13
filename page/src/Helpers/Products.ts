@@ -1,4 +1,3 @@
-import { number, string } from "yup";
 import ajax from "./ajax";
 
 export const getAllProducts = (range: number) =>
@@ -15,10 +14,14 @@ export const getSearchedProducts = (searchvalue: string, range: number) =>
     page_number: 0,
   });
 
-export const getBrandProducts = (brandkind: string, brandName: string) =>
+export const getBrandProducts = (
+  brandkind: string,
+  range: number,
+  brandName: string
+) =>
   ajax.post("products", {
     keyword: brandkind,
-    page_size: 20,
+    page_size: range,
     page_number: 0,
     filter: { brand: brandName },
   });

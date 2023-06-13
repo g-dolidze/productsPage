@@ -7,8 +7,9 @@ import { useAppSelector } from "../../Redux/hooks";
 
 import Card from "../../components/Card";
 import "./Home.scss";
-import Carusel from "../../components/carusel/Carusel";
+import Carusel from "../../components/carusel/mainCarusel/Carusel";
 import BrandsSlider from "../../components/brands";
+import ProductsCarusel from "../../components/carusel/productCarusel";
 
 function Home() {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ function Home() {
         }}
       >
         <Carusel />
+        <ProductsCarusel />
         <Grid
           container
           style={{

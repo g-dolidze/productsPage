@@ -14,9 +14,20 @@ import "./translations/index";
 import Checkout from "./pages/checkout";
 import Footer from "./components/footer";
 import BrandsPage from "./pages/brands";
+import { isUserAuthenticated } from "./Helpers/user/isUserAuth";
+import AdminPage from "./admin/Page/adminPage";
+import AdminNavbar from "./admin/components/navbar/AdminNavbar";
+import { useEffect } from "react";
 
 function App() {
-  return (
+  const { isAdmin } = isUserAuthenticated();
+
+  return isAdmin ? (
+    <>
+      <AdminNavbar />
+      <AdminPage />
+    </>
+  ) : (
     <>
       <NavBar />
       <CustomSeparator />
@@ -24,13 +35,14 @@ function App() {
       <Routes>
         <Route path="/registration" element={<Registration />} />
         <Route path="/" element={<Home />} />
-        <Route index path="/product/:id" element={<Product />} />
+        <Route path="/product/:id" element={<Product />} />
+        <Route path="brand/product/:id" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/brand" element={<BrandsPage  />} />
+        <Route path="/brand" element={<BrandsPage />} />
       </Routes>
       <Footer />
     </>

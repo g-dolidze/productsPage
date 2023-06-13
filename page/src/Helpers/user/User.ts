@@ -35,18 +35,9 @@ export const getUserInfo = () =>
     },
   });
 
-export const editPersonalInfo = (userPersonalInfo: PersonalInfo) =>
-  ajax.post("/user", userPersonalInfo, {
+export const editPersonalInfo = (values: PersonalInfo) =>
+  ajax.post("/user", values, {
     headers: {
       Authorization: userKey,
     },
   });
-
-// const key = localStorage.getItem("token");
-// export const getUserInfo = () =>
-//   ajax.get("/me", {
-//     headers: {
-//       Authorization:
-//         "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxY2FhMWI2Mi0zYWEwLTQ0MjAtYjU1Ni1kNTU1MmEwMDExMTEiLCJpc0FkbWluIjpmYWxzZSwiZXhwIjoxNjg1NzQxNDYyfQ.cgJVddu2eiz56O-h9sHgZBxUIj9TX8Fy9Ga329LwOOkmrr00eVypDqDa6FCOhqw6gt0CUPz_BbsjwAr4IjPcqw",
-//     },
-//   });
