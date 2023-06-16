@@ -2,7 +2,7 @@ import { useAppSelector } from "../../Redux/hooks";
 import CartItem from "../../components/CartItem";
 import { useTranslation, Trans } from "react-i18next";
 
-import { Paper, Typography } from "@mui/material";
+import { Button, Paper, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./Cart.scss";
 import { Key } from "@mui/icons-material";
@@ -20,6 +20,25 @@ const Cart = () => {
       return (total += item.quantity * Number(item.price));
     });
   }
+
+  const handleCheckout = async () => {
+    await fetch("http://localhost:4000/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ items: choosenItems }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        if (response.url) {
+          window.location.assign(response.url); // Forwarding user to Stripe
+        }
+      });
+  };
+
   return (
     <div className="carts_page">
       <div className="cart_page">
@@ -60,7 +79,7 @@ const Cart = () => {
           </h3>
           <hr />
           <h1>
-            <Link to="/checkout">{t("global.Check Out")} </Link>
+            <Button onClick={handleCheckout}>{t("global.Check Out")} </Button>
           </h1>
         </div>
       </div>

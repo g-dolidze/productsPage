@@ -8,7 +8,7 @@ import { Avatar } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 
 import "./NavBar.scss";
-import { searchedItems } from "../../pages/Home/redux/actions";
+import { searchedItems } from "../../PageRedux/actions";
 import { getSearchedProducts } from "../../Helpers/Products";
 import Category from "../category";
 import { isUserAuthenticated } from "../../Helpers/user/isUserAuth";

@@ -36,13 +36,14 @@ const initialValues = {
 };
 type PropsType = {
   product: Prodact;
-  setOpen: boolean;
+  setOpen: Function;
   open: boolean;
 };
 
-const EditDialog = (props) => {
+const EditDialog = (props: PropsType) => {
   const { open, setOpen, product } = props;
-  const { openDialog, setOpenDialog } = useState<boolean>(false);
+  const [openDialog, setOpenDialog] = useState<boolean>(false);
+  const [editedItem, steEditedItem] = useState<Products>();
 
   const handleClickOpen = () => {
     setOpenDialog(true);
@@ -62,14 +63,14 @@ const EditDialog = (props) => {
     submitForm,
   } = useFormik({
     initialValues,
-    onSubmit: (userAddress) => {
-      console.log(userAddress);
+    onSubmit: (item) => {
+      steEditedItem(item);
     },
   });
 
   return (
     <>
-      <Confirm openDialog={openDialog} setOpenDialog={setOpenDialog} />
+      <Confirm open={openDialog} setOpen={setOpenDialog} item={editedItem} />
       <div>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Address Info</DialogTitle>

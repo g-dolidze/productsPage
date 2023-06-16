@@ -6,16 +6,14 @@ import { deepPurple } from "@mui/material/colors";
 
 import "./AdminNavbar.scss";
 import { getSearchedProducts } from "../../../Helpers/Products";
-import { searchedItems } from "../../../pages/Home/redux/actions";
+import { searchedItems } from "../../../PageRedux/actions";
 import { isUserAuthenticated } from "../../../Helpers/user/isUserAuth";
 import AccountMenu from "../../../components/account";
 import { Language } from "../../../components/navigation/language";
 import { useAppDispatch, useAppSelector } from "../../../Redux/hooks";
 
 const AdminNavbar = () => {
-  const { range } = useAppSelector<InitialState>(
-    (state) => state.mainReducer
-  );
+  const { range } = useAppSelector<InitialState>((state) => state.mainReducer);
 
   const dispatch = useAppDispatch();
   const [search, setSearch] = useState("");

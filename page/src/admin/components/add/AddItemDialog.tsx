@@ -1,33 +1,50 @@
 import {
+  Autocomplete,
+  Box,
   Button,
+  Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
+  FormControl,
+  InputLabel,
+  ListItemText,
+  MenuItem,
+  OutlinedInput,
+  Select,
+  SelectChangeEvent,
   TextField,
+  Typography,
 } from "@mui/material";
 import { useFormik } from "formik";
-import React from "react";
-
-const initialValues = {
-  id: "",
-  title: "",
-  description: "",
-  category: "",
-  images: [""],
-  brand: "",
-  price: 0,
-  rating: "",
-  amount: "",
-  brands: "",
+import React, { useState } from "react";
+import { AddNewItem } from "../../../Helpers/admin/AdminRequest";
+import { categoriesArray } from "../../../components/category/Category";
+type PropsType = {
+  open: boolean;
+  setOpen: Function;
 };
 
-function AddItemDialog(props) {
+function AddItemDialog(props: PropsType) {
   const { open, setOpen } = props;
+  const [images, setImages] = useState<string[]>([]);
+  const [imgInput, setImgInput] = useState("");
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleCategoryChange = (
+    event: React.ChangeEvent<{}>,
+    value: string[]
+  ) => {
+    setFieldValue("categories", value);
+  };
+  const handleAddImage = () => {
+    setImages((prev) => [...prev, imgInput]);
+    setImgInput("");
   };
 
   const {
@@ -38,10 +55,20 @@ function AddItemDialog(props) {
     errors,
     touched,
     submitForm,
-  } = useFormik({
-    initialValues,
-    onSubmit: (userAddress) => {
-      console.log(userAddress);
+  } = useFormik<any>({
+    initialValues: {
+      title: "",
+      description: "",
+      images: [],
+      brand: "",
+      categories: [],
+      price: "",
+      amount: "",
+    },
+    onSubmit: async (newProduct) => {
+      values.images = images;
+      const { data } = await AddNewItem(newProduct);
+      console.log(data);
     },
   });
 
@@ -55,17 +82,6 @@ function AddItemDialog(props) {
             <form onSubmit={handleSubmit}>
               <TextField
                 onChange={handleChange}
-                autoFocus
-                name="id"
-                margin="dense"
-                label="id"
-                type="text"
-                fullWidth
-                variant="standard"
-              />
-              <TextField
-                onChange={handleChange}
-                autoFocus
                 name="title"
                 margin="dense"
                 label="title"
@@ -73,19 +89,18 @@ function AddItemDialog(props) {
                 fullWidth
                 variant="standard"
               />
+
               <TextField
                 onChange={handleChange}
-                autoFocus
                 name="price"
                 margin="dense"
                 label=" price"
-                type="number"
+                type="text"
                 fullWidth
                 variant="standard"
               />
               <TextField
                 onChange={handleChange}
-                autoFocus
                 name="description"
                 margin="dense"
                 label="description"
@@ -93,19 +108,9 @@ function AddItemDialog(props) {
                 fullWidth
                 variant="standard"
               />
+
               <TextField
                 onChange={handleChange}
-                autoFocus
-                name="rating"
-                margin="dense"
-                label="rating"
-                type="text"
-                fullWidth
-                variant="standard"
-              />
-              <TextField
-                onChange={handleChange}
-                autoFocus
                 name="amount"
                 margin="dense"
                 label="amount"
@@ -113,6 +118,46 @@ function AddItemDialog(props) {
                 fullWidth
                 variant="standard"
               />
+              <Autocomplete
+                multiple
+                options={categoriesArray}
+                renderInput={(params) => (
+                  <TextField {...params} label="categories" />
+                )}
+                value={values.categories}
+                onChange={handleCategoryChange}
+              />
+
+              <TextField
+                onChange={handleChange}
+                name="brand"
+                margin="dense"
+                label="brand"
+                type="text"
+                fullWidth
+                variant="standard"
+              />
+              <Box>
+                <TextField
+                  onChange={(e) => setImgInput(e.target.value)}
+                  margin="dense"
+                  value={imgInput}
+                  label="img"
+                  type="text"
+                  fullWidth
+                  variant="standard"
+                />
+
+                <Button onClick={handleAddImage}> add</Button>
+              </Box>
+              {images.length > 0 &&
+                images.map((image, i) => {
+                  return (
+                    <Typography>
+                      "image"{i + 1} :{image}{" "}
+                    </Typography>
+                  );
+                })}
             </form>
           </DialogContent>
           <DialogActions>

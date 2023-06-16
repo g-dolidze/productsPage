@@ -4,8 +4,7 @@ import FiberNewSharpIcon from "@mui/icons-material/FiberNewSharp";
 import DeleteSharpIcon from "@mui/icons-material/DeleteSharp";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
 import { Link } from "react-router-dom";
-import { addToCart, addToFavorite } from "../../../pages/Home/redux/actions";
-import { MAIN_PAGE_ACTIONS } from "../../../pages/Home/redux/types";
+import { addToCart, addToFavorite } from "../../../PageRedux/actions";
 import { useDispatch } from "react-redux";
 import "./itemCard.scss";
 import EditDialog from "../editDialog/EditDialog";
@@ -43,7 +42,7 @@ function ItemCard({ product }: PropsType) {
           <EditSharpIcon className="item_btn" onClick={() => setOpen(true)} />
         </div>
       </div>
-      <EditDialog open={open} setOpen={setOpen} product={product} />;
+      <EditDialog open={open} setOpen={setOpen} product={product} />
       <Confirm open={openConfirm} setOpen={setOpenConfirm} item={product} />
     </>
   );

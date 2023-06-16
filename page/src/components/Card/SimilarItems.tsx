@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../Redux/hooks";
 import { useLocation } from "react-router";
 import { getBrandProducts } from "../../Helpers/Products";
-import { getBrandsProducts } from "../../pages/Home/redux/actions";
+import { getBrandsProducts } from "../../PageRedux/actions";
 
 const SimilarItems = () => {
   const [similarItems, setSimilarItems] = useState([]);
@@ -24,7 +24,7 @@ const SimilarItems = () => {
 
   const [brandKind, setBrandKind] = useState("");
   const [range, setRange] = useState(10);
-  
+
   const dispatch = useDispatch();
   const { products } = useAppSelector<InitialState>(
     (state) => state.mainReducer

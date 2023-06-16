@@ -6,7 +6,7 @@ import {
   dicresQuantity,
   incresQuantity,
   removeItem,
-} from "../../pages/Home/redux/actions";
+} from "../../PageRedux/actions";
 type CartItemProps = {
   item: CartItem;
 };

@@ -1,25 +1,19 @@
-import { Express } from "express";
-import Stripe from "stripe";
-
 const express = require("express");
-var cors = require("cors");
+const cors = require("cors");
 const bodyParser = require("body-parser");
-const stripe = require("stripe")(
-  "pk_test_51NDX08Kxca43BVidW0oZSKcJNZGZ3gchu0Yv3zglpUct5OiD3cJdtrGtQ8jXwcUkI4TDrgGyLfhYrZsE6j3RiaZh00EXqMDSuM"
-);
-
-// Middleware
+const stripe = require("stripe");
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static("public"));
 app.use(express.json());
-
+const stripeInstance = stripe(
+  "sk_test_51NDX08Kxca43BVidwxBLg1ojBgn7R7m4lkqOBNdocrpUhhrDUTRLn8Qv2gMipzEDTGDyZDxg4lVvrGiUFoNkYapF003FztHsrv"
+);
 // Create a checkout session in Stripe
 app.post("/checkout", async (req, res) => {
   try {
     const { items } = req.body;
-
     // Create a product in Stripe
     const lineItems = items.map((item) => ({
       price_data: {
@@ -29,22 +23,19 @@ app.post("/checkout", async (req, res) => {
           description: item.description,
           images: item.images,
         },
-        unit_amount: item.price * 100,
+        unit_amount: Math.round(item.price * 100),
       },
       quantity: item.quantity,
     }));
-
     // Create a checkout session in Stripe
-    const session = await stripe.checkout.sessions.create({
+    const session = await stripeInstance.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
       success_url: "http://localhost:3000/success",
       cancel_url: "http://localhost:3000/cancel",
     });
-
     // res.status(200).json({ sessionId: session.id })
-
     res.send(
       JSON.stringify({
         url: session.url,
@@ -57,7 +48,6 @@ app.post("/checkout", async (req, res) => {
       .json({ error: "An error occurred while creating the checkout session" });
   }
 });
-
 // Start the server
 app.listen(4000, () => {
   console.log("Server is running on port 4000");

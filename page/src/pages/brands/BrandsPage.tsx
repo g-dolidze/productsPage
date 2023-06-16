@@ -1,6 +1,6 @@
 import { Paper, Grid, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { getBrandsProducts } from "../Home/redux/actions";
+import { getBrandsProducts } from "../../PageRedux/actions";
 import { useDispatch } from "react-redux";
 import { getBrandProducts } from "../../Helpers/Products";
 import { useAppSelector } from "../../Redux/hooks";

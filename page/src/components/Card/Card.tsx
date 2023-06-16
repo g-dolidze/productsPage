@@ -3,7 +3,7 @@ import "./Card.scss";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import AddShoppingCartRoundedIcon from "@mui/icons-material/AddShoppingCartRounded";
 
-import { addToCart, addToFavorite } from "../../pages/Home/redux/actions";
+import { addToCart, addToFavorite } from "../../PageRedux/actions";
 import { useDispatch } from "react-redux";
 
 const Card = ({ product }) => {

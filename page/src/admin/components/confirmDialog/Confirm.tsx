@@ -7,11 +7,12 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { DeleteItemfromApi } from "../../../Helpers/admin/AdminRequest";
 import { Grid, Typography } from "@mui/material";
+import { useNavigate } from "react-router";
 
 type PropsType = {
   open: boolean;
   setOpen: (open: boolean) => void;
-  item: Prodact;
+  item: Prodact | null;
 };
 
 const Confirm = (props: PropsType) => {
@@ -21,6 +22,7 @@ const Confirm = (props: PropsType) => {
     setOpen(false);
   };
 
+  const navigate = useNavigate();
   return (
     <div>
       <Dialog
@@ -52,7 +54,7 @@ const Confirm = (props: PropsType) => {
           <Button onClick={handleClose}>Disagree</Button>
           <Button
             onClick={() => {
-              DeleteItemfromApi(item.id), handleClose();
+              DeleteItemfromApi(item!.id), setOpen(false);
             }}
             autoFocus
           >

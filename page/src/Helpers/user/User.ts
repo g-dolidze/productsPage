@@ -14,7 +14,7 @@ type PersonalInfo = {
 
 const { userKey } = isUserAuthenticated();
 
-export const registerNewUser = (user: UserItem) =>
+export const registerNewUser = (user: any) =>
   ajax.post("register", {
     firstName: user.firstName,
     lastName: user.lastName,

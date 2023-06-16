@@ -6,7 +6,7 @@ import {
   getProductsFromApi,
   seeMoreItems,
   totalFound,
-} from "../../../pages/Home/redux/actions";
+} from "../../../PageRedux/actions";
 import { Button, Grid, Paper, Typography } from "@mui/material";
 import Card from "../../../components/Card";
 import AddIcon from "@mui/icons-material/Add";
@@ -42,7 +42,6 @@ function AdminPage() {
             marginTop: "40px ",
           }}
         >
-          {" "}
           <AddIcon
             sx={{
               width: "40px",

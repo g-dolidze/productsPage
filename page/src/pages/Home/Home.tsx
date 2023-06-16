@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../../Helpers/Products";
 import { Button, Grid, Paper } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { getProductsFromApi, seeMoreItems, totalFound } from "./redux/actions";
+import {
+  getProductsFromApi,
+  seeMoreItems,
+  totalFound,
+} from "../../PageRedux/actions";
 import { useAppSelector } from "../../Redux/hooks";
 
 import Card from "../../components/Card";
@@ -16,6 +20,9 @@ function Home() {
   const { products, range } = useAppSelector<InitialState>(
     (state) => state.mainReducer
   );
+  // const user = localStorage.getItem("user");
+  // const userPars = JSON.parse(user as string);
+  // console.log(userPars);
 
   useEffect(() => {
     const getProducts = async () => {
