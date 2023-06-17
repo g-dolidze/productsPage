@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../../Redux/hooks";
-import { getAllProducts } from "../../../Helpers/Products";
+import { getAllProducts, getBransFromApi } from "../../../Helpers/Products";
 import {
+  getAllBrands,
   getProductsFromApi,
   seeMoreItems,
   totalFound,
 } from "../../../PageRedux/actions";
 import { Button, Grid, Paper, Typography } from "@mui/material";
-import Card from "../../../components/Card";
 import AddIcon from "@mui/icons-material/Add";
 import ItemCard from "../../components/itemCard";
 import AddItemDialog from "../../components/add";
@@ -28,6 +28,13 @@ function AdminPage() {
       dispatch(getProductsFromApi(data.products));
     };
     getProducts();
+  }, []);
+  useEffect(() => {
+    const getBrands = async () => {
+      const { data } = await getBransFromApi();
+      dispatch(getAllBrands(data.brands));
+    };
+    getBrands();
   }, []);
 
   return (

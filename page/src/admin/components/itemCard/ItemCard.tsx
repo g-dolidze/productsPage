@@ -4,35 +4,52 @@ import FiberNewSharpIcon from "@mui/icons-material/FiberNewSharp";
 import DeleteSharpIcon from "@mui/icons-material/DeleteSharp";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
 import { Link } from "react-router-dom";
-import { addToCart, addToFavorite } from "../../../PageRedux/actions";
+import {
+  addProductToSales,
+  addToCart,
+  addToFavorite,
+} from "../../../PageRedux/actions";
 import { useDispatch } from "react-redux";
 import "./itemCard.scss";
-import EditDialog from "../editDialog/EditDialog";
+import EditDialog from "../AllDialogs/editDialog/EditDialog";
 import { DeleteItemfromApi } from "../../../Helpers/admin/AdminRequest";
-import Confirm from "../confirmDialog";
+import Confirm from "../AllDialogs/confirmDialog";
+import ItemDialog from "../AllDialogs/itemDialog";
 type PropsType = {
   product: Prodact;
 };
 
 function ItemCard({ product }: PropsType) {
   const [open, setOpen] = useState(false);
+  const [openItemDialog, setOpenItemDialog] = useState(false);
   const [openConfirm, setOpenConfirm] = useState(false);
   const dispatch = useDispatch();
 
   return (
     <>
       <div className="itemcard">
-        <div className="about-item">
-          <img src={product?.images[0]} alt="image" width={"100px "} />
-          <Link to={`product/${product.id}`}>
-            <h5>{product.title} </h5>
-          </Link>
-          <h5>price: {product.price} </h5>
+        <img
+          src={product?.images[0]}
+          alt="image"
+          width={"100px "}
+          height={"80px"}
+        />
+        <div className="about_item">
+          <div className="properties">
+            <h5 onClick={() => setOpenItemDialog(true)} className="title">
+              {product.title}{" "}
+            </h5>
+            <div>
+              <h5>price: {parseFloat(product.price).toFixed(2)} </h5>
+              <h5>amount: {product.amount}</h5>
+              <h5>rating: {product.rating}</h5>
+            </div>
+          </div>
         </div>
         <div className="item_btns">
           <LoyaltyIcon
             className="item_btn"
-            onClick={() => dispatch(addToCart(product))}
+            onClick={() => dispatch(addProductToSales(product))}
           />
 
           <DeleteSharpIcon
@@ -44,6 +61,11 @@ function ItemCard({ product }: PropsType) {
       </div>
       <EditDialog open={open} setOpen={setOpen} product={product} />
       <Confirm open={openConfirm} setOpen={setOpenConfirm} item={product} />
+      <ItemDialog
+        open={openItemDialog}
+        setOpen={setOpenItemDialog}
+        item={product}
+      />
     </>
   );
 }

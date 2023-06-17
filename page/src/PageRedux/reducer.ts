@@ -9,6 +9,9 @@ import {
   SEARCH_ITEMS,
   SEE_MORE_ITEMS,
   GET_BRANDS_PRODUCTS,
+  GET_ALL_BRANDS,
+  ADD_IN_SALES,
+  DELETE_FROM_SALES,
 } from "./actions";
 import { MAIN_PAGE_ACTIONS } from "./types";
 
@@ -21,6 +24,7 @@ export const initialState: InitialState = {
   searchItems: [],
   range: 28,
   brandName: "",
+  sales: [],
 };
 
 const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
@@ -140,6 +144,36 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
       return {
         ...state,
         products: action.payload,
+      };
+    case GET_ALL_BRANDS:
+      return {
+        ...state,
+        brands: action.payload,
+      };
+
+    case ADD_IN_SALES:
+      const prevSales = state.sales;
+      const newSales = action.payload;
+      const discount = Number(newSales.price) - Number(newSales.price) * 0.5;
+      const updatedSale = { ...newSales, price: discount };
+      const updatePrevSales = [...prevSales, updatedSale];
+
+      localStorage.setItem("sales", JSON.stringify(updatePrevSales));
+
+      return {
+        ...state,
+        sales: updatePrevSales,
+      };
+
+    case DELETE_FROM_SALES:
+      const sales = JSON.parse(localStorage.getItem("sales") as string);
+      const deletedItem = sales.filter(
+        (item: Prodact) => item.id !== action.payload.id
+      );
+      localStorage.setItem("sales", JSON.stringify(deletedItem));
+      return {
+        ...state,
+        sales: deletedItem,
       };
 
     default:

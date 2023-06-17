@@ -1,11 +1,12 @@
 type Prodact = {
+  map(arg0: (item: Prodact) => JSX.Element): React.ReactNode;
   id: string;
   title: string;
   description: string;
   category: string;
   images: string[];
   brand: string;
-  price: number;
+  price: number | string;
   rating: string;
   amount: string;
   brands: string;
@@ -21,8 +22,9 @@ type InitialState = {
   favoriteItems: FavoriteItem[];
   searchItems: Prodact[];
   range: number;
-  brands: Prodact[];
+  brands: string[];
   brandName: string;
+  sales: Prodact[];
 };
 type TMyToken = {
   name: string;

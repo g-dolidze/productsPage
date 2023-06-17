@@ -5,7 +5,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { DeleteItemfromApi } from "../../../Helpers/admin/AdminRequest";
+import { DeleteItemfromApi } from "../../../../Helpers/admin/AdminRequest";
 import { Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router";
 

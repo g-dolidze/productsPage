@@ -5,9 +5,13 @@ export const DeleteItemfromApi = (itemId: string) =>
   ajax.delete(`product/${itemId}`, {
     headers: { Authorization: isUserAuthenticated().userKey },
   });
-export const AddNewItem = (newProduct: Prodact) => {
-  console.log(newProduct);
-  return ajax.post("product", newProduct, {
+export const AddNewItem = (newProduct: Prodact) =>
+  ajax.post("product", newProduct, {
     headers: { Authorization: isUserAuthenticated().userKey },
   });
-};
+
+export const AddEditedItem = (editedItem: any, itemId: string) =>
+  ajax.put(`product/${itemId}`, editedItem, {
+    headers: { Authorization: isUserAuthenticated().userKey },
+  });
+

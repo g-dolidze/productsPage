@@ -14,7 +14,7 @@ function BrandsSlider() {
     slidesToScroll: 4,
     initialSlide: 0,
     autoplay: true,
-    speed: 1500,
+    speed: 2000,
     autoplaySpeed: 3000,
     cssEase: "linear",
     responsive: [

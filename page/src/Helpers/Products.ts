@@ -14,6 +14,8 @@ export const getSearchedProducts = (searchvalue: string, range: number) =>
     page_number: 0,
   });
 
+export const getBransFromApi = () => ajax.get("brands");
+
 export const getBrandProducts = (
   brandkind: string,
   range: number,
@@ -25,3 +27,5 @@ export const getBrandProducts = (
     page_number: 0,
     filter: { brand: brandName },
   });
+
+  

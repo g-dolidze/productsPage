@@ -1,53 +1,85 @@
+import React, { useState } from "react";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import TextField from "@mui/material/TextField";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import { useFormik } from "formik";
+import Confirm from "../confirmDialog";
 import {
   Autocomplete,
   Box,
-  Button,
-  Checkbox,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
   FormControl,
   InputLabel,
-  ListItemText,
   MenuItem,
-  OutlinedInput,
   Select,
-  SelectChangeEvent,
-  TextField,
   Typography,
 } from "@mui/material";
-import { useFormik } from "formik";
-import React, { useState } from "react";
-import { AddNewItem } from "../../../Helpers/admin/AdminRequest";
-import { categoriesArray } from "../../../components/category/Category";
-import { useAppSelector } from "../../../Redux/hooks";
+import {
+  AddEditedItem,
+  AddNewItem,
+} from "../../../../Helpers/admin/AdminRequest";
+import Category, {
+  categoriesArray,
+} from "../../../../components/category/Category";
+import brands from "../../../../components/brands";
+import { useAppSelector } from "../../../../Redux/hooks";
+
+interface Products {
+  id: string;
+  title: string;
+  description: string;
+  category: string[];
+  images: string[];
+  brand: string;
+  price: string;
+  rating: string;
+  amount: string;
+}
+
+const initialValues = {
+  id: "",
+  title: "",
+  description: "",
+  category: [""],
+  images: [""],
+  brand: "",
+  price: "",
+  rating: "",
+  amount: "",
+};
 type PropsType = {
-  open: boolean;
+  product: Prodact;
   setOpen: Function;
+  open: boolean;
 };
 
-function AddItemDialog(props: PropsType) {
-  const { open, setOpen } = props;
+const EditDialog = (props: PropsType) => {
+  const { open, setOpen, product } = props;
+
   const [images, setImages] = useState<string[]>([]);
   const [imgInput, setImgInput] = useState("");
-  const { brands } = useAppSelector<InitialState>((state) => state.mainReducer);
-
+  const { brands, sales } = useAppSelector<InitialState>(
+    (state) => state.mainReducer
+  );
   const handleClose = () => {
     setOpen(false);
   };
-
   const handleCategoryChange = (
     event: React.ChangeEvent<{}>,
     value: string[]
   ) => {
     setFieldValue("categories", value);
   };
-
   const handleAddImage = () => {
     setImages((prev) => [...prev, imgInput]);
     setImgInput("");
+  };
+
+  const handleDeleteImage = (i: number) => {
+    product.images = product.images.filter((image, index) => index !== i);
   };
 
   const {
@@ -60,21 +92,21 @@ function AddItemDialog(props: PropsType) {
     submitForm,
   } = useFormik<any>({
     initialValues: {
-      title: "",
-      description: "",
+      id: product.id,
+      title: product.title,
+      description: product.description,
       images: [],
-      brand: "",
+      brand: product.brand,
       categories: [],
-      price: "",
-      amount: "",
+      price: product.price,
+      rating: product.rating,
+      amount: product.amount,
     },
-    onSubmit: async (newProduct) => {
-      values.images = images;
-      const { data } = await AddNewItem(newProduct);
-      console.log(data);
+    onSubmit: async (editedItem) => {
+      values.images = [...product.images];
+      const { data } = await AddEditedItem(editedItem, product.id);
     },
   });
-
   return (
     <>
       <div>
@@ -86,6 +118,7 @@ function AddItemDialog(props: PropsType) {
               <TextField
                 onChange={handleChange}
                 name="title"
+                value={values.title}
                 margin="dense"
                 label="title"
                 type="text"
@@ -96,6 +129,7 @@ function AddItemDialog(props: PropsType) {
               <TextField
                 onChange={handleChange}
                 name="price"
+                value={values.price}
                 margin="dense"
                 label=" price"
                 type="text"
@@ -105,6 +139,7 @@ function AddItemDialog(props: PropsType) {
               <TextField
                 onChange={handleChange}
                 name="description"
+                value={values.description}
                 margin="dense"
                 label="description"
                 type="text"
@@ -115,6 +150,7 @@ function AddItemDialog(props: PropsType) {
               <TextField
                 onChange={handleChange}
                 name="amount"
+                value={values.amount}
                 margin="dense"
                 label="amount"
                 type="text"
@@ -124,12 +160,16 @@ function AddItemDialog(props: PropsType) {
               <Autocomplete
                 multiple
                 options={categoriesArray}
+                placeholder={
+                  values.categories.length > 0 ? "" : "Choose categories"
+                }
                 renderInput={(params) => (
                   <TextField {...params} label="categories" />
                 )}
                 value={values.categories}
                 onChange={handleCategoryChange}
               />
+
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">brand</InputLabel>
                 <Select
@@ -149,7 +189,6 @@ function AddItemDialog(props: PropsType) {
                   })}
                 </Select>
               </FormControl>
-
               <Box>
                 <TextField
                   onChange={(e) => setImgInput(e.target.value)}
@@ -167,10 +206,26 @@ function AddItemDialog(props: PropsType) {
                 images.map((image, i) => {
                   return (
                     <Typography>
-                      "image"{i + 1} :{image}{" "}
+                      image: {i + 1} :{image}{" "}
                     </Typography>
                   );
                 })}
+              {product.images.map((img, i) => {
+                return (
+                  <div key={i}>
+                    <Typography
+                      sx={{
+                        width: "300px",
+                        height: "50px",
+                        overflow: "hidden",
+                      }}
+                    >
+                      {img}
+                    </Typography>
+                    <Button onClick={() => handleDeleteImage(i)}>X</Button>
+                  </div>
+                );
+              })}
             </form>
           </DialogContent>
           <DialogActions>
@@ -180,7 +235,7 @@ function AddItemDialog(props: PropsType) {
                 handleClose(), submitForm();
               }}
             >
-              Add
+              done
             </Button>
             <Button onClick={handleClose}>Cancel</Button>
           </DialogActions>
@@ -188,6 +243,6 @@ function AddItemDialog(props: PropsType) {
       </div>
     </>
   );
-}
+};
 
-export default AddItemDialog;
+export default EditDialog;

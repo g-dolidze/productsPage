@@ -3,6 +3,15 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./product.css";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  Button,
+} from "@mui/material";
+import ImageDialog from "./image";
 
 function Product() {
   const [choosenItem, setChoosenItem] = useState<Prodact>({
@@ -17,6 +26,15 @@ function Product() {
     amount: "",
     brands: "",
   });
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   const { id } = useParams();
   useEffect(() => {
     const getProduct = async () => {
@@ -37,10 +55,16 @@ function Product() {
         <h1>{choosenItem?.brand} </h1>
         <img src={choosenItem.images?.[0]} alt="" />
         <div>
-          <img src={choosenItem.images?.[1]} alt="" className="pictures" />
-          <img src={choosenItem.images?.[2]} alt="" className="pictures" />
-          <img src={choosenItem.images?.[3]} alt="" className="pictures" />
-          <img src={choosenItem.images?.[4]} alt="" className="pictures" />
+          {choosenItem.images.map((image, i) => {
+            return (
+              <img
+                src={image}
+                alt=""
+                className="pictures"
+                onClick={() => setOpen(true)}
+              />
+            );
+          })}
         </div>
         <h3>
           model: <span>{choosenItem?.title}</span>{" "}
@@ -52,6 +76,7 @@ function Product() {
           price: <span>{choosenItem.price}</span>
         </h2>
       </div>
+      ;
     </div>
   );
 }

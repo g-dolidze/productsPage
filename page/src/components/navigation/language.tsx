@@ -16,7 +16,7 @@ export function Language() {
   return (
     <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
       <InputLabel id="demo-simple-select-label" style={{ color: "white" }}>
-        language
+        Lang
       </InputLabel>
       <Select
         labelId="demo-simple-select-label"

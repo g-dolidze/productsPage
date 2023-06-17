@@ -43,10 +43,11 @@ const NavBar = () => {
           <h1>e-commers</h1>
         </Link>
         <Link to="/cart">
-          <ShoppingCartRoundedIcon /> {choosenItems.length}
+          <ShoppingCartRoundedIcon className="mui_icon" /> {choosenItems.length}
         </Link>
         <Link to="/favorites">
-          <FavoriteBorderRoundedIcon /> {favoriteItems.length}
+          <FavoriteBorderRoundedIcon className="mui_icon" />{" "}
+          {favoriteItems.length}
         </Link>
       </div>
       <div className="navCenter">
@@ -57,10 +58,14 @@ const NavBar = () => {
           placeholder="search"
           onChange={(e) => setSearch(e.target.value)}
         />
-        <Category setSearch={setSearch} />
+        <div className="category">
+          <Category setSearch={setSearch} />
+        </div>
       </div>
       <div className="rightside">
-        <Language />
+        <div className="language">
+          <Language />
+        </div>
         <div>
           {isUserAuthenticated()?.isUser || isUserAuthenticated()?.isAdmin ? (
             <AccountMenu />

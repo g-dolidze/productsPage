@@ -7,13 +7,13 @@ import { Typography } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export const categoriesArray = [
-  "tv",
+  "Televisions",
+  "Accessories",
   "phone",
   "printer",
   "camera",
   "Cooler",
   "kitchen",
-  "laptop",
   "laptop",
   "safety locker",
   "inverter",
@@ -28,7 +28,10 @@ export const categoriesArray = [
   "adapter",
 ];
 
-export default function Category({ setSearch }) {
+type PropsType = {
+  setSearch: Function;
+};
+export default function Category({ setSearch }: PropsType) {
   return (
     <PopupState variant="popover" popupId="demo-popup-menu">
       {(popupState) => (

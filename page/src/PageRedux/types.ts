@@ -9,6 +9,9 @@ import {
   SEARCH_ITEMS,
   SEE_MORE_ITEMS,
   GET_BRANDS_PRODUCTS,
+  GET_ALL_BRANDS,
+  ADD_IN_SALES,
+  DELETE_FROM_SALES,
 } from "./actions";
 export type GET_PRODUCTS_FROM_API_ACTION = {
   type: typeof GET_PRODUCTS_FROM_API;
@@ -51,6 +54,18 @@ export type SEE_MORE_ITEMS_ACTION = {
   type: typeof SEE_MORE_ITEMS;
   payload: number;
 };
+export type GET_ALL_BRANDS_ACTION = {
+  type: typeof GET_ALL_BRANDS;
+  payload: string[];
+};
+export type ADD_IN_SALES_ACTION = {
+  type: typeof ADD_IN_SALES;
+  payload: Prodact;
+};
+export type DELETE_FROM_SALES_action = {
+  type: typeof DELETE_FROM_SALES;
+  payload: Prodact;
+};
 
 export type MAIN_PAGE_ACTIONS =
   | GET_PRODUCTS_FROM_API_ACTION
@@ -62,4 +77,7 @@ export type MAIN_PAGE_ACTIONS =
   | ADD_TO_FAVORITE_ACTION
   | SEARCH_ITEMS_ACTION
   | SEE_MORE_ITEMS_ACTION
-  | GET_BRANDS_PRODUCTS_ACTION;
+  | GET_BRANDS_PRODUCTS_ACTION
+  | GET_ALL_BRANDS_ACTION
+  | ADD_IN_SALES_ACTION
+  | DELETE_FROM_SALES_action;
