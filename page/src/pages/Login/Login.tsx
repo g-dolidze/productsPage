@@ -37,7 +37,6 @@ const Login = () => {
     },
     validationSchema,
     onSubmit: (user: LoginFormData) => {
-      console.log(user);
       const loginrRequest = async () => {
         const { data } = await userLogin(user);
         localStorage.setItem("token", data.AccessToken);

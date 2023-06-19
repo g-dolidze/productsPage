@@ -1,7 +1,7 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import brandsSlider from "../../Helpers/slider/brandsSlider.json";
+import brandsSlider from "../../../Helpers/slider/brandsSlider.json";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 

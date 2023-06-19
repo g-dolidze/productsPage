@@ -9,7 +9,6 @@ type Prodact = {
   price: number | string;
   rating: string;
   amount: string;
-  brands: string;
 };
 type CartItem = Prodact & {
   quantity: number;

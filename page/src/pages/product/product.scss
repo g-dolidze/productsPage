@@ -1,0 +1,314 @@
+@media only screen and (min-width: 1024px) {
+  .choosenItem_page {
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-areas:
+      "left choosenItem_info"
+      "description description";
+    gap: 30px;
+    .left {
+      width: 50%;
+      max-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      .images {
+        display: flex;
+
+        img {
+          object-fit: contain;
+        }
+      }
+    }
+    .choosenItem_info {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      h3,
+      h2 {
+        color: black;
+        width: 60%;
+        border: 0.5px solid black;
+        background-color: rgba(167, 166, 166, 0.325);
+      }
+    }
+  }
+  .description {
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+    border: 0.3px solid black;
+    border-radius: 30px;
+    height: 200px;
+    overflow: hidden;
+    z-index: 0;
+    position: relative;
+    h2 {
+      color: black;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .read_more_btn {
+      z-index: 1;
+      position: absolute;
+      bottom: 0;
+      right: 45%;
+      font-size: 22px;
+      font-weight: bolder;
+      color: blue;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: none;
+      cursor: pointer;
+    }
+    .read_less_btn {
+      display: none;
+    }
+  }
+  .description2 {
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+    border: 0.3px solid black;
+    border-radius: 30px;
+    overflow: hidden;
+    height: 100%;
+    z-index: 0;
+    position: relative;
+
+    .read_less_btn {
+      display: block;
+      z-index: 1;
+      position: absolute;
+      bottom: 0;
+      right: 45%;
+      font-size: 22px;
+      font-weight: 900;
+      color: blue;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: none;
+      cursor: pointer;
+    }
+    .read_more_btn {
+      display: none;
+    }
+  }
+  .pictures {
+    width: 70px;
+    height: 50px;
+    object-fit: fill;
+  }
+}
+@media only screen and (min-width: 860px) and (max-width: 1024px) {
+  .choosenItem_page {
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-areas:
+      "left choosenItem_info"
+      "description description";
+    gap: 30px;
+    .left {
+      width: 50%;
+      max-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      .images {
+        display: flex;
+
+        img {
+          object-fit: contain;
+        }
+      }
+    }
+    .choosenItem_info {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      h3,
+      h2 {
+        color: black;
+        width: 60%;
+        border: 0.5px solid black;
+        background-color: rgba(167, 166, 166, 0.325);
+      }
+    }
+  }
+  .description {
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+    border: 0.3px solid black;
+    border-radius: 30px;
+    height: 200px;
+    overflow: hidden;
+    z-index: 0;
+    position: relative;
+    h2 {
+      color: black;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .read_more_btn {
+      z-index: 1;
+      position: absolute;
+      bottom: 0;
+      right: 45%;
+      font-size: 22px;
+      font-weight: bolder;
+      color: blue;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: none;
+      cursor: pointer;
+    }
+    .read_less_btn {
+      display: none;
+    }
+  }
+  .description2 {
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+    border: 0.3px solid black;
+    border-radius: 30px;
+    overflow: hidden;
+    height: 100%;
+    z-index: 0;
+    position: relative;
+
+    .read_less_btn {
+      display: block;
+      z-index: 1;
+      position: absolute;
+      bottom: 0;
+      right: 45%;
+      font-size: 22px;
+      font-weight: 900;
+      color: blue;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: none;
+      cursor: pointer;
+    }
+    .read_more_btn {
+      display: none;
+    }
+  }
+  .pictures {
+    width: 70px;
+    height: 50px;
+    object-fit: fill;
+  }
+}
+@media only screen and (max-width: 860px) {
+  .choosenItem_page {
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-areas:
+      "left "
+      "choosenItem_info "
+      "description description";
+    gap: 30px;
+    .left {
+      width: 90%;
+      max-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .images {
+        display: flex;
+
+        img {
+          object-fit: contain;
+        }
+      }
+    }
+    .choosenItem_info {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      h3,
+      h2 {
+        width: 90%;
+        display: flex;
+        justify-content: space-around;
+        color: black;
+        width: 60%;
+        border: 0.5px solid black;
+        background-color: rgba(167, 166, 166, 0.325);
+      }
+    }
+  }
+  .description {
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+    border: 0.3px solid black;
+    border-radius: 30px;
+    height: 200px;
+    overflow: hidden;
+    z-index: 0;
+    position: relative;
+    h2 {
+      color: black;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .read_more_btn {
+      z-index: 1;
+      position: absolute;
+      bottom: 0;
+      right: 45%;
+      font-size: 22px;
+      font-weight: bolder;
+      color: blue;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: none;
+      cursor: pointer;
+    }
+    .read_less_btn {
+      display: none;
+    }
+  }
+  .description2 {
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+    border: 0.3px solid black;
+    border-radius: 30px;
+    overflow: hidden;
+    height: 100%;
+    z-index: 0;
+    position: relative;
+
+    .read_less_btn {
+      display: block;
+      z-index: 1;
+      position: absolute;
+      bottom: 0;
+      right: 45%;
+      font-size: 22px;
+      font-weight: 900;
+      color: blue;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: none;
+      cursor: pointer;
+    }
+    .read_more_btn {
+      display: none;
+    }
+  }
+  .pictures {
+    width: 70px;
+    height: 50px;
+    object-fit: fill;
+  }
+}

@@ -10,6 +10,7 @@ function Profile() {
 
   const userData = JSON.parse(localStorage.getItem("user") as string);
 
+  console.log(userData);
   const [user, setUser] = useState<UserItem | null>(null);
 
   useEffect(() => {
@@ -40,20 +41,20 @@ function Profile() {
       <Paper variant="outlined" className="user_info">
         <div className="person">
           <Typography className="info">
-            Firstname: {userData.firstName}{" "}
+            Firstname: {userData?.firstName}{" "}
           </Typography>
           <Typography className="info">
             {" "}
-            Latsname: {userData.lastName}{" "}
+            Latsname: {userData?.lastName}{" "}
           </Typography>
         </div>
 
         <Typography className="info_email">
           {" "}
-          Phone : {userData.phoneNumber}{" "}
+          Phone : {userData?.phoneNumber}{" "}
         </Typography>
         <Typography className="info_email">
-          E-mail: {userData.email}{" "}
+          E-mail: {userData?.email}{" "}
         </Typography>
         <Button onClick={handleEditing} className="edit_btn">
           edit

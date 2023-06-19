@@ -7,24 +7,36 @@ import i18next from "i18next";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 export function Language() {
-  const [language, setLanguage] = React.useState("");
+  const [language, setLanguage] = React.useState("Eng");
 
   const handleChange = (event: SelectChangeEvent) => {
     setLanguage(event.target.value as string);
   };
 
   return (
-    <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+    <FormControl variant="standard" sx={{ m: 1, minWidth: 80 }}>
       <InputLabel id="demo-simple-select-label" style={{ color: "white" }}>
-        Lang
+        {language}
       </InputLabel>
       <Select
-        labelId="demo-simple-select-label"
+         inputProps={{ "aria-label": "Without label" }}
         id="demo-simple-select"
         onChange={handleChange}
       >
-        <MenuItem onClick={() => i18next.changeLanguage("ge")}>Geo</MenuItem>
-        <MenuItem onClick={() => i18next.changeLanguage("en")}>Eng</MenuItem>
+        <MenuItem
+          onClick={() => {
+            i18next.changeLanguage("ge"), setLanguage("Geo");
+          }}
+        >
+          Geo
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            i18next.changeLanguage("en"), setLanguage("Eng");
+          }}
+        >
+          Eng
+        </MenuItem>
       </Select>
     </FormControl>
   );

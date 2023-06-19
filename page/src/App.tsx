@@ -25,7 +25,9 @@ function App() {
   return isAdmin ? (
     <>
       <AdminNavbar />
-      <AdminPage />
+      <Routes>
+        <Route path="/" element={<AdminPage />} />
+      </Routes>
     </>
   ) : (
     <>

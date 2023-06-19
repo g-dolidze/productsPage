@@ -7,8 +7,7 @@ import { Typography } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export const categoriesArray = [
-  "Televisions",
-  "Accessories",
+  "Tv",
   "phone",
   "printer",
   "camera",
@@ -26,6 +25,12 @@ export const categoriesArray = [
   "frost",
   "earphones",
   "adapter",
+  "headset",
+  "gaming",
+  "consol",
+  "Televisions",
+  "Accessories",
+  "tool",
 ];
 
 type PropsType = {
@@ -33,16 +38,15 @@ type PropsType = {
 };
 export default function Category({ setSearch }: PropsType) {
   return (
-    <PopupState variant="popover" popupId="demo-popup-menu">
+    <PopupState variant="popper" popupId="demo-popup-menu">
       {(popupState) => (
         <React.Fragment>
           <Typography
-            variant="h5"
             {...bindTrigger(popupState)}
             sx={{
               display: "flex",
               alignItems: "center",
-              marginLeft: "-130px ",
+              marginLeft: "-100px ",
               cursor: "pointer",
             }}
           >

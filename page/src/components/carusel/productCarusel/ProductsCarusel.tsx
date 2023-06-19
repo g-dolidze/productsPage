@@ -2,13 +2,12 @@ import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import brandsSlider from "../../../Helpers/slider/brandsSlider.json";
-import { Link } from "react-router-dom";
+import Card from "../../Card";
 function ProductsCarusel() {
   var settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     speed: 2000,
@@ -26,7 +25,7 @@ function ProductsCarusel() {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 860,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -49,9 +48,7 @@ function ProductsCarusel() {
         {sales.map((item: Prodact) => {
           return (
             <div key={item.id}>
-              <Link to={`/product/${item.id}`}>
-                <img src={item.images[0]} width={"90%"} />
-              </Link>
+              <Card product={item} />
             </div>
           );
         })}

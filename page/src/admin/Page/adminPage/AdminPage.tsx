@@ -53,7 +53,6 @@ function AdminPage() {
             sx={{
               width: "40px",
               height: "40px",
-              padding: "20px ",
               border: "1px solid blue",
               borderRadius: "50% ",
               cursor: "pointer",
@@ -63,8 +62,9 @@ function AdminPage() {
           <Grid
             item
             className="Adminpage"
-            style={{
+            sx={{
               width: "90%",
+              padding: "20px",
               display: "flex",
               flexDirection: "column",
               gap: "15px",

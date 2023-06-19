@@ -24,7 +24,7 @@ import {
 import Category, {
   categoriesArray,
 } from "../../../../components/category/Category";
-import brands from "../../../../components/brands";
+import brands from "../../../../components/carusel/brands";
 import { useAppSelector } from "../../../../Redux/hooks";
 
 interface Products {

@@ -14,6 +14,7 @@ import { useAppDispatch, useAppSelector } from "../../../Redux/hooks";
 import DiscountIcon from "@mui/icons-material/Discount";
 import Product from "../../../pages/product";
 import SalesDialog from "../AllDialogs/sales";
+import Category from "../../../components/category";
 
 const AdminNavbar = () => {
   const { range } = useAppSelector<InitialState>((state) => state.mainReducer);
@@ -44,11 +45,14 @@ const AdminNavbar = () => {
         >
           <h1>e-commers</h1>
         </Link>
+
         <h4 onClick={() => setOpen(true)}>
           <DiscountIcon />
           {hotSales.length}
         </h4>
-        <Link to="/favorites">new Items</Link>
+        <div className="admin_category">
+          <Category setSearch={setSearch} />
+        </div>
       </div>
       <div className="navCenter">
         <input

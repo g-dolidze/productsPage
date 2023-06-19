@@ -12,7 +12,7 @@ import { useAppSelector } from "../../Redux/hooks";
 import Card from "../../components/Card";
 import "./Home.scss";
 import Carusel from "../../components/carusel/mainCarusel/Carusel";
-import BrandsSlider from "../../components/brands";
+import BrandsSlider from "../../components/carusel/brands";
 import ProductsCarusel from "../../components/carusel/productCarusel";
 
 function Home() {
@@ -20,9 +20,6 @@ function Home() {
   const { products, range } = useAppSelector<InitialState>(
     (state) => state.mainReducer
   );
-  // const user = localStorage.getItem("user");
-  // const userPars = JSON.parse(user as string);
-  // console.log(userPars);
 
   useEffect(() => {
     const getProducts = async () => {

@@ -18,7 +18,7 @@ export const isUserAuthenticated = (): AuthenticationResult => {
   const userObject: UserType = jwtDecode(userKey);
   if (Date.now() / 1000 > userObject.exp) {
     localStorage.removeItem("token");
-    localStorage.removeItem("User");
+    localStorage.removeItem("user");
     return { userKey, isUser: false, isAdmin: false };
   }
   if (userObject.isAdmin && Date.now() / 1000 < userObject.exp) {
