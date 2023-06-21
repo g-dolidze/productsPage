@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 import { useDebounce } from "use-debounce";
 import { Avatar } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
+import { useTranslation } from "react-i18next";
 
 import "./AdminNavbar.scss";
 import { getSearchedProducts } from "../../../Helpers/Products";
-import { addProductToSales, searchedItems } from "../../../PageRedux/actions";
+import { searchedItems } from "../../../PageRedux/actions";
 import { isUserAuthenticated } from "../../../Helpers/user/isUserAuth";
 import AccountMenu from "../../../components/account";
 import { Language } from "../../../components/navigation/language";
 import { useAppDispatch, useAppSelector } from "../../../Redux/hooks";
 import DiscountIcon from "@mui/icons-material/Discount";
-import Product from "../../../pages/product";
 import SalesDialog from "../AllDialogs/sales";
 import Category from "../../../components/category";
 
@@ -20,11 +20,13 @@ const AdminNavbar = () => {
   const { range } = useAppSelector<InitialState>((state) => state.mainReducer);
 
   const hotSales = JSON.parse(localStorage.getItem("sales") as string);
-
   const dispatch = useAppDispatch();
+
   const [search, setSearch] = useState("");
   const [value] = useDebounce(search, 1000);
   const [open, setOpen] = useState(false);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     const getSearcheditems = async () => {
@@ -59,7 +61,7 @@ const AdminNavbar = () => {
           className="search"
           type="search"
           name="search"
-          placeholder="search"
+          placeholder={t("global.search") as string}
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
@@ -71,7 +73,7 @@ const AdminNavbar = () => {
           ) : (
             <Link to="/login" style={{ color: "white" }}>
               <Avatar sx={{ bgcolor: deepPurple[500] }}></Avatar>
-              Log in
+              {t("global.Login")}
             </Link>
           )}
         </div>

@@ -8,6 +8,7 @@ import {
   totalFound,
 } from "../../PageRedux/actions";
 import { useAppSelector } from "../../Redux/hooks";
+import { useTranslation } from "react-i18next";
 
 import Card from "../../components/Card";
 import "./Home.scss";
@@ -20,7 +21,7 @@ function Home() {
   const { products, range } = useAppSelector<InitialState>(
     (state) => state.mainReducer
   );
-
+  const { t } = useTranslation();
   useEffect(() => {
     const getProducts = async () => {
       const { data } = await getAllProducts(range);
@@ -68,7 +69,9 @@ function Home() {
             );
           })}
         </Grid>
-        <Button onClick={() => dispatch(seeMoreItems(range))}>Show more</Button>
+        <Button onClick={() => dispatch(seeMoreItems(range))}>
+          {t("global.show more")}
+        </Button>
       </Grid>
       <div>
         <BrandsSlider />

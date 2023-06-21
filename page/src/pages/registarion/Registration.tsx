@@ -2,6 +2,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { Grid, Box, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import * as yup from "yup";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
@@ -49,7 +50,7 @@ const Registration = () => {
       }
     },
   });
-
+  const { t } = useTranslation();
   return (
     <Container component="main" maxWidth="xs">
       <Box
@@ -64,7 +65,7 @@ const Registration = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          {t("global.Sign up")}
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
@@ -73,7 +74,7 @@ const Registration = () => {
                 name="firstName"
                 fullWidth
                 id="firstName"
-                label="First Name"
+                label={t("global.firstName")}
                 value={values.firstName}
                 onChange={handleChange}
                 error={!!errors.firstName}
@@ -85,7 +86,7 @@ const Registration = () => {
                 name="lastName"
                 fullWidth
                 id="lastName"
-                label="Last Name"
+                label={t("global.lastName")}
                 value={values.lastName}
                 onChange={handleChange}
                 error={!!errors.lastName}
@@ -97,7 +98,7 @@ const Registration = () => {
                 name="phoneNumber"
                 fullWidth
                 id="phoneNumber"
-                label="phoneNumber"
+                label={t("global.phoneNumber")}
                 value={values.phoneNumber}
                 onChange={handleChange}
                 error={!!errors.phoneNumber}
@@ -109,7 +110,7 @@ const Registration = () => {
                 name="email"
                 fullWidth
                 id="email"
-                label="mail"
+                label={t("global.email")}
                 value={values.email}
                 onChange={handleChange}
                 error={!!errors.email}
@@ -121,7 +122,7 @@ const Registration = () => {
                 type="password"
                 name="password"
                 fullWidth
-                label="Password"
+                label={t("global.password")}
                 value={values.password}
                 onChange={handleChange}
                 error={!!errors.password}
@@ -147,11 +148,13 @@ const Registration = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            <Link to="/login">Sign Up</Link>
+            <Link to="/login"> {t("global.Sign Up")}</Link>
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link to="/Login">Already have an account? Sign in</Link>
+              <Link to="/Login">
+                {t("global.Already have an account?")} {t("global.Sign in")}{" "}
+              </Link>
             </Grid>
           </Grid>
         </Box>

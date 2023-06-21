@@ -10,6 +10,7 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Alert from "@mui/material/Alert";
 import Typography from "@mui/material/Typography";
+import { useTranslation } from "react-i18next";
 import { Link, json, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -46,29 +47,32 @@ const Login = () => {
       loginrRequest();
     },
   });
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const { t } = useTranslation();
   return (
     <Grid container component="main" sx={{ height: "100vh" }}>
       <Grid
         item
         xs={false}
         sm={4}
-        md={7}
+        md={8}
         sx={{
-          backgroundImage: "url(https://source.unsplash.com/random)",
+          backgroundImage:
+            "url(https://cdn.shopify.com/s/files/1/0070/7032/files/trending-products_c8d0d15c-9afc-47e3-9ba2-f7bad0505b9b.png?format=jpg&quality=90&v=1614559651&width=1024)",
           backgroundRepeat: "no-repeat",
           backgroundColor: (t) =>
             t.palette.mode === "light"
               ? t.palette.grey[50]
-              : t.palette.grey[900],
+              : t.palette.grey[800],
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <Grid item xs={12} sm={8} md={4} component={Paper} elevation={6} square>
         <Box
           sx={{
             my: 8,
@@ -82,7 +86,7 @@ const Login = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            {t("global.Sing in")}{" "}
           </Typography>
           <Box
             component="form"
@@ -94,7 +98,7 @@ const Login = () => {
               name="email"
               fullWidth
               id="email"
-              label="Email"
+              label={t("global.email")}
               value={values.email}
               onChange={handleChange}
               error={!!errors.email}
@@ -105,7 +109,7 @@ const Login = () => {
               type="password"
               name="password"
               fullWidth
-              label="Password"
+              label={t("global.password")}
               value={values.password}
               onChange={handleChange}
               error={!!errors.password}
@@ -113,7 +117,7 @@ const Login = () => {
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label={t("global.Remember me")}
             />
             <Button
               type="submit"
@@ -121,15 +125,20 @@ const Login = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              {t("global.Sign in")}
             </Button>
             <Grid container>
               <Grid item xs>
-                <Typography variant="body2">Forgot password?</Typography>
+                <Typography variant="body2">
+                  {" "}
+                  {t("global.Forgot password?")}
+                </Typography>
               </Grid>
+
               <Grid item>
                 <Link to="/registration">
-                  {"Don't have an account? Sign Up"}
+                  {t("global.Don't have an account?")}
+                  {t("global.Sign up")}
                 </Link>
               </Grid>
             </Grid>
@@ -147,7 +156,7 @@ const Login = () => {
           severity="error"
           sx={{ width: "100%" }}
         >
-          Incorrect Credentials
+          {t("global.Incorrect Credentials")}
         </Alert>
       </Snackbar>
     </Grid>

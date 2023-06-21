@@ -8,6 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { DeleteItemfromApi } from "../../../../Helpers/admin/AdminRequest";
 import { Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 type PropsType = {
   open: boolean;
@@ -21,6 +22,7 @@ const Confirm = (props: PropsType) => {
   const handleClose = () => {
     setOpen(false);
   };
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
   return (
@@ -31,9 +33,7 @@ const Confirm = (props: PropsType) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
-        </DialogTitle>
+        <DialogTitle id="alert-dialog-title"></DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             <Grid
@@ -44,21 +44,23 @@ const Confirm = (props: PropsType) => {
                 padding: "10px",
               }}
             >
-              <Typography variant="h3">Delete This Item?</Typography>
+              <Typography variant="h3" sx={{ textAlign: "center" }}>
+                {t("global.Delete This Item?")}{" "}
+              </Typography>
               <img src={item?.images[0]} alt="" width={"200px"} />
               <Typography>{item?.title}</Typography>
             </Grid>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleClose}> {t("global.Disagree")}</Button>
           <Button
             onClick={() => {
               DeleteItemfromApi(item!.id), setOpen(false);
             }}
             autoFocus
           >
-            Agree
+            {t("global.Agree")}
           </Button>
         </DialogActions>
       </Dialog>

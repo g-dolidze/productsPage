@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./CartItem.scss";
 import { useDispatch } from "react-redux";
 import {
@@ -13,6 +14,7 @@ type CartItemProps = {
 const CartItem: FC<CartItemProps> = ({ item }) => {
   const dispatch = useDispatch();
 
+  const { t } = useTranslation();
   return (
     <div className="item">
       <img
@@ -29,7 +31,9 @@ const CartItem: FC<CartItemProps> = ({ item }) => {
           <h3 className="title">{item.title} </h3>
         </Link>
         <div className="price">
-          <h3>Price: {Number(item.price).toFixed(2)} </h3>
+          <h3>
+            {t("global.Price")}: {Number(item.price).toFixed(2)}{" "}
+          </h3>
           <div className="quantity">
             <span onClick={() => dispatch(dicresQuantity(item))}>-</span>
             <span className="quantity_number">{item.quantity} </span>

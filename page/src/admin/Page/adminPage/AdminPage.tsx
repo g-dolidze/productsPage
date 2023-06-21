@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../../Redux/hooks";
 import { getAllProducts, getBransFromApi } from "../../../Helpers/Products";
+import { useTranslation } from "react-i18next";
 import {
   getAllBrands,
   getProductsFromApi,
@@ -20,7 +21,7 @@ function AdminPage() {
   const { products, range } = useAppSelector<InitialState>(
     (state) => state.mainReducer
   );
-
+  const { t } = useTranslation();
   useEffect(() => {
     const getProducts = async () => {
       const { data } = await getAllProducts(range);
@@ -83,7 +84,7 @@ function AdminPage() {
             })}
           </Grid>
           <Button onClick={() => dispatch(seeMoreItems(range))}>
-            Show more
+            {t("global.Show more")}
           </Button>
         </Grid>
       </div>

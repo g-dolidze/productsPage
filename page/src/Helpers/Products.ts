@@ -27,5 +27,13 @@ export const getBrandProducts = (
     page_number: 0,
     filter: { brand: brandName },
   });
-
-  
+export const getSimilarProducts = (
+  brandkind: string,
+  range: number,
+  brandName: string
+) =>
+  ajax.post("products", {
+    page_size: range,
+    page_number: 0,
+    filter: { brand: brandName, title: brandkind },
+  });

@@ -1,4 +1,5 @@
 import { Paper, Grid, Button } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import React, { useEffect, useState } from "react";
 import { getBrandsProducts } from "../../PageRedux/actions";
 import { useDispatch } from "react-redux";
@@ -18,6 +19,8 @@ function BrandsPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const { t } = useTranslation();
 
   const seeMoreBrandItems = () => {
     setRange(range + 10);
@@ -74,7 +77,10 @@ function BrandsPage() {
             );
           })}
         </Grid>
-        <Button onClick={() => seeMoreBrandItems()}>Show more</Button>
+        <Button onClick={() => seeMoreBrandItems()}>
+          {" "}
+          {t("global.show more")}
+        </Button>
       </Grid>
     </div>
   );

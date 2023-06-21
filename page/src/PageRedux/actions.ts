@@ -12,6 +12,7 @@ export const GET_BRANDS_PRODUCTS = "GET_BRANDS_PRODUCTS";
 export const GET_ALL_BRANDS = "GET_ALL_BRANDS";
 export const ADD_IN_SALES = "ADD_IN_SALES";
 export const DELETE_FROM_SALES = "DELETE_FROM_SALES";
+export const ADD_IN_ORDERS = "ADD_IN_ORDERS";
 
 export const getProductsFromApi = (products: Prodact[]): MAIN_PAGE_ACTIONS => ({
   type: GET_PRODUCTS_FROM_API,
@@ -65,5 +66,9 @@ export const deleteProductFromSales = (
   product: Prodact
 ): MAIN_PAGE_ACTIONS => ({
   type: DELETE_FROM_SALES,
+  payload: product,
+});
+export const addProductToOrders = (product: Prodact): MAIN_PAGE_ACTIONS => ({
+  type: ADD_IN_ORDERS,
   payload: product,
 });

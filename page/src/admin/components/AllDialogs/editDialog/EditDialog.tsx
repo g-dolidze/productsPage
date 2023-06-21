@@ -26,6 +26,7 @@ import Category, {
 } from "../../../../components/category/Category";
 import brands from "../../../../components/carusel/brands";
 import { useAppSelector } from "../../../../Redux/hooks";
+import { useTranslation } from "react-i18next";
 
 interface Products {
   id: string;
@@ -106,13 +107,15 @@ const EditDialog = (props: PropsType) => {
       values.images = [...product.images];
       const { data } = await AddEditedItem(editedItem, product.id);
     },
-  });
+  }); 
+  
+  const {t}=useTranslation()
   return (
     <>
       <div>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Address Info</DialogTitle>
-          <DialogContent style={{ width: "400px", height: "400px" }}>
+          <DialogContent style={{ width: "600px", height: "400px" }}>
             <DialogContentText></DialogContentText>
             <form onSubmit={handleSubmit}>
               <TextField
@@ -120,7 +123,7 @@ const EditDialog = (props: PropsType) => {
                 name="title"
                 value={values.title}
                 margin="dense"
-                label="title"
+                label={t("global.title")}
                 type="text"
                 fullWidth
                 variant="standard"
@@ -131,9 +134,19 @@ const EditDialog = (props: PropsType) => {
                 name="price"
                 value={values.price}
                 margin="dense"
-                label=" price"
+                label=  {t("global.price")}
                 type="text"
-                fullWidth
+                sx={{ width: "45%", marginTop: "5%" }}
+                variant="standard"
+              />
+              <TextField
+                onChange={handleChange}
+                name="amount"
+                value={values.amount}
+                margin="dense"
+                label=  {t("global.amount")}
+                type="text"
+                sx={{ width: "45%", margin: "5%" }}
                 variant="standard"
               />
               <TextField
@@ -141,25 +154,16 @@ const EditDialog = (props: PropsType) => {
                 name="description"
                 value={values.description}
                 margin="dense"
-                label="description"
+                label=  {t("global.description")}
                 type="text"
                 fullWidth
                 variant="standard"
               />
 
-              <TextField
-                onChange={handleChange}
-                name="amount"
-                value={values.amount}
-                margin="dense"
-                label="amount"
-                type="text"
-                fullWidth
-                variant="standard"
-              />
               <Autocomplete
                 multiple
                 options={categoriesArray}
+                sx={{ margin: "20px 0px" }}
                 placeholder={
                   values.categories.length > 0 ? "" : "Choose categories"
                 }
@@ -177,7 +181,7 @@ const EditDialog = (props: PropsType) => {
                   id="demo-simple-select"
                   value={values.brand}
                   name="brand"
-                  label="brand"
+                  label= {t("global.brand")}
                   onChange={handleChange}
                 >
                   {brands.map((brand, i) => {
@@ -194,7 +198,7 @@ const EditDialog = (props: PropsType) => {
                   onChange={(e) => setImgInput(e.target.value)}
                   margin="dense"
                   value={imgInput}
-                  label="img"
+                  label= {t("global.image")}
                   type="text"
                   fullWidth
                   variant="standard"
@@ -215,8 +219,8 @@ const EditDialog = (props: PropsType) => {
                   <div key={i}>
                     <Typography
                       sx={{
-                        width: "300px",
-                        height: "50px",
+                        width: "500px",
+                        height: "20px",
                         overflow: "hidden",
                       }}
                     >
@@ -235,7 +239,7 @@ const EditDialog = (props: PropsType) => {
                 handleClose(), submitForm();
               }}
             >
-              done
+                {t("global.done")}
             </Button>
             <Button onClick={handleClose}>Cancel</Button>
           </DialogActions>

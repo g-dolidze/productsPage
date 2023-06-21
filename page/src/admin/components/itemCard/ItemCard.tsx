@@ -15,6 +15,7 @@ import EditDialog from "../AllDialogs/editDialog/EditDialog";
 import { DeleteItemfromApi } from "../../../Helpers/admin/AdminRequest";
 import Confirm from "../AllDialogs/confirmDialog";
 import ItemDialog from "../AllDialogs/itemDialog";
+import { useTranslation } from "react-i18next";
 type PropsType = {
   product: Prodact;
 };
@@ -25,6 +26,8 @@ function ItemCard({ product }: PropsType) {
   const [openConfirm, setOpenConfirm] = useState(false);
   const dispatch = useDispatch();
 
+  console.log(product.id);
+  const { t } = useTranslation();
   return (
     <>
       <div className="itemcard">
@@ -40,9 +43,16 @@ function ItemCard({ product }: PropsType) {
               {product.title}{" "}
             </h5>
             <div>
-              <h5>price: {parseFloat(product.price).toFixed(2)} </h5>
-              <h5>amount: {product.amount}</h5>
-              <h5>rating: {product.rating}</h5>
+              <h5>
+                {" "}
+                {t("global.price")} : {Number(product.price).toFixed(2)}{" "}
+              </h5>
+              <h5>
+                {t("global.amount")} : {product.amount}
+              </h5>
+              <h5>
+                {t("global.rating")} : {product.rating}
+              </h5>
             </div>
           </div>
         </div>

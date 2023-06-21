@@ -10,6 +10,7 @@ import {
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteProductFromSales } from "../../../../PageRedux/actions";
+import { useTranslation } from "react-i18next";
 
 type PropsType = {
   open: boolean;
@@ -26,6 +27,7 @@ function SalesDialog(props: PropsType) {
   if (Items.length === 0) {
     handleClose();
   }
+  const { t } = useTranslation();
   return (
     <div>
       <Dialog
@@ -49,9 +51,17 @@ function SalesDialog(props: PropsType) {
                   <div className="properties">
                     <h5 className="title">{item.title} </h5>
                     <div>
-                      <h5>price: {Number(item.price).toFixed(2)} </h5>
-                      <h5>amount: {item.amount}</h5>
-                      <h5>rating: {item.rating}</h5>
+                      <h5>
+                        {t("global.price")} : {Number(item.price).toFixed(2)}{" "}
+                      </h5>
+                      <h5>
+                        {" "}
+                        {t("global.amount")}: {item.amount}
+                      </h5>
+                      <h5>
+                        {" "}
+                        {t("global.rating")}: {item.rating}
+                      </h5>
                     </div>
                   </div>
                   <button
@@ -60,7 +70,7 @@ function SalesDialog(props: PropsType) {
                     }}
                   >
                     {" "}
-                    delete
+                    {t("global.delete")}
                   </button>
                 </div>
               </Paper>
@@ -69,7 +79,7 @@ function SalesDialog(props: PropsType) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} autoFocus>
-            done
+            {t("global.done")}
           </Button>
         </DialogActions>
       </Dialog>

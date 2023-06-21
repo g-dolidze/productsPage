@@ -11,13 +11,14 @@ import Registration from "./pages/registarion";
 import "./App.css";
 import Profile from "./pages/profile";
 import "./translations/index";
-import Checkout from "./pages/checkout";
+
 import Footer from "./components/footer";
 import BrandsPage from "./pages/brands";
 import { isUserAuthenticated } from "./Helpers/user/isUserAuth";
 import AdminPage from "./admin/Page/adminPage";
 import AdminNavbar from "./admin/components/navbar/AdminNavbar";
 import { useEffect } from "react";
+import Orders from "./pages/product/orders";
 
 function App() {
   const { isAdmin } = isUserAuthenticated();
@@ -26,7 +27,7 @@ function App() {
     <>
       <AdminNavbar />
       <Routes>
-        <Route path="/" element={<AdminPage />} />
+        <Route path="//" element={<AdminPage />} />
       </Routes>
     </>
   ) : (
@@ -43,8 +44,9 @@ function App() {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/checkout" element={<Checkout />} />
+
         <Route path="/brand" element={<BrandsPage />} />
+        <Route path="/order" element={<Orders />} />
       </Routes>
       <Footer />
     </>

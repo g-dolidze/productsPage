@@ -12,6 +12,7 @@ import {
   GET_ALL_BRANDS,
   ADD_IN_SALES,
   DELETE_FROM_SALES,
+  ADD_IN_ORDERS,
 } from "./actions";
 import { MAIN_PAGE_ACTIONS } from "./types";
 
@@ -25,6 +26,7 @@ export const initialState: InitialState = {
   range: 28,
   brandName: "",
   sales: [],
+  orders: [],
 };
 
 const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
@@ -174,6 +176,17 @@ const mainReducer = (state = initialState, action: MAIN_PAGE_ACTIONS) => {
       return {
         ...state,
         sales: deletedItem,
+      };
+
+    case ADD_IN_ORDERS:
+      const prevOrders = state.orders;
+      const newOrders = [...prevOrders, action.payload];
+
+      localStorage.setItem("orders", JSON.stringify(newOrders));
+
+      return {
+        ...state,
+        orders: newOrders,
       };
 
     default:

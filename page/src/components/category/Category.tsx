@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
+import { useTranslation } from "react-i18next";
 import { Typography } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
@@ -37,6 +38,7 @@ type PropsType = {
   setSearch: Function;
 };
 export default function Category({ setSearch }: PropsType) {
+  const { t } = useTranslation();
   return (
     <PopupState variant="popper" popupId="demo-popup-menu">
       {(popupState) => (
@@ -49,8 +51,8 @@ export default function Category({ setSearch }: PropsType) {
               marginLeft: "-100px ",
               cursor: "pointer",
             }}
-          >
-            Category
+          >{t("global.Category") }
+            
             <KeyboardArrowDownIcon fontSize="large" />
           </Typography>
           <Menu {...bindMenu(popupState)}>

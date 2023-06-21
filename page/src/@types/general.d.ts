@@ -24,6 +24,7 @@ type InitialState = {
   brands: string[];
   brandName: string;
   sales: Prodact[];
+  orders: Prodact[];
 };
 type TMyToken = {
   name: string;

@@ -10,6 +10,7 @@ import { Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import EditDialog from "../editDialog/EditDialog";
+import { useTranslation } from "react-i18next";
 
 type PropsType = {
   open: boolean;
@@ -24,8 +25,7 @@ const ItemDialog = (props: PropsType) => {
   const handleClose = () => {
     setOpen(false);
   };
-
-  const navigate = useNavigate();
+  const { t } = useTranslation();
   return (
     <div>
       <Dialog
@@ -55,26 +55,27 @@ const ItemDialog = (props: PropsType) => {
                 })}
               </div>
               <h3>
-                model: <span>{item?.title}</span>{" "}
+                {t("global.price")} : <span> {item.price}</span>
               </h3>
               <h3>
-                raiting: <span>{item.description}</span>{" "}
+                {t("global.Model")}: <span>{item?.title}</span>{" "}
               </h3>
+
               <h3>
-                price: <span> {item.price}</span>
+                {t("global.raiting")} : <span>{item.description}</span>{" "}
               </h3>
             </Grid>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>close</Button>
+          <Button onClick={handleClose}> {t("global.Close")} </Button>
           <Button
             onClick={() => {
               setOpenEditItem(true), setOpen(false);
             }}
             autoFocus
           >
-            edit
+            {t("global.edit")}
           </Button>
         </DialogActions>
       </Dialog>

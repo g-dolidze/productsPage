@@ -12,6 +12,8 @@ import Logout from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
 import { ShoppingCartCheckout } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { isUserAuthenticated } from "../../Helpers/user/isUserAuth";
+import { useTranslation } from "react-i18next";
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -19,6 +21,8 @@ export default function AccountMenu() {
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+  const { t } = useTranslation();
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -26,7 +30,6 @@ export default function AccountMenu() {
   const logOut = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    navigate("/");
   };
 
   const navigate = useNavigate();
@@ -83,7 +86,7 @@ export default function AccountMenu() {
       >
         <Link to="/profile">
           <MenuItem onClick={handleClose}>
-            <Avatar /> My Account
+            <Avatar /> {t("global.My Account")}
           </MenuItem>
         </Link>
         <Link to="/cart">
@@ -91,26 +94,22 @@ export default function AccountMenu() {
             <ListItemIcon>
               <ShoppingCartCheckout />
             </ListItemIcon>
-            My Orders
+            {t("global.My Orders")}
           </MenuItem>
         </Link>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
+
         <Divider />
         <MenuItem
           onClick={() => {
             logOut();
             handleClose;
+            navigate("/Login");
           }}
         >
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          Logout
+          {t("global.Logout")}
         </MenuItem>
       </Menu>
     </React.Fragment>

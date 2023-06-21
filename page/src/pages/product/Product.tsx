@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
 import "./product.scss";
 import { Button, Dialog, DialogContent } from "@mui/material";
@@ -29,17 +30,17 @@ function Product() {
         `http://localhost:8080/product/${id}`
       );
 
-      // console.log(product);
       setChoosenItem(product);
     };
     getProduct();
-  }, []);
+  }, [id]);
+
+  const { t } = useTranslation();
 
   return (
     <>
       <div className="choosenItem_page">
         <div className="left">
-          <Link to={"/"}>Back</Link>
           <img
             src={choosenItem?.images?.[0]}
             onClick={() => {
@@ -80,33 +81,34 @@ function Product() {
           </div>{" "}
           <br />
           <h3>
-            raiting: <span>{choosenItem?.rating}</span>
+            {t("global.raiting")}: <span>{choosenItem?.rating}</span>
           </h3>
         </div>
 
         <div className="choosenItem_info">
           <h3>
-            Brand: <span>{choosenItem?.brand}</span>
+            {t("global.Brand")}: <span>{choosenItem?.brand}</span>
           </h3>
           <h3 style={{ textAlign: "center" }}>
-            model: <span>{choosenItem?.title}</span>
+            {t("global.Model")}: <span>{choosenItem?.title}</span>
           </h3>
           <h2>
-            price: <span>{Number(choosenItem?.price).toFixed(2)}₾</span>
+            {t("global.price")}:{" "}
+            <span>{Number(choosenItem?.price).toFixed(2)}₾</span>
           </h2>
 
           <Button
             sx={{
-              width: "140px",
               borderRadius: "20px",
               backgroundColor: "green",
-              color: "white",
+              color: "black",
+              padding: "20px",
             }}
             onClick={() => {
               dispatch(addToCart(choosenItem));
             }}
           >
-            add to cart
+            {t("global.add to cart")}
           </Button>
         </div>
       </div>
@@ -114,7 +116,7 @@ function Product() {
       <div
         className={`description ${readmore ? "description" : "description2 "}`}
       >
-        <h2>Descriction</h2>
+        <h2>{t("global.Descriction")}</h2>
         <div className="text">
           <h4>{choosenItem?.description}</h4>
         </div>
@@ -137,7 +139,7 @@ function Product() {
       >
         <h3 style={{ textAlign: "center", border: "0.5px solid black" }}>
           {" "}
-          {choosenItem?.brand}'s Products
+          {choosenItem?.brand} {t("global.Products")}
         </h3>
         <br />
 

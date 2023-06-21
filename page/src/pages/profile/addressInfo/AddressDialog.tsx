@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "@mui/material/Button";
+import { useTranslation } from "react-i18next";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -14,11 +15,11 @@ interface AddressInfo {
   city: string;
   street: string;
   zip_code: string;
-  address: string;
+  Address: string;
 }
 const initialValues = {};
 
-export default function AddressDialog() {
+export default function AddressDialog(address: boolean) {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
 
@@ -26,11 +27,15 @@ export default function AddressDialog() {
 
   const handleClickOpen = () => {
     setOpen(true);
+    address = true;
   };
 
   const handleClose = () => {
     setOpen(false);
+    address = false;
   };
+  const { t } = useTranslation();
+
   const {
     values,
     handleChange,
@@ -55,7 +60,6 @@ export default function AddressDialog() {
           addressInfo: userAddress,
         });
         localStorage.setItem("user", userFullInfo);
-        console.log(userFullInfo);
       }
     },
   });
@@ -65,20 +69,20 @@ export default function AddressDialog() {
       <>
         <div>
           <Typography variant="h6">
-            City : {userData.addressInfo.city}
+            {t("global.City")} : {userData.addressInfo.city}
           </Typography>
           <Typography variant="h6">
-            Street : {userData.addressInfo.street}
+            {t("global.Street")} : {userData.addressInfo.street}
           </Typography>
           <Typography variant="h6">
-            Zip_code : {userData.addressInfo.zip_code}
+            {t("global.Zip_code")} : {userData.addressInfo.zip_code}
           </Typography>
           <Typography variant="h6">
-            Address : {userData.addressInfo.address}
+            {t("global.Address")} : {userData.addressInfo.address}
           </Typography>
           <Button onClick={handleClickOpen}>Edit your address</Button>
           <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Address Info</DialogTitle>
+            <DialogTitle> {t("global.Address Info")} </DialogTitle>
             <DialogContent style={{ width: "400px", height: "400px" }}>
               <DialogContentText></DialogContentText>
               <form onSubmit={handleSubmit}>
@@ -87,7 +91,7 @@ export default function AddressDialog() {
                   autoFocus
                   name="city"
                   margin="dense"
-                  label="city"
+                  label={t("global.City")}
                   type="text"
                   fullWidth
                   variant="standard"
@@ -97,7 +101,7 @@ export default function AddressDialog() {
                   autoFocus
                   name="street"
                   margin="dense"
-                  label="street"
+                  label={t("global.Street")}
                   type="text"
                   fullWidth
                   variant="standard"
@@ -107,7 +111,7 @@ export default function AddressDialog() {
                   autoFocus
                   name="zip_code"
                   margin="dense"
-                  label="zip_code"
+                  label={t("global.Zip_code")}
                   type="number"
                   fullWidth
                   variant="standard"
@@ -117,7 +121,7 @@ export default function AddressDialog() {
                   autoFocus
                   name="Address"
                   margin="dense"
-                  label=" Address"
+                  label={t("global.Address")}
                   type="text"
                   fullWidth
                   variant="standard"
@@ -131,9 +135,9 @@ export default function AddressDialog() {
                   handleClose(), submitForm(), navigate("/profile/?editing");
                 }}
               >
-                Add
+                {t("global.Add")}
               </Button>
-              <Button onClick={handleClose}>Cancel</Button>
+              <Button onClick={handleClose}>{t("global.Cancel")}</Button>
             </DialogActions>
           </Dialog>
         </div>
@@ -143,10 +147,10 @@ export default function AddressDialog() {
     return (
       <div>
         <Button variant="outlined" onClick={handleClickOpen}>
-          add address info
+          {t("global.Add Address Info")}
         </Button>
         <Dialog open={open} onClose={handleClose}>
-          <DialogTitle>Address Info</DialogTitle>
+          <DialogTitle>{t("global.Address Info")}</DialogTitle>
           <DialogContent style={{ width: "400px", height: "400px" }}>
             <DialogContentText></DialogContentText>
             <form onSubmit={handleSubmit}>
@@ -155,7 +159,7 @@ export default function AddressDialog() {
                 autoFocus
                 name="city"
                 margin="dense"
-                label="city"
+                label={t("global.City")}
                 type="text"
                 fullWidth
                 variant="standard"
@@ -165,7 +169,7 @@ export default function AddressDialog() {
                 autoFocus
                 name="street"
                 margin="dense"
-                label="street"
+                label={t("global.Street")}
                 type="text"
                 fullWidth
                 variant="standard"
@@ -175,7 +179,7 @@ export default function AddressDialog() {
                 autoFocus
                 name="zip_code"
                 margin="dense"
-                label="zip_code"
+                label={t("global.Zip_code")}
                 type="number"
                 fullWidth
                 variant="standard"
@@ -185,7 +189,7 @@ export default function AddressDialog() {
                 autoFocus
                 name="Address"
                 margin="dense"
-                label=" Address"
+                label={t("global.Address")}
                 type="text"
                 fullWidth
                 variant="standard"
@@ -199,9 +203,9 @@ export default function AddressDialog() {
                 handleClose(), submitForm(), navigate("/profile/?editing");
               }}
             >
-              Add
+              {t("global.Add")}
             </Button>
-            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={handleClose}>{t("global.Cancel")}</Button>
           </DialogActions>
         </Dialog>
       </div>

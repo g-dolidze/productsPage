@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import "./profile.scss";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import { Button, Paper, TextField } from "@mui/material";
 import { editPersonalInfo } from "../../Helpers/user/User";
@@ -43,35 +44,36 @@ function UserInfo({ handleChangeState }: PropsUserInfo) {
       }
     },
   });
+  const { t } = useTranslation();
 
   return (
     <div className="user_info_page">
-      <h4>Edit Presonal info</h4>
+      <h4>{t("global.Edit User info")} </h4>
       <Paper variant="outlined" className="user_form_info">
         <form onSubmit={handleSubmit} className="user_form">
           <TextField
-            label="firstName"
+            label={t("global.firstName")}
             name="firstName"
             value={values.firstName}
             onChange={handleChange}
             className="TextField"
           />
           <TextField
-            label="lastName"
+            label={t("global.lastName")}
             name="lastName"
             value={values.lastName}
             onChange={handleChange}
             className="TextField"
           />
           <TextField
-            label="phoneNumber"
+            label={t("global.phoneNumber")}
             name="phoneNumber"
             value={values.phoneNumber}
             onChange={handleChange}
             className="TextField_phoneNumber"
           />
           <TextField
-            label="email"
+            label={t("global.email")}
             name="email"
             value={values.email}
             onChange={handleChange}
@@ -84,7 +86,7 @@ function UserInfo({ handleChangeState }: PropsUserInfo) {
             }}
             className="form_btn"
           >
-            save
+            {t("global.save")}
           </Button>
         </form>
       </Paper>

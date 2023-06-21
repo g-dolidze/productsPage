@@ -45,7 +45,7 @@ function BrandsSlider() {
     ],
   };
   return (
-    <div style={{ width: "90%", margin: "auto" }}>
+    <div style={{ width: "90%", margin: "30px auto" }}>
       <Slider {...settings}>
         {brandsSlider.map((item) => {
           return (

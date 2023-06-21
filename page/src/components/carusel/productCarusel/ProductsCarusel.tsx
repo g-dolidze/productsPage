@@ -3,6 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Card from "../../Card";
+import { Paper } from "@mui/material";
 function ProductsCarusel() {
   var settings = {
     dots: true,
@@ -43,17 +44,17 @@ function ProductsCarusel() {
   };
   const sales = JSON.parse(localStorage.getItem("sales") as string);
   return (
-    <div style={{ width: "90%", margin: "auto" }}>
+    <Paper elevation={3} style={{ width: "90%", margin: "auto" }}>
       <Slider {...settings}>
         {sales.map((item: Prodact) => {
           return (
-            <div key={item.id}>
+            <Paper key={item.id} sx={{ borderRadius: "20px", width: "250px" }}>
               <Card product={item} />
-            </div>
+            </Paper>
           );
         })}
       </Slider>
-    </div>
+    </Paper>
   );
 }
 

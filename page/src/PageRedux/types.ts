@@ -12,6 +12,7 @@ import {
   GET_ALL_BRANDS,
   ADD_IN_SALES,
   DELETE_FROM_SALES,
+  ADD_IN_ORDERS,
 } from "./actions";
 export type GET_PRODUCTS_FROM_API_ACTION = {
   type: typeof GET_PRODUCTS_FROM_API;
@@ -66,6 +67,10 @@ export type DELETE_FROM_SALES_action = {
   type: typeof DELETE_FROM_SALES;
   payload: Prodact;
 };
+export type ADD_IN_ORDERS_ACTION = {
+  type: typeof ADD_IN_ORDERS;
+  payload: Prodact;
+};
 
 export type MAIN_PAGE_ACTIONS =
   | GET_PRODUCTS_FROM_API_ACTION
@@ -80,4 +85,5 @@ export type MAIN_PAGE_ACTIONS =
   | GET_BRANDS_PRODUCTS_ACTION
   | GET_ALL_BRANDS_ACTION
   | ADD_IN_SALES_ACTION
-  | DELETE_FROM_SALES_action;
+  | DELETE_FROM_SALES_action
+  | ADD_IN_ORDERS_ACTION;
