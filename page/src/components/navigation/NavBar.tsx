@@ -72,7 +72,7 @@ const NavBar = () => {
           }}
           to={"/"}
         >
-          <h1>e-commers</h1>
+          <h1>E-Shop</h1>
         </Link>
         {location.pathname === "/login" ? (
           ""
