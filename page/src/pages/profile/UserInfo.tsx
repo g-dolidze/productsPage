@@ -3,7 +3,16 @@ import "./profile.scss";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
-import { Button, Paper, TextField } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Paper,
+  TextField,
+} from "@mui/material";
 import { editPersonalInfo } from "../../Helpers/user/User";
 import Profile from "./Profile";
 
@@ -22,9 +31,10 @@ const initialValues: PersonalInfo = {
 };
 type PropsUserInfo = {
   handleChangeState: () => void;
+  isUserEditing: boolean;
 };
 
-function UserInfo({ handleChangeState }: PropsUserInfo) {
+function UserInfo({ handleChangeState, isUserEditing }: PropsUserInfo) {
   const {
     values,
     handleChange,
@@ -48,48 +58,81 @@ function UserInfo({ handleChangeState }: PropsUserInfo) {
 
   return (
     <div className="user_info_page">
-      <h4>{t("global.Edit User info")} </h4>
-      <Paper variant="outlined" className="user_form_info">
-        <form onSubmit={handleSubmit} className="user_form">
-          <TextField
-            label={t("global.firstName")}
-            name="firstName"
-            value={values.firstName}
-            onChange={handleChange}
-            className="TextField"
-          />
-          <TextField
-            label={t("global.lastName")}
-            name="lastName"
-            value={values.lastName}
-            onChange={handleChange}
-            className="TextField"
-          />
-          <TextField
-            label={t("global.phoneNumber")}
-            name="phoneNumber"
-            value={values.phoneNumber}
-            onChange={handleChange}
-            className="TextField_phoneNumber"
-          />
-          <TextField
-            label={t("global.email")}
-            name="email"
-            value={values.email}
-            onChange={handleChange}
-            className="TextField_email"
-          />
+      <Dialog open={isUserEditing} onClose={handleChangeState}>
+        <DialogTitle>{t("global.Address Info")}</DialogTitle>
+        <DialogContent style={{ width: "400px", height: "400px" }}>
+          <DialogContentText></DialogContentText>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              label={t("global.firstName")}
+              name="firstName"
+              value={values.firstName}
+              onChange={handleChange}
+              className="TextField"
+              autoFocus
+              margin="dense"
+              type="text"
+              fullWidth
+              variant="standard"
+              error={touched.firstName && !!errors.firstName}
+              helperText={touched.firstName && errors.firstName}
+            />
+            <TextField
+              label={t("global.lastName")}
+              name="lastName"
+              value={values.lastName}
+              onChange={handleChange}
+              className="TextField"
+              autoFocus
+              margin="dense"
+              type="text"
+              fullWidth
+              variant="standard"
+              error={touched.lastName && !!errors.lastName}
+              helperText={touched.lastName && errors.lastName}
+            />
+            <TextField
+              label={t("global.phoneNumber")}
+              name="phoneNumber"
+              value={values.phoneNumber}
+              onChange={handleChange}
+              className="TextField_phoneNumber"
+              autoFocus
+              margin="dense"
+              type="number"
+              fullWidth
+              variant="standard"
+              error={touched.phoneNumber && !!errors.phoneNumber}
+              helperText={touched.phoneNumber && errors.phoneNumber}
+            />
+            <TextField
+              label={t("global.email")}
+              name="email"
+              value={values.email}
+              onChange={handleChange}
+              className="TextField_email"
+              autoFocus
+              margin="dense"
+              type="text"
+              fullWidth
+              variant="standard"
+              error={touched.email && !!errors.email}
+              helperText={touched.email && errors.email}
+            />
+          </form>
+        </DialogContent>
+        <DialogActions>
           <Button
             type="submit"
             onClick={() => {
               handleChangeState(), submitForm();
             }}
-            className="form_btn"
           >
             {t("global.save")}
           </Button>
-        </form>
-      </Paper>
+          <Button onClick={handleChangeState}>{t("global.Cancel")}</Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

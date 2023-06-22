@@ -227,17 +227,29 @@
       display: block;
       display: flex;
       flex-direction: column;
-      width: 30vw;
-      height: 300px;
-      background-color: antiquewhite;
       align-items: center;
+      width: 30vw;
+      height: 200px;
+      background-color: antiquewhite;
     }
     .menu_icon {
       display: none;
     }
+  }
+  .account {
+    width: 100%;
+    display: flex;
+    justify-content: center;
     .bar_account {
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+  }
+  .bar_icons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 }
 @media only screen and (max-width: 640px) {

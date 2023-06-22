@@ -8,11 +8,15 @@ import { addToCart, addToFavorite } from "../../PageRedux/actions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { Loyalty } from "@mui/icons-material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { Toast, ToastContainer } from "react-toastify/dist/components";
+import { toast } from "react-toastify";
 
 type PropsType = {
   product: Prodact;
+  notify: Function;
 };
-const Card = ({ product }: PropsType) => {
+const Card = ({ product, notify }: PropsType) => {
   const sales = JSON.parse(localStorage.getItem("sales") as string);
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -37,7 +41,9 @@ const Card = ({ product }: PropsType) => {
             <AddShoppingCartRoundedIcon
               sx={{ display: "none" }}
               className="btn"
-              onClick={() => dispatch(addToCart(product))}
+              onClick={() => {
+                dispatch(addToCart(product)), notify();
+              }}
             />
             <FavoriteBorderRoundedIcon
               sx={{ display: "none" }}

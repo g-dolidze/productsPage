@@ -163,6 +163,8 @@ const NavBar = () => {
                       alt="Gio Dolidze"
                       src="/broken-image.jpg"
                     ></Avatar>
+                    <br />
+                    {t("global.My Account")}
                   </Link>
                 ) : (
                   <div onClick={() => Login()} className="bar_account">
@@ -193,6 +195,7 @@ const NavBar = () => {
               onClick={() => {
                 logOut(), handleClose();
               }}
+              className="logout"
             >
               {t("global.Logout")}
             </MenuItem>

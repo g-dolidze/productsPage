@@ -37,37 +37,38 @@ function Profile() {
     setIsUserEditing((prev) => !prev);
   };
   return isUserEditing ? (
-    <div className="user_info">
-      <UserInfo handleChangeState={handleChangeState} />
+    <div className="user">
+      <UserInfo
+        handleChangeState={handleChangeState}
+        isUserEditing={isUserEditing}
+      />
     </div>
   ) : (
     <div className="user_page">
       <div className="user_info_page">
         <Typography variant="h4" className="user_info_title">
-          {t("global.User Info")}{" "}
+          {t("global.User Info")}
         </Typography>
         <Paper variant="outlined" className="user_info">
           <div className="person">
             <Typography className="info">
-              {t("global.firstName")} : {userData?.firstName}{" "}
+              {t("global.firstName")}:{userData?.firstName}
             </Typography>
             <Typography className="info">
-              {t("global.lastName")} : {userData?.lastName}{" "}
+              {t("global.lastName")} : {userData?.lastName}
             </Typography>
           </div>
 
           <Typography className="info_email">
-            {" "}
-            {t("global.phoneNumber")} : {userData?.phoneNumber}{" "}
+            {t("global.phoneNumber")} : {userData?.phoneNumber}
           </Typography>
           <Typography className="info_email">
-            {t("global.email")} : {userData?.email}{" "}
+            {t("global.email")} : {userData?.email}
           </Typography>
           <Button onClick={handleEditing} className="edit_btn">
             {t("global.edit")}
           </Button>
           <Paper elevation={3} className="address_info">
-            {" "}
             <AddressDialog address={address} />
           </Paper>
         </Paper>
@@ -77,7 +78,7 @@ function Profile() {
           <Typography variant="h2">{t("global.Orders")} </Typography>
           <Paper
             elevation={3}
-            sx={{ width: "700px", border: "1px solid black" }}
+            sx={{ width: "100%", border: "1px solid black" }}
           >
             {orders.map((item: Prodact) => {
               return (
@@ -90,18 +91,19 @@ function Profile() {
                     />
 
                     <Typography sx={{ width: "150px" }}>
-                      {t("global.price")}: {item.price}${" "}
+                      {t("global.price")}: {item.price}$
                     </Typography>
                   </div>
-                  <div className="order_right">
-                    <Typography>{item.title} </Typography>
+                  <div className="all_right">
+                    <div className="order_right">
+                      <Typography className="t_title">{item.title} </Typography>
+                    </div>
                     <Button
                       onClick={() => {
                         navigate("/order?status");
                       }}
                     >
-                      {" "}
-                      {t("global.order status")}{" "}
+                      {t("global.order status")}
                     </Button>
                   </div>
                 </Paper>

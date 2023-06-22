@@ -19,6 +19,7 @@ import AdminPage from "./admin/Page/adminPage";
 import AdminNavbar from "./admin/components/navbar/AdminNavbar";
 import { useEffect } from "react";
 import Orders from "./pages/product/orders";
+import ContactPage from "./pages/contact";
 
 function App() {
   const { isAdmin } = isUserAuthenticated();
@@ -44,7 +45,7 @@ function App() {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
-
+        <Route path="/Contact" element={<ContactPage />} />
         <Route path="/brand" element={<BrandsPage />} />
         <Route path="/order" element={<Orders />} />
       </Routes>

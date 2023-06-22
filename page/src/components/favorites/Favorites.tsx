@@ -12,6 +12,7 @@ function favorites() {
   return (
     <Grid>
       <Grid className="page">
+        <h1 style={{ color: "black" }}> Favorites</h1>
         {favoriteItems.map((product) => {
           return (
             <Paper

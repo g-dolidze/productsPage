@@ -32,7 +32,7 @@ const CartItem: FC<CartItemProps> = ({ item }) => {
         </Link>
         <div className="price">
           <h3>
-            {t("global.Price")}: {Number(item.price).toFixed(2)}{" "}
+            {t("global.price")}: {Number(item.price).toFixed(2)}${" "}
           </h3>
           <div className="quantity">
             <span onClick={() => dispatch(dicresQuantity(item))}>-</span>

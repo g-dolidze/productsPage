@@ -1,36 +1,33 @@
-import * as React from "react";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
-import Stack from "@mui/material/Stack";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Breadcrumbs, Typography, Link } from "@mui/material";
+import { Padding } from "@mui/icons-material";
+const CustomSeparator = () => {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
-function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
-  event.preventDefault();
-  console.info("You clicked a breadcrumb.");
-}
-
-export default function CustomSeparator() {
-  const breadcrumbs = [
-    <Link key="1" color="inherit" to="/">
-      HOME
-    </Link>,
-    <Link key="2" to="/">
-      Core
-    </Link>,
-    <Typography key="3" color="text.primary">
-      Breadcrumb
-    </Typography>,
-  ];
-
+  const pathnames = pathname.split("/").filter((x) => x);
   return (
-    <Stack spacing={2}>
-      <Breadcrumbs
-        separator={<NavigateNextIcon fontSize="small" />}
-        aria-label="breadcrumb"
-      >
-        {breadcrumbs}
-      </Breadcrumbs>
-    </Stack>
+    <Breadcrumbs
+      sx={{ marginTop: "0", height: "35px", bgcolor: "lightgray", pl: 2 }}
+    >
+      {pathnames.length > 0 ? (
+        <Link onClick={() => navigate("/")}>Home</Link>
+      ) : (
+        <Typography> Home </Typography>
+      )}
+      {pathnames.map((name, index) => {
+        const path = `/${pathnames.slice(0, index + 1).join(">")}`;
+        const isLast = index === pathnames.length - 1;
+        return isLast ? (
+          <Typography key={name}>{name}</Typography>
+        ) : (
+          <Link key={name} onClick={() => navigate(path)}>
+            {name}
+          </Link>
+        );
+      })}
+    </Breadcrumbs>
   );
-}
+};
+
+export default CustomSeparator;

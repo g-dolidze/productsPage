@@ -1,4 +1,6 @@
 import React from "react";
+import * as Yup from "yup";
+
 import Button from "@mui/material/Button";
 import { useTranslation } from "react-i18next";
 import TextField from "@mui/material/TextField";
@@ -14,12 +16,20 @@ import { Typography } from "@mui/material";
 interface AddressInfo {
   city: string;
   street: string;
-  zip_code: string;
+  zip_code: number;
   Address: string;
 }
-const initialValues = {};
 
-export default function AddressDialog(address: boolean) {
+const initialValues: AddressInfo = {
+  city: "",
+  street: "",
+  zip_code: 0,
+  Address: "",
+};
+type PropsType = {
+  address: boolean;
+};
+export default function AddressDialog({ address }: PropsType) {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
 
@@ -29,11 +39,17 @@ export default function AddressDialog(address: boolean) {
     setOpen(true);
     address = true;
   };
-
   const handleClose = () => {
     setOpen(false);
     address = false;
   };
+  const validationSchema = Yup.object().shape({
+    city: Yup.string().required("City is required"),
+    street: Yup.string().required("Street is required"),
+    zip_code: Yup.number().required("ZIP code is required"),
+    Address: Yup.string().required("Address is required"),
+  });
+
   const { t } = useTranslation();
 
   const {
@@ -46,7 +62,8 @@ export default function AddressDialog(address: boolean) {
     submitForm,
   } = useFormik({
     initialValues,
-    onSubmit: (userAddress) => {
+    validationSchema,
+    onSubmit: (userAddress: AddressInfo) => {
       if ("addressInfo" in userData) {
         const newAddress = JSON.stringify({
           ...userData,
@@ -68,16 +85,16 @@ export default function AddressDialog(address: boolean) {
     return (
       <>
         <div>
-          <Typography variant="h6">
+          <Typography variant="h6" className="adress_text" >
             {t("global.City")} : {userData.addressInfo.city}
           </Typography>
-          <Typography variant="h6">
+          <Typography variant="h6" className="adress_text">
             {t("global.Street")} : {userData.addressInfo.street}
           </Typography>
-          <Typography variant="h6">
+          <Typography variant="h6" className="adress_text">
             {t("global.Zip_code")} : {userData.addressInfo.zip_code}
           </Typography>
-          <Typography variant="h6">
+          <Typography variant="h6" className="adress_text">
             {t("global.Address")} : {userData.addressInfo.address}
           </Typography>
           <Button onClick={handleClickOpen}>Edit your address</Button>
@@ -95,6 +112,8 @@ export default function AddressDialog(address: boolean) {
                   type="text"
                   fullWidth
                   variant="standard"
+                  error={touched.city && !!errors.city}
+                  helperText={touched.city && errors.city}
                 />
                 <TextField
                   onChange={handleChange}
@@ -105,6 +124,8 @@ export default function AddressDialog(address: boolean) {
                   type="text"
                   fullWidth
                   variant="standard"
+                  error={touched.street && !!errors.street}
+                  helperText={touched.street && errors.street}
                 />
                 <TextField
                   onChange={handleChange}
@@ -115,6 +136,8 @@ export default function AddressDialog(address: boolean) {
                   type="number"
                   fullWidth
                   variant="standard"
+                  error={touched.zip_code && !!errors.zip_code}
+                  helperText={touched.zip_code && errors.zip_code}
                 />
                 <TextField
                   onChange={handleChange}
@@ -125,6 +148,8 @@ export default function AddressDialog(address: boolean) {
                   type="text"
                   fullWidth
                   variant="standard"
+                  error={touched.Address && !!errors.Address}
+                  helperText={touched.Address && errors.Address}
                 />
               </form>
             </DialogContent>
@@ -163,6 +188,8 @@ export default function AddressDialog(address: boolean) {
                 type="text"
                 fullWidth
                 variant="standard"
+                error={touched.city && !!errors.city}
+                helperText={touched.city && errors.city}
               />
               <TextField
                 onChange={handleChange}
@@ -173,6 +200,8 @@ export default function AddressDialog(address: boolean) {
                 type="text"
                 fullWidth
                 variant="standard"
+                error={touched.street && !!errors.street}
+                helperText={touched.street && errors.street}
               />
               <TextField
                 onChange={handleChange}
@@ -183,6 +212,8 @@ export default function AddressDialog(address: boolean) {
                 type="number"
                 fullWidth
                 variant="standard"
+                error={touched.zip_code && !!errors.zip_code}
+                helperText={touched.zip_code && errors.zip_code}
               />
               <TextField
                 onChange={handleChange}
@@ -193,6 +224,8 @@ export default function AddressDialog(address: boolean) {
                 type="text"
                 fullWidth
                 variant="standard"
+                error={touched.Address && !!errors.Address}
+                helperText={touched.Address && errors.Address}
               />
             </form>
           </DialogContent>

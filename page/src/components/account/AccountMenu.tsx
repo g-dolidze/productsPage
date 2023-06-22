@@ -89,14 +89,6 @@ export default function AccountMenu() {
             <Avatar /> {t("global.My Account")}
           </MenuItem>
         </Link>
-        <Link to="/cart">
-          <MenuItem onClick={handleClose}>
-            <ListItemIcon>
-              <ShoppingCartCheckout />
-            </ListItemIcon>
-            {t("global.My Orders")}
-          </MenuItem>
-        </Link>
 
         <Divider />
         <MenuItem

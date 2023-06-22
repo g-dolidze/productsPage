@@ -1,7 +1,6 @@
 import { useAppSelector } from "../../Redux/hooks";
 import { Button, Paper, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-
 import { isUserAuthenticated } from "../../Helpers/user/isUserAuth";
 import CartItem from "../../components/CartItem";
 import "./Cart.scss";
@@ -11,8 +10,8 @@ import {
   addProductToOrders,
   deleteProductFromSales,
 } from "../../PageRedux/actions";
-import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Cart = () => {
   const { choosenItems } = useAppSelector<InitialState>(
@@ -65,6 +64,7 @@ const Cart = () => {
 
   return (
     <div className="carts_page">
+      <ToastContainer />
       <div className="cart_page">
         {choosenItems.map((item) => {
           return (
@@ -74,8 +74,7 @@ const Cart = () => {
           );
         })}
       </div>
-      <ToastContainer />
-      {window.innerWidth > 1023 ? (
+      {window.innerWidth > 860 ? (
         <div className="right_side">
           <div className="list">
             {" "}
@@ -86,7 +85,7 @@ const Cart = () => {
                     <h4>{item.title} </h4>
                     <div className="amount">
                       <h5>
-                        {t("global.price")}: {Number(item.price).toFixed(2)}
+                        {t("global.price")}: {Number(item.price).toFixed(2)}$
                       </h5>
                       <h5>
                         {t("global.quantity")}:{item.quantity}{" "}
@@ -103,19 +102,29 @@ const Cart = () => {
               {t("global.total price")}:{Number(total.toFixed(2))} ${" "}
             </h3>
             <hr />
-            <h1>
-              <Button onClick={isauthen}>{t("global.Check Out")} </Button>
-            </h1>
+            <Button onClick={isauthen} sx={{ alignItems: "center" }}>
+              {t("global.Check Out")}{" "}
+            </Button>
           </div>
         </div>
       ) : (
         <div className="total">
-          <ul>
-            <li>
-              {t("global.total price")}:{Number(total.toFixed(2))}{" "}
-              {t("global.lari")}
-            </li>
-          </ul>
+          <h4>
+            {t("global.total price")}:{Number(total.toFixed(2))} $
+          </h4>
+          <br />
+          <hr />
+          <Button
+            onClick={isauthen}
+            sx={{
+              backgroundColor: "green",
+              color: "white",
+              margin: "20px auto",
+              padding: "20px ",
+            }}
+          >
+            {t("global.Check Out")}{" "}
+          </Button>
         </div>
       )}
     </div>

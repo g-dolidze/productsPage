@@ -57,7 +57,19 @@
     "add to cart": "add to cart",
     "order status": "order status",
     "Orders": "Orders",
-    "No Active Orders": "No Active Orders"
+    "No Active Orders": "No Active Orders",
+    "FAQ": "FAQ",
+    "Guarantee and replacement": "Guarantee and replacement",
+    "Delivery": "Delivery",
+    "About us": "About us",
+    "Contact Us": "Contact Us",
+    "© 2023 E_Shop.ge all rights reserved": "© 2023 E_Shop.ge all rights reserved",
+    "Saturday": "Saturday",
+    "S Nutsubidze st": "S Nutsubidze st",
+    "Send a Message": "Send a Message",
+    "Our Address": "Our Address",
+    "Send": "Send",
+    "In case of questions, feel free to contact us using the contact information": "In case of questions, feel free to contact us using the contact information"
   },
   "ge": {
     "product": "პროდუქცია",
@@ -66,7 +78,7 @@
     "category": "კატეგორია",
     "quantity": "რაოდენობა",
     "price": "ფასი",
-    "total price": "სურული ფასი",
+    "total price": "სრული ფასი",
     "Check Out": "დადასტურება",
     "lari": "ლარი",
     "My Account": "ჩემი მონაცემები",
@@ -116,6 +128,18 @@
     "add to cart": "კალათაში დამატება",
     "order status": "შეკვეთის სტატუსი",
     "Orders": "შეკვეთები",
-    "No Active Orders": "აქტიური შეკვეტა არ მოიძებნა"
+    "No Active Orders": "აქტიური შეკვეტა არ მოიძებნა",
+    "FAQ": "ხშირად დასმული კითხვები",
+    "Guarantee and replacement": "გარანტია და შეცვლის პირობები",
+    "About us": "კომპანიის შესახებ",
+    "Delivery": "მიწოდება",
+    "Contact Us": "დაგვიკავშირდით",
+    "© 2023 E_Shop.ge all rights reserved": "© 2023 E_Shop.ge ყველა უფლება დაცულია",
+    "Saturday": "შაბათი",
+    "S Nutsubidze st": "  შ.ნუცუბიძის ",
+    "Send a Message": "მოგვწერეთ ",
+    "Our Address": "ჩვენი მისამართი",
+    "Send": "გაგზავნა",
+    "In case of questions, feel free to contact us using the contact information": "შეკითხვების შემთხვევაში დაგვიკავშირდეთ საკონტაქტო ინფორმაციის გამოყენებით"
   }
 }

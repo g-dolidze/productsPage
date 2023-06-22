@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../../Helpers/Products";
 import { Button, Grid, Paper } from "@mui/material";
 import { useDispatch } from "react-redux";
+import { useAppSelector } from "../../Redux/hooks";
+import { useTranslation } from "react-i18next";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import {
   getProductsFromApi,
   seeMoreItems,
   totalFound,
 } from "../../PageRedux/actions";
-import { useAppSelector } from "../../Redux/hooks";
-import { useTranslation } from "react-i18next";
-
 import Card from "../../components/Card";
 import "./Home.scss";
 import Carusel from "../../components/carusel/mainCarusel/Carusel";
@@ -31,8 +33,22 @@ function Home() {
     getProducts();
   }, []);
 
+  const notify = () =>
+    toast("Added in Cart", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+
   return (
     <div style={{ width: "100%" }}>
+      <ToastContainer />
       <Grid
         container
         style={{
@@ -64,7 +80,11 @@ function Home() {
                 key={product.id}
                 sx={{ borderRadius: "10px" }}
               >
-                <Card product={product} />
+                <Card
+                  product={product}
+                  notify={notify}
+                 
+                />
               </Paper>
             );
           })}
