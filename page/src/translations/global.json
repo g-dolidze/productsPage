@@ -69,7 +69,10 @@
     "Send a Message": "Send a Message",
     "Our Address": "Our Address",
     "Send": "Send",
-    "In case of questions, feel free to contact us using the contact information": "In case of questions, feel free to contact us using the contact information"
+    "title": "title",
+    "description": "description",
+    "In case of questions, feel free to contact us using the contact information": "In case of questions, feel free to contact us using the contact information",
+    "SIGN UP": "SIGN UP"
   },
   "ge": {
     "product": "პროდუქცია",
@@ -85,6 +88,7 @@
     "Logout": "გასვლა",
     "show more": "მეტის ნახვა",
     "Sign up": "რეგისტარცია",
+    "SIGN UP": "რეგისტარცია",
     "Sign in": "შესვლა",
     "Log in": "შესვლა",
     "Forgot password?": "დაგავიწყდა პაროლი?",
@@ -118,6 +122,8 @@
     "search": "ძებნა",
     "Category": "კატეგორია",
     "amount": "მარაგშია",
+    "title": "დასახელება",
+    "description": "აღწერა",
     "done": "დასრულდა",
     "image": "სურათი",
     "Delete This Item?": "წავშალოთ ეს პროდუქტი?",

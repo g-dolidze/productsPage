@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { getBrandsProducts } from "../../../PageRedux/actions";
 import { useAppSelector } from "../../../Redux/hooks";
 import { getBrandProducts } from "../../../Helpers/Products";
-function SimilarsCarusel({ item }: Prodact) {
+function SimilarsCarusel({ item }: any) {
   const dispatch = useDispatch();
   const { products } = useAppSelector<InitialState>(
     (state) => state.mainReducer

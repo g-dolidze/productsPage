@@ -8,8 +8,11 @@ import {
   MenuItem,
 } from "@mui/material";
 import { Height } from "@mui/icons-material";
+type PropsType = {
+  setBrandKind: Function;
+};
 
-function BrandProducts({ setBrandKind }) {
+function BrandProducts({ setBrandKind }: PropsType) {
   const [kind, setKind] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent) => {

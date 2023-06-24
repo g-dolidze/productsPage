@@ -148,7 +148,7 @@ const Registration = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            <Link to="/login"> {t("global.Sign Up")}</Link>
+            <Link to="/login"> {t("global.SIGN UP")}</Link>
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>

@@ -30,7 +30,7 @@ export const addToFavorite = (favoriteItem: Prodact): MAIN_PAGE_ACTIONS => ({
   type: ADD_TO_FAVORITE,
   payload: favoriteItem,
 });
-export const addToCart = (choosenItem: Prodact): MAIN_PAGE_ACTIONS => ({
+export const addToCart = (choosenItem: any): MAIN_PAGE_ACTIONS => ({
   type: ADD_TO_CART,
   payload: choosenItem,
 });
@@ -68,7 +68,7 @@ export const deleteProductFromSales = (
   type: DELETE_FROM_SALES,
   payload: product,
 });
-export const addProductToOrders = (product: Prodact): MAIN_PAGE_ACTIONS => ({
+export const addProductToOrders = (product: any): MAIN_PAGE_ACTIONS => ({
   type: ADD_IN_ORDERS,
   payload: product,
 });
