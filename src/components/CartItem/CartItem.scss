@@ -1,0 +1,189 @@
+@media only screen and (min-width: 1024px) {
+  .item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    .item_info {
+      padding: 5%;
+      .remove {
+        cursor: pointer;
+        position: absolute;
+        right: 15px;
+        top: 0px;
+        color: red;
+        font-size: 32px;
+      }
+      .price {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .quantity {
+          width: 90px;
+          height: 30px;
+          border-radius: 20px;
+          border: 1px solid black;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
+          align-items: center;
+          span {
+            cursor: pointer;
+            width: auto;
+            margin-left: 5px;
+            width: 30px;
+            font-size: 24px;
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (min-width: 860px) and (max-width: 1024px) {
+  .item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    .item_info {
+      position: absolute;
+      left: 230px;
+      top: 50px;
+
+      width: 300px;
+
+      .price {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .quantity {
+          width: 90px;
+          height: 30px;
+          border-radius: 20px;
+          border: 1px solid black;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
+          align-items: center;
+          span {
+            cursor: pointer;
+            width: auto;
+            margin-left: 5px;
+            width: 30px;
+            font-size: 24px;
+          }
+        }
+      }
+    }
+    .remove {
+      position: absolute;
+      cursor: pointer;
+      left: 340px;
+      top: 0;
+      margin-top: -050px;
+      color: red;
+      font-size: 32px;
+    }
+  }
+}
+@media only screen and (min-width: 640px) and (max-width: 860px) {
+  .item {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+
+    .item_info {
+      width: 80%;
+      margin-top: 40px;
+      margin-left: 50px;
+      position: relative;
+      .price {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .quantity {
+          width: 90px;
+          height: 30px;
+          border-radius: 20px;
+          border: 1px solid black;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
+          align-items: center;
+          span {
+            cursor: pointer;
+            width: auto;
+            margin-left: 5px;
+            width: 30px;
+            font-size: 24px;
+          }
+        }
+      }
+    }
+    .remove {
+      position: absolute;
+      cursor: pointer;
+      left: 340px;
+      top: 5px;
+      margin-top: -50px;
+      color: red;
+      font-size: 32px;
+    }
+  }
+}
+@media only screen and (max-width: 640px) {
+  .item {
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    img {
+      padding: 5px;
+      width: 120px;
+      height: 120px;
+    }
+    .item_info {
+      font-size: 12px;
+      width: 80%;
+      padding: 10px;
+
+      .price {
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .quantity {
+          padding: 10px;
+          width: 90px;
+          height: 30px;
+          border-radius: 20px;
+          border: 1px solid black;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
+          align-items: center;
+          span {
+            cursor: pointer;
+            width: auto;
+            margin-left: 5px;
+            width: 30px;
+            font-size: 24px;
+          }
+        }
+      }
+    }
+    .remove {
+      position: absolute;
+      cursor: pointer;
+      right: 0px;
+      top: 0px;
+      color: red;
+      font-size: 22px;
+    }
+  }
+}

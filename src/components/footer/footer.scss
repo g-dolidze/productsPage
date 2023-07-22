@@ -1,0 +1,49 @@
+.footer {
+  margin-top: 20px;
+  width: 100vw;
+  height: 300px;
+  background-color: rgb(48, 47, 47);
+  color: white;
+  position: relative;
+  .line {
+    position: absolute;
+    top: 20px;
+    left: 10%;
+    width: 80%;
+    height: 7px;
+    border-radius: 10px;
+    background-color: rgb(102, 158, 207);
+  }
+  .footer_board {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    ul {
+      margin-top: 30px;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      li {
+        list-style: none;
+        display: flex;
+      }
+    }
+  }
+  .line2 {
+    position: absolute;
+    bottom: 50px;
+    left: 10%;
+    width: 80%;
+    height: 7px;
+    border-radius: 10px;
+    background-color: rgb(102, 158, 207);
+  }
+}
+.reserved {
+  position: absolute;
+  bottom: 10px;
+  font-size: 11px;
+}
